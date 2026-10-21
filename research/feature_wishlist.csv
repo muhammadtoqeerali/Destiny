@@ -1,0 +1,18 @@
+domain,concept,synthetic_demo_field,hunt_code,priority,reason_or_caveat
+Demographics,Age at baseline,age,TO_BE_VERIFIED,HIGH,Baseline time and birth year needed
+Demographics,Sex,sex,TO_BE_VERIFIED,HIGH,Examine calibration by sex
+Function,4-m gait speed,gait_speed_ms,TO_BE_VERIFIED,HIGH,HUNT4 70+ reported; units and protocol needed
+Function,SPPB score,sppb_score,TO_BE_VERIFIED,HIGH,May overlap with frailty label definition
+Strength,Handgrip strength,grip_strength_kg,TO_BE_VERIFIED,HIGH,Sex/age reference interpretation requires protocol
+Cognition,MoCA,moca_score,TO_BE_VERIFIED,HIGH,Assess cognitive domain and missingness
+Nutrition,BMI,bmi,TO_BE_VERIFIED,HIGH,Check measured vs self-reported weight
+Nutrition,Unintentional weight loss,weight_loss,TO_BE_VERIFIED,HIGH,Depends on question wording and recall period
+Symptoms,Exhaustion,exhaustion,TO_BE_VERIFIED,HIGH,Potential label leakage for frailty phenotype
+General health,Comorbidity burden,comorbidity_count,DERIVED_APPROVED_FEATURE,HIGH,Derived from approved baseline diagnoses only
+Medication,Polypharmacy count,medication_count,DERIVED_APPROVED_FEATURE,HIGH,Requires permitted medication register and date
+Falls,Previous falls,previous_fall,TO_BE_VERIFIED,HIGH,Assess ascertainment and time window
+Oral health,ROAG-J assessment,oral_health_problem,TO_BE_VERIFIED,MEDIUM,Highly subcohort-dependent coverage
+Activity,Wearable-derived daily activity,activity_minutes_day,TO_BE_VERIFIED,MEDIUM,Sensor subset; define wear time and algorithm
+Outcome,Subsequent falls,fall_within_12m,NOT_A_REAL_HUNT_FIELD,TARGET,Artificial outcome only in synthetic demo
+Outcome,Fracture after index date,NOT_IN_SYNTHETIC_DEMO,REQUIRES_LINKAGE,TARGET,Prospective register ascertainment/ethics approval
+Outcome,Dependence in daily life,NOT_IN_SYNTHETIC_DEMO,TO_BE_VERIFIED,TARGET,Need validated instrument and future follow-up

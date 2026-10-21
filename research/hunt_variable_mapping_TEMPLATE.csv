@@ -1,0 +1,13 @@
+domain,illustrative_demo_field,actual_HUNT_variable_code,survey_wave,measurement_date_field,unit,coding_missingness,approved_for_project,notes
+Age,age,,,,,,,
+Sex,sex,,,,,,,
+Mobility,gait_speed_ms,,,,,,,
+Physical function,sppb_score,,,,,,,
+Muscle strength,grip_strength_kg,,,,,,,
+Cognition,moca_score,,,,,,,
+Nutrition,weight_loss,,,,,,,
+Oral health,oral_health_problem,,,,,,,
+Polypharmacy,medication_count,,,,,,,
+Wearable activity,activity_minutes_day,,,,,,,
+Past falls,previous_fall,,,,,,,
+Future fall event,fall_within_12m,,,,,,,Outcome is synthetic-only in this demo
