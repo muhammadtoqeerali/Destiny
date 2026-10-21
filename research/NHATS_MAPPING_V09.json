@@ -1,0 +1,28 @@
+{
+  "verified_against_nhats_codebooks": false,
+  "domains": ["mobility", "cognition", "daily_function"],
+  "waves": [
+    {
+      "round": 1,
+      "year": 2011,
+      "file": "data/nhats/REPLACE_FROM_OFFICIAL_CODEBOOK_R1.csv",
+      "id_column": "REPLACE_FROM_OFFICIAL_CODEBOOK",
+      "measures": {
+        "mobility": {"column": "REPLACE_FROM_OFFICIAL_CODEBOOK", "positive_codes": [], "negative_codes": [], "missing_codes": []},
+        "cognition": {"disabled": true},
+        "daily_function": {"disabled": true}
+      }
+    },
+    {
+      "round": 2,
+      "year": 2012,
+      "file": "data/nhats/REPLACE_FROM_OFFICIAL_CODEBOOK_R2.csv",
+      "id_column": "REPLACE_FROM_OFFICIAL_CODEBOOK",
+      "measures": {
+        "mobility": {"column": "REPLACE_FROM_OFFICIAL_CODEBOOK", "positive_codes": [], "negative_codes": [], "missing_codes": []},
+        "cognition": {"disabled": true},
+        "daily_function": {"disabled": true}
+      }
+    }
+  ]
+}
