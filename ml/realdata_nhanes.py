@@ -103,6 +103,19 @@ def construct_five_year_label(m:pd.DataFrame,months:int=60)->pd.DataFrame:
     return z
 
 
+def normalize_xport_zero(series:pd.Series)->pd.Series:
+    """Correct pandas XPORT's known numeric-zero alias on integer questionnaire items.
+
+    NHANES DPQ responses are integer codes 0,1,2,3; a SAS numeric zero can
+    be decoded as 5.397605346934028e-79 by pandas.read_sas(format='xport').
+    Restrict this correction to DPQ item values, before response-code filtering.
+    Never convert NA, 7 (refusal) or 9 (unknown) to zero.
+    """
+    values=pd.to_numeric(series,errors='coerce')
+    alias=values.notna() & values.ne(0) & values.abs().lt(1e-70)
+    return values.mask(alias,0.0)
+
+
 def as_features(raw:pd.DataFrame)->pd.DataFrame:
     df=raw.copy()
     for column in RENAMES:
@@ -117,7 +130,7 @@ def as_features(raw:pd.DataFrame)->pd.DataFrame:
     df['bmi']=pd.to_numeric(df['bmi'],errors='coerce').where(lambda x:x.between(12,70))
     for key in PHQ:
         if key not in df:df[key]=np.nan
-        df[key]=pd.to_numeric(df[key],errors='coerce').where(lambda x:x.isin([0,1,2,3]))
+        df[key]=normalize_xport_zero(df[key]).where(lambda x:x.isin([0,1,2,3]))
     # PHQ-9 total only when all nine scores were recorded; avoids treating absent as zero.
     df['phq9_score']=df[PHQ].sum(axis=1,min_count=9)
     return df

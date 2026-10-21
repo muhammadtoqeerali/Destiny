@@ -14,21 +14,27 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install -r requirements.txt
-      - run: python -m pytest -q tests/test_real_nhanes.py tests/test_public_aggregate.py tests/test_nhanes_refinement.py
+      - run: python -m pytest -q tests/test_real_nhanes.py tests/test_public_aggregate.py tests/test_nhanes_refinement.py tests/test_v08.py tests/test_phq_xport_zero.py
       - name: Public payload validation
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           data_dir=Path('web/public/data')
+          expected={'nhanes-aggregate.json','nhanes-refinement.json','nhanes-cohort-profile.json'}
           files={x.name for x in data_dir.iterdir() if x.is_file()}
-          assert files=={'nhanes-aggregate.json','nhanes-refinement.json'},files
-          for fname in files:
+          assert files==expected,(files, expected)
+          forbidden={'SEQN','patient','patients','cases','caseId','raw_predictions','individual_scores','date_of_birth'}
+          for fname in sorted(files):
               obj=json.loads((data_dir/fname).read_text())
               assert obj['provenance']=='REAL_NHANES_AGGREGATE_ONLY'
-              forbidden={'SEQN','patient','patients','cases','caseId','raw_predictions','individual_scores','date_of_birth'}
               assert not (forbidden & set(obj.keys()))
-              assert obj['counts']['total'] >= 2000
+              if fname=='nhanes-cohort-profile.json':
+                  assert len(obj['groups'])>=1
+                  assert all(g['n']>=50 for g in obj['groups'])
+                  assert all(v['n_observed']>=50 for g in obj['groups'] for v in g['conditions']+g['mobility'])
+              else:
+                  assert obj['counts']['total']>=2000
           print('PASS: Only validated real NHANES aggregate exports')
           PY
       - uses: actions/setup-node@v4

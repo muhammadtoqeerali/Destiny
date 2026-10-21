@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from ml.realdata_nhanes import normalize_xport_zero
 
 PHQ_ITEMS=[f'DPQ{i:03d}' for i in range(10,100,10)]
 CYCLES={'2011-2012':'G','2013-2014':'H'}
@@ -24,7 +25,9 @@ def phq_diagnostics(raw:pd.DataFrame,processed:pd.DataFrame)->dict:
     merged=proc.merge(raw,on='SEQN',how='left',validate='one_to_one',indicator=True)
     if merged['_merge'].eq('left_only').any():raise ValueError('Processed participants missing from raw DPQ file')
     items=merged[PHQ_ITEMS].apply(pd.to_numeric,errors='coerce')
-    valid=items.where(items.isin([0,1,2,3]))
+    zero_alias=(items.notna() & items.ne(0) & items.abs().lt(1e-70))
+    normalized=items.apply(normalize_xport_zero)
+    valid=normalized.where(normalized.isin([0,1,2,3]))
     reconstructed=valid.sum(axis=1,min_count=9)
     proc_tot=pd.to_numeric(merged.phq9_score,errors='coerce')
     mismatch=~((reconstructed.eq(proc_tot)) | (reconstructed.isna()&proc_tot.isna()))
@@ -33,6 +36,7 @@ def phq_diagnostics(raw:pd.DataFrame,processed:pd.DataFrame)->dict:
        'raw_nine_complete':int(reconstructed.notna().sum()),
        'processed_complete':int(proc_tot.notna().sum()),
        'mismatch_count':int(mismatch.sum()),
+       'xport_zero_alias_values_corrected':int(zero_alias.to_numpy().sum()),
        'raw_complete_percent':round(100*float(reconstructed.notna().mean()),2),
        'item_valid_percent':{key:round(100*float(valid[key].notna().mean()),2) for key in PHQ_ITEMS},
     }

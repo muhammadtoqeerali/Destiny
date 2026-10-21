@@ -11,61 +11,61 @@
   },
   "outcome": "Approximately five-year all-cause mortality",
   "selectedModel": "Histogram gradient boosting",
-  "selectedThreshold": 0.165,
+  "selectedThreshold": 0.12,
   "models": [
     {
       "name": "Logistic regression",
-      "cv_brier": 0.1397,
-      "auc": 0.8024,
-      "ap": 0.5522,
-      "brier": 0.1273,
+      "cv_brier": 0.1383,
+      "auc": 0.7942,
+      "ap": 0.5302,
+      "brier": 0.1301,
       "trials": 10
     },
     {
       "name": "Histogram gradient boosting",
-      "cv_brier": 0.1368,
-      "auc": 0.8176,
-      "ap": 0.5628,
-      "brier": 0.1242,
+      "cv_brier": 0.1386,
+      "auc": 0.8054,
+      "ap": 0.5305,
+      "brier": 0.1269,
       "trials": 10
     },
     {
       "name": "XGBoost",
-      "cv_brier": 0.1337,
-      "auc": 0.8065,
-      "ap": 0.5313,
-      "brier": 0.1273,
+      "cv_brier": 0.1349,
+      "auc": 0.7862,
+      "ap": 0.4991,
+      "brier": 0.1308,
       "trials": 10
     },
     {
       "name": "CatBoost",
-      "cv_brier": 0.1336,
-      "auc": 0.8042,
-      "ap": 0.5286,
-      "brier": 0.1284,
+      "cv_brier": 0.1346,
+      "auc": 0.7975,
+      "ap": 0.5299,
+      "brier": 0.131,
       "trials": 10
     }
   ],
   "test": {
-    "roc_auc": 0.7964,
-    "average_precision": 0.5285,
-    "brier": 0.1238,
-    "accuracy": 0.7104,
-    "precision": 0.3786,
-    "recall": 0.748,
-    "f1": 0.5027,
+    "roc_auc": 0.8006,
+    "average_precision": 0.5313,
+    "brier": 0.1228,
+    "accuracy": 0.6277,
+    "precision": 0.3244,
+    "recall": 0.8333,
+    "f1": 0.467,
     "confusion": {
-      "tn": 709,
-      "fp": 302,
-      "fn": 62,
-      "tp": 184
+      "tn": 584,
+      "fp": 427,
+      "fn": 41,
+      "tp": 205
     }
   },
   "weightedDescriptive": {
-    "roc_auc": 0.809,
-    "average_precision": 0.5138,
-    "brier": 0.1143,
-    "recall": 0.7413
+    "roc_auc": 0.8125,
+    "average_precision": 0.522,
+    "brier": 0.1128,
+    "recall": 0.8306
   },
   "ageDistribution": [
     {
@@ -140,155 +140,155 @@
     },
     {
       "name": "PHQ-9 questionnaire score",
-      "observed": 0.5
+      "observed": 91.0
     }
   ],
   "calibration": [
     {
       "group": "Q1",
       "n": 252,
-      "predicted": 0.038,
-      "observed": 0.0397
+      "predicted": 0.0394,
+      "observed": 0.0317
     },
     {
       "group": "Q2",
       "n": 252,
-      "predicted": 0.0744,
-      "observed": 0.0794
+      "predicted": 0.0751,
+      "observed": 0.0873
     },
     {
       "group": "Q3",
       "n": 251,
-      "predicted": 0.1218,
-      "observed": 0.1235
+      "predicted": 0.1229,
+      "observed": 0.1155
     },
     {
       "group": "Q4",
       "n": 251,
-      "predicted": 0.2216,
-      "observed": 0.2231
+      "predicted": 0.2253,
+      "observed": 0.2191
     },
     {
       "group": "Q5",
       "n": 251,
-      "predicted": 0.4689,
-      "observed": 0.5139
+      "predicted": 0.4762,
+      "observed": 0.5259
     }
   ],
   "featureImportance": [
     {
       "name": "Age (80+ top-coded)",
-      "auc_drop": 0.1684
+      "auc_drop": 0.1713
     },
     {
       "name": "Walking difficulty",
-      "auc_drop": 0.0283
+      "auc_drop": 0.0224
     },
     {
       "name": "Sex",
-      "auc_drop": 0.0196
+      "auc_drop": 0.017
     },
     {
       "name": "Coronary disease",
-      "auc_drop": 0.0076
-    },
-    {
-      "name": "Cancer",
-      "auc_drop": 0.0075
+      "auc_drop": 0.009
     },
     {
       "name": "Heart failure",
-      "auc_drop": 0.0066
+      "auc_drop": 0.0077
     },
     {
-      "name": "Stooping difficulty",
-      "auc_drop": 0.0053
+      "name": "Cancer",
+      "auc_drop": 0.007
     },
     {
       "name": "Diabetes",
-      "auc_drop": 0.0041
+      "auc_drop": 0.0035
     },
     {
       "name": "Stair difficulty",
-      "auc_drop": 0.0025
+      "auc_drop": 0.0032
     },
     {
-      "name": "Stroke",
-      "auc_drop": 0.0002
-    },
-    {
-      "name": "PHQ-9 questionnaire score",
-      "auc_drop": 0.0
-    },
-    {
-      "name": "Hypertension",
-      "auc_drop": -0.0002
+      "name": "Stooping difficulty",
+      "auc_drop": 0.0029
     },
     {
       "name": "Ever smoked",
+      "auc_drop": -0.0003
+    },
+    {
+      "name": "Hypertension",
+      "auc_drop": -0.0006
+    },
+    {
+      "name": "Stroke",
       "auc_drop": -0.0007
     },
     {
       "name": "Body mass index",
-      "auc_drop": -0.0041
+      "auc_drop": -0.0083
+    },
+    {
+      "name": "PHQ-9 questionnaire score",
+      "auc_drop": -0.0092
     }
   ],
   "shap": [
     {
       "name": "Age (80+ top-coded)",
-      "mean_abs_shap": 0.08306
+      "mean_abs_shap": 0.08605
     },
     {
       "name": "Walking difficulty",
-      "mean_abs_shap": 0.04989
+      "mean_abs_shap": 0.04401
     },
     {
       "name": "Body mass index",
-      "mean_abs_shap": 0.03431
-    },
-    {
-      "name": "Stair difficulty",
-      "mean_abs_shap": 0.03002
+      "mean_abs_shap": 0.03008
     },
     {
       "name": "Sex",
-      "mean_abs_shap": 0.02918
+      "mean_abs_shap": 0.02943
     },
     {
-      "name": "Heart failure",
-      "mean_abs_shap": 0.0134
-    },
-    {
-      "name": "Stooping difficulty",
-      "mean_abs_shap": 0.01312
-    },
-    {
-      "name": "Coronary disease",
-      "mean_abs_shap": 0.00949
-    },
-    {
-      "name": "Diabetes",
-      "mean_abs_shap": 0.00867
-    },
-    {
-      "name": "Cancer",
-      "mean_abs_shap": 0.0065
-    },
-    {
-      "name": "Stroke",
-      "mean_abs_shap": 0.00098
-    },
-    {
-      "name": "Ever smoked",
-      "mean_abs_shap": 0.00094
-    },
-    {
-      "name": "Hypertension",
-      "mean_abs_shap": 0.00034
+      "name": "Stair difficulty",
+      "mean_abs_shap": 0.02761
     },
     {
       "name": "PHQ-9 questionnaire score",
-      "mean_abs_shap": 0.0
+      "mean_abs_shap": 0.02614
+    },
+    {
+      "name": "Heart failure",
+      "mean_abs_shap": 0.01186
+    },
+    {
+      "name": "Stooping difficulty",
+      "mean_abs_shap": 0.01021
+    },
+    {
+      "name": "Coronary disease",
+      "mean_abs_shap": 0.00909
+    },
+    {
+      "name": "Cancer",
+      "mean_abs_shap": 0.00723
+    },
+    {
+      "name": "Diabetes",
+      "mean_abs_shap": 0.00608
+    },
+    {
+      "name": "Ever smoked",
+      "mean_abs_shap": 0.00129
+    },
+    {
+      "name": "Stroke",
+      "mean_abs_shap": 0.001
+    },
+    {
+      "name": "Hypertension",
+      "mean_abs_shap": 0.00042
     }
   ],
   "explanationMethod": "Permutation SHAP of prediction probabilities",

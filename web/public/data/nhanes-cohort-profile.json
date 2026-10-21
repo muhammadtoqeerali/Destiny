@@ -559,8 +559,6 @@
     }
   ],
   "method": "Survey-weighted descriptive percentages; no design-based uncertainty estimates",
-  "notes": [
-    "PHQ-9 excluded from descriptive profiles pending raw-data completeness review"
-  ],
+  "notes": [],
   "small_cell_rule": "Only variables with ≥50 observed records and ≥20 per category are reported"
 }
