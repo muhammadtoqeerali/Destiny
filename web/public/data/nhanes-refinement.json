@@ -1,0 +1,302 @@
+{
+  "provenance": "REAL_NHANES_AGGREGATE_ONLY",
+  "analysis": "NHANES · Linked mortality · Model refinement",
+  "counts": {
+    "development": 1165,
+    "train": 873,
+    "validation": 292,
+    "test": 1257,
+    "test_events": 246,
+    "total": 2422
+  },
+  "outcome": "Approximately five-year all-cause mortality",
+  "selectedModel": "Histogram gradient boosting",
+  "selectedThreshold": 0.165,
+  "models": [
+    {
+      "name": "Logistic regression",
+      "cv_brier": 0.1397,
+      "auc": 0.8024,
+      "ap": 0.5522,
+      "brier": 0.1273,
+      "trials": 10
+    },
+    {
+      "name": "Histogram gradient boosting",
+      "cv_brier": 0.1368,
+      "auc": 0.8176,
+      "ap": 0.5628,
+      "brier": 0.1242,
+      "trials": 10
+    },
+    {
+      "name": "XGBoost",
+      "cv_brier": 0.1337,
+      "auc": 0.8065,
+      "ap": 0.5313,
+      "brier": 0.1273,
+      "trials": 10
+    },
+    {
+      "name": "CatBoost",
+      "cv_brier": 0.1336,
+      "auc": 0.8042,
+      "ap": 0.5286,
+      "brier": 0.1284,
+      "trials": 10
+    }
+  ],
+  "test": {
+    "roc_auc": 0.7964,
+    "average_precision": 0.5285,
+    "brier": 0.1238,
+    "accuracy": 0.7104,
+    "precision": 0.3786,
+    "recall": 0.748,
+    "f1": 0.5027,
+    "confusion": {
+      "tn": 709,
+      "fp": 302,
+      "fn": 62,
+      "tp": 184
+    }
+  },
+  "weightedDescriptive": {
+    "roc_auc": 0.809,
+    "average_precision": 0.5138,
+    "brier": 0.1143,
+    "recall": 0.7413
+  },
+  "ageDistribution": [
+    {
+      "group": "65–69",
+      "count": 742
+    },
+    {
+      "group": "70–74",
+      "count": 623
+    },
+    {
+      "group": "75–79",
+      "count": 402
+    },
+    {
+      "group": "80+ (top-coded)",
+      "count": 655
+    }
+  ],
+  "featureCoverage": [
+    {
+      "name": "Age (80+ top-coded)",
+      "observed": 100.0
+    },
+    {
+      "name": "Sex",
+      "observed": 100.0
+    },
+    {
+      "name": "Body mass index",
+      "observed": 97.4
+    },
+    {
+      "name": "Walking difficulty",
+      "observed": 74.8
+    },
+    {
+      "name": "Stair difficulty",
+      "observed": 75.1
+    },
+    {
+      "name": "Stooping difficulty",
+      "observed": 97.8
+    },
+    {
+      "name": "Heart failure",
+      "observed": 99.4
+    },
+    {
+      "name": "Coronary disease",
+      "observed": 99.1
+    },
+    {
+      "name": "Stroke",
+      "observed": 99.8
+    },
+    {
+      "name": "Cancer",
+      "observed": 100.0
+    },
+    {
+      "name": "Diabetes",
+      "observed": 95.7
+    },
+    {
+      "name": "Hypertension",
+      "observed": 99.8
+    },
+    {
+      "name": "Ever smoked",
+      "observed": 99.9
+    },
+    {
+      "name": "PHQ-9 questionnaire score",
+      "observed": 0.5
+    }
+  ],
+  "calibration": [
+    {
+      "group": "Q1",
+      "n": 252,
+      "predicted": 0.038,
+      "observed": 0.0397
+    },
+    {
+      "group": "Q2",
+      "n": 252,
+      "predicted": 0.0744,
+      "observed": 0.0794
+    },
+    {
+      "group": "Q3",
+      "n": 251,
+      "predicted": 0.1218,
+      "observed": 0.1235
+    },
+    {
+      "group": "Q4",
+      "n": 251,
+      "predicted": 0.2216,
+      "observed": 0.2231
+    },
+    {
+      "group": "Q5",
+      "n": 251,
+      "predicted": 0.4689,
+      "observed": 0.5139
+    }
+  ],
+  "featureImportance": [
+    {
+      "name": "Age (80+ top-coded)",
+      "auc_drop": 0.1684
+    },
+    {
+      "name": "Walking difficulty",
+      "auc_drop": 0.0283
+    },
+    {
+      "name": "Sex",
+      "auc_drop": 0.0196
+    },
+    {
+      "name": "Coronary disease",
+      "auc_drop": 0.0076
+    },
+    {
+      "name": "Cancer",
+      "auc_drop": 0.0075
+    },
+    {
+      "name": "Heart failure",
+      "auc_drop": 0.0066
+    },
+    {
+      "name": "Stooping difficulty",
+      "auc_drop": 0.0053
+    },
+    {
+      "name": "Diabetes",
+      "auc_drop": 0.0041
+    },
+    {
+      "name": "Stair difficulty",
+      "auc_drop": 0.0025
+    },
+    {
+      "name": "Stroke",
+      "auc_drop": 0.0002
+    },
+    {
+      "name": "PHQ-9 questionnaire score",
+      "auc_drop": 0.0
+    },
+    {
+      "name": "Hypertension",
+      "auc_drop": -0.0002
+    },
+    {
+      "name": "Ever smoked",
+      "auc_drop": -0.0007
+    },
+    {
+      "name": "Body mass index",
+      "auc_drop": -0.0041
+    }
+  ],
+  "shap": [
+    {
+      "name": "Age (80+ top-coded)",
+      "mean_abs_shap": 0.08306
+    },
+    {
+      "name": "Walking difficulty",
+      "mean_abs_shap": 0.04989
+    },
+    {
+      "name": "Body mass index",
+      "mean_abs_shap": 0.03431
+    },
+    {
+      "name": "Stair difficulty",
+      "mean_abs_shap": 0.03002
+    },
+    {
+      "name": "Sex",
+      "mean_abs_shap": 0.02918
+    },
+    {
+      "name": "Heart failure",
+      "mean_abs_shap": 0.0134
+    },
+    {
+      "name": "Stooping difficulty",
+      "mean_abs_shap": 0.01312
+    },
+    {
+      "name": "Coronary disease",
+      "mean_abs_shap": 0.00949
+    },
+    {
+      "name": "Diabetes",
+      "mean_abs_shap": 0.00867
+    },
+    {
+      "name": "Cancer",
+      "mean_abs_shap": 0.0065
+    },
+    {
+      "name": "Stroke",
+      "mean_abs_shap": 0.00098
+    },
+    {
+      "name": "Ever smoked",
+      "mean_abs_shap": 0.00094
+    },
+    {
+      "name": "Hypertension",
+      "mean_abs_shap": 0.00034
+    },
+    {
+      "name": "PHQ-9 questionnaire score",
+      "mean_abs_shap": 0.0
+    }
+  ],
+  "explanationMethod": "Permutation SHAP of prediction probabilities",
+  "analysisNotes": [
+    "US NHANES public-use participants aged 65 years or older.",
+    "Public-use follow-up times are perturbed for selected participants; outcome horizon is approximate.",
+    "Survey-weighted figures are descriptive; cluster/stratum-based uncertainty is not estimated.",
+    "Later-cycle test cohort was already inspected in prior experiments.",
+    "No individual participant records or scores are published."
+  ]
+}
