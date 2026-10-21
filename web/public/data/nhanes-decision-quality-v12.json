@@ -1,0 +1,484 @@
+{
+  "provenance": "REAL_NHANES_AGGREGATE_ONLY",
+  "schema": "FRAILTYSCOPE_PUBLIC_DECISION_QUALITY_V12",
+  "study": "NHANES 2011–2014; linked mortality public-use 2019",
+  "endpoint": "Exploratory approximately five-year all-cause mortality",
+  "model": "catboost",
+  "counts": {
+    "validation": 292,
+    "evaluation": 1257,
+    "events": 246
+  },
+  "locked_threshold": 0.21999999999999997,
+  "validation_reference": {
+    "roc_auc": 0.781609,
+    "brier": 0.134636,
+    "precision": 0.398305,
+    "recall": 0.783333
+  },
+  "evaluation": {
+    "roc_auc": 0.791758,
+    "average_precision": 0.510206,
+    "brier": 0.129447,
+    "precision": 0.376543,
+    "recall": 0.743902,
+    "specificity": 0.700297,
+    "false_positive_rate": 0.299703,
+    "confusion": {
+      "tn": 708,
+      "fp": 303,
+      "fn": 63,
+      "tp": 183
+    }
+  },
+  "thresholds": [
+    {
+      "threshold": 0.05,
+      "recall": 1.0,
+      "precision": 0.195704,
+      "false_positive_rate": 1.0,
+      "f2": 0.548862,
+      "net_benefit": 0.153373,
+      "treat_all_net_benefit": 0.153373,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 1257
+    },
+    {
+      "threshold": 0.08,
+      "recall": 0.99187,
+      "precision": 0.20678,
+      "false_positive_rate": 0.925816,
+      "f2": 0.563771,
+      "net_benefit": 0.129363,
+      "treat_all_net_benefit": 0.125765,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 1180
+    },
+    {
+      "threshold": 0.1,
+      "recall": 0.963415,
+      "precision": 0.237713,
+      "false_positive_rate": 0.751731,
+      "f2": 0.598183,
+      "net_benefit": 0.121365,
+      "treat_all_net_benefit": 0.106338,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 997
+    },
+    {
+      "threshold": 0.12,
+      "recall": 0.914634,
+      "precision": 0.266588,
+      "false_positive_rate": 0.612265,
+      "f2": 0.615427,
+      "net_benefit": 0.111846,
+      "treat_all_net_benefit": 0.086027,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 844
+    },
+    {
+      "threshold": 0.15,
+      "recall": 0.841463,
+      "precision": 0.297842,
+      "false_positive_rate": 0.48269,
+      "f2": 0.616438,
+      "net_benefit": 0.096167,
+      "treat_all_net_benefit": 0.053769,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 695
+    },
+    {
+      "threshold": 0.17,
+      "recall": 0.808943,
+      "precision": 0.317891,
+      "false_positive_rate": 0.422354,
+      "f2": 0.618012,
+      "net_benefit": 0.088737,
+      "treat_all_net_benefit": 0.030969,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 626
+    },
+    {
+      "threshold": 0.2,
+      "recall": 0.760163,
+      "precision": 0.344383,
+      "false_positive_rate": 0.352127,
+      "f2": 0.612312,
+      "net_benefit": 0.077963,
+      "treat_all_net_benefit": -0.00537,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 543
+    },
+    {
+      "threshold": 0.22,
+      "recall": 0.743902,
+      "precision": 0.376543,
+      "false_positive_rate": 0.299703,
+      "f2": 0.622449,
+      "net_benefit": 0.077596,
+      "treat_all_net_benefit": -0.031149,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 486
+    },
+    {
+      "threshold": 0.25,
+      "recall": 0.691057,
+      "precision": 0.407674,
+      "false_positive_rate": 0.244313,
+      "f2": 0.606709,
+      "net_benefit": 0.069743,
+      "treat_all_net_benefit": -0.072395,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 417
+    },
+    {
+      "threshold": 0.3,
+      "recall": 0.605691,
+      "precision": 0.465625,
+      "false_positive_rate": 0.169139,
+      "f2": 0.571319,
+      "net_benefit": 0.060234,
+      "treat_all_net_benefit": -0.148994,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 320
+    },
+    {
+      "threshold": 0.35,
+      "recall": 0.46748,
+      "precision": 0.558252,
+      "false_positive_rate": 0.09001,
+      "f2": 0.483193,
+      "net_benefit": 0.052506,
+      "treat_all_net_benefit": -0.237378,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 206
+    },
+    {
+      "threshold": 0.4,
+      "recall": 0.276423,
+      "precision": 0.60177,
+      "false_positive_rate": 0.04451,
+      "f2": 0.309936,
+      "net_benefit": 0.030231,
+      "treat_all_net_benefit": -0.340493,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 113
+    },
+    {
+      "threshold": 0.45,
+      "recall": 0.178862,
+      "precision": 0.619718,
+      "false_positive_rate": 0.026706,
+      "f2": 0.208531,
+      "net_benefit": 0.01743,
+      "treat_all_net_benefit": -0.462356,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 71
+    },
+    {
+      "threshold": 0.5,
+      "recall": 0.109756,
+      "precision": 0.675,
+      "false_positive_rate": 0.012859,
+      "f2": 0.131836,
+      "net_benefit": 0.011138,
+      "treat_all_net_benefit": -0.608592,
+      "treat_none_net_benefit": 0.0,
+      "predicted_positive": 40
+    }
+  ],
+  "uncertainty": {
+    "method": "Exploratory participant-IID percentile bootstrap; ignores NHANES strata, clusters and weights",
+    "replicates": 500,
+    "interval_type": "95% percentile",
+    "intervals": [
+      {
+        "metric": "roc_auc",
+        "estimate": 0.791758,
+        "lower": 0.757585,
+        "upper": 0.820145
+      },
+      {
+        "metric": "brier",
+        "estimate": 0.129447,
+        "lower": 0.11784,
+        "upper": 0.140122
+      },
+      {
+        "metric": "recall",
+        "estimate": 0.743902,
+        "lower": 0.690705,
+        "upper": 0.792599
+      },
+      {
+        "metric": "false_positive_rate",
+        "estimate": 0.299703,
+        "lower": 0.27379,
+        "upper": 0.328195
+      },
+      {
+        "metric": "average_precision",
+        "estimate": 0.510206,
+        "lower": 0.436277,
+        "upper": 0.577612
+      }
+    ]
+  },
+  "overall_calibration": {
+    "n": 1257,
+    "events": 246,
+    "observed_event_rate": 0.195704,
+    "mean_predicted_risk": 0.211849,
+    "observed_minus_predicted": -0.016144,
+    "brier": 0.129447
+  },
+  "subgroups": [
+    {
+      "dimension": "Age",
+      "group": "65–69",
+      "n": 395,
+      "events": 25,
+      "roc_auc": 0.697081,
+      "brier": 0.059494,
+      "recall": 0.24,
+      "false_positive_rate": 0.037838,
+      "mean_predicted_risk": 0.119372,
+      "observed_event_rate": 0.063291,
+      "observed_minus_predicted": -0.05608
+    },
+    {
+      "dimension": "Age",
+      "group": "70–74",
+      "n": 334,
+      "events": 40,
+      "roc_auc": 0.642517,
+      "brier": 0.104437,
+      "recall": 0.3,
+      "false_positive_rate": 0.146259,
+      "mean_predicted_risk": 0.15262,
+      "observed_event_rate": 0.11976,
+      "observed_minus_predicted": -0.032859
+    },
+    {
+      "dimension": "Age",
+      "group": "75–79",
+      "n": 199,
+      "events": 40,
+      "roc_auc": 0.667453,
+      "brier": 0.149298,
+      "recall": 0.6,
+      "false_positive_rate": 0.383648,
+      "mean_predicted_risk": 0.229806,
+      "observed_event_rate": 0.201005,
+      "observed_minus_predicted": -0.028801
+    },
+    {
+      "dimension": "Age",
+      "group": "80+",
+      "n": 329,
+      "events": 141,
+      "roc_auc": 0.695073,
+      "brier": 0.226817,
+      "recall": 1.0,
+      "false_positive_rate": 0.984043,
+      "mean_predicted_risk": 0.372144,
+      "observed_event_rate": 0.428571,
+      "observed_minus_predicted": 0.056427
+    },
+    {
+      "dimension": "Sex",
+      "group": "Male",
+      "n": 589,
+      "events": 122,
+      "roc_auc": 0.789641,
+      "brier": 0.136883,
+      "recall": 0.762295,
+      "false_positive_rate": 0.32334,
+      "mean_predicted_risk": 0.227014,
+      "observed_event_rate": 0.207131,
+      "observed_minus_predicted": -0.019884
+    },
+    {
+      "dimension": "Sex",
+      "group": "Female",
+      "n": 668,
+      "events": 124,
+      "roc_auc": 0.792828,
+      "brier": 0.122891,
+      "recall": 0.725806,
+      "false_positive_rate": 0.279412,
+      "mean_predicted_risk": 0.198476,
+      "observed_event_rate": 0.185629,
+      "observed_minus_predicted": -0.012848
+    }
+  ],
+  "calibration_bands": [
+    {
+      "dimension": "Age",
+      "group": "65–69",
+      "band": 3,
+      "n": 131,
+      "events": 14,
+      "mean_predicted_risk": 0.177905,
+      "observed_event_rate": 0.10687
+    },
+    {
+      "dimension": "Age",
+      "group": "70–74",
+      "band": 2,
+      "n": 111,
+      "events": 18,
+      "mean_predicted_risk": 0.128367,
+      "observed_event_rate": 0.162162
+    },
+    {
+      "dimension": "Age",
+      "group": "70–74",
+      "band": 3,
+      "n": 111,
+      "events": 16,
+      "mean_predicted_risk": 0.234513,
+      "observed_event_rate": 0.144144
+    },
+    {
+      "dimension": "Age",
+      "group": "75–79",
+      "band": 1,
+      "n": 67,
+      "events": 11,
+      "mean_predicted_risk": 0.153083,
+      "observed_event_rate": 0.164179
+    },
+    {
+      "dimension": "Age",
+      "group": "75–79",
+      "band": 3,
+      "n": 66,
+      "events": 21,
+      "mean_predicted_risk": 0.325395,
+      "observed_event_rate": 0.318182
+    },
+    {
+      "dimension": "Age",
+      "group": "80+",
+      "band": 1,
+      "n": 110,
+      "events": 28,
+      "mean_predicted_risk": 0.274431,
+      "observed_event_rate": 0.254545
+    },
+    {
+      "dimension": "Age",
+      "group": "80+",
+      "band": 2,
+      "n": 110,
+      "events": 48,
+      "mean_predicted_risk": 0.35991,
+      "observed_event_rate": 0.436364
+    },
+    {
+      "dimension": "Age",
+      "group": "80+",
+      "band": 3,
+      "n": 109,
+      "events": 65,
+      "mean_predicted_risk": 0.4831,
+      "observed_event_rate": 0.59633
+    },
+    {
+      "dimension": "Sex",
+      "group": "Male",
+      "band": 2,
+      "n": 196,
+      "events": 30,
+      "mean_predicted_risk": 0.18828,
+      "observed_event_rate": 0.153061
+    },
+    {
+      "dimension": "Sex",
+      "group": "Male",
+      "band": 3,
+      "n": 196,
+      "events": 84,
+      "mean_predicted_risk": 0.388134,
+      "observed_event_rate": 0.428571
+    },
+    {
+      "dimension": "Sex",
+      "group": "Female",
+      "band": 1,
+      "n": 223,
+      "events": 13,
+      "mean_predicted_risk": 0.086098,
+      "observed_event_rate": 0.058296
+    },
+    {
+      "dimension": "Sex",
+      "group": "Female",
+      "band": 2,
+      "n": 223,
+      "events": 24,
+      "mean_predicted_risk": 0.165917,
+      "observed_event_rate": 0.107623
+    },
+    {
+      "dimension": "Sex",
+      "group": "Female",
+      "band": 3,
+      "n": 222,
+      "events": 87,
+      "mean_predicted_risk": 0.344067,
+      "observed_event_rate": 0.391892
+    }
+  ],
+  "experiments": {
+    "comparison_type": "DESCRIPTIVE_AGGREGATE_ONLY_NOT_PAIRED",
+    "rows": [
+      {
+        "experiment": "General-purpose CatBoost",
+        "n": 1257,
+        "events": 246,
+        "roc_auc": 0.791758,
+        "brier": 0.129447,
+        "average_precision": 0.510206,
+        "recall": 0.743902,
+        "precision": 0.376543,
+        "false_positives": 303,
+        "threshold": 0.21999999999999997
+      },
+      {
+        "experiment": "Specialist CatBoost",
+        "n": 1257,
+        "events": 246,
+        "roc_auc": 0.8033,
+        "brier": 0.1232,
+        "average_precision": 0.5237,
+        "recall": 0.7683,
+        "precision": 0.3865,
+        "false_positives": 300,
+        "threshold": 0.17
+      },
+      {
+        "experiment": "Specialist Histogram Boosting",
+        "n": 1257,
+        "events": 246,
+        "roc_auc": 0.8006,
+        "brier": 0.1228,
+        "average_precision": 0.5313,
+        "recall": 0.8333,
+        "precision": 0.3244,
+        "false_positives": 427,
+        "threshold": 0.12
+      }
+    ],
+    "limitation": "Published aggregate metrics cannot establish paired differences; protocols/model tuning differ, and the later cycle was previously inspected. No model is selected using this comparison."
+  },
+  "limitations": [
+    "Evaluation thresholds are fixed grid diagnostics, never optimized on evaluation outcomes.",
+    "0.22 is a development-chosen threshold, not a clinically validated decision threshold.",
+    "Simple IID bootstrap intervals ignore NHANES survey weights, clusters and strata.",
+    "The later NHANES cycle has been examined in earlier releases, not untouched external validation.",
+    "Age 80+ is top-coded, and PHQ-9 responses are questionnaire measurements.",
+    "Public-use linked mortality follow-up may be perturbed. Not clinical decision support."
+  ]
+}

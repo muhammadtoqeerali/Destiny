@@ -15,14 +15,14 @@ jobs:
           python-version: '3.13'
       - run: python -m pip install -r requirements.txt
       - run: python -m pip install "optuna>=4.4,<5"
-      - run: python -m pytest -q tests/test_real_nhanes.py tests/test_public_aggregate.py tests/test_nhanes_refinement.py tests/test_v08.py tests/test_phq_xport_zero.py tests/test_survival_v09.py tests/test_nhats_v09.py tests/test_case_engine_v10.py tests/test_case_forensics_v11.py tests/test_case_model_io_v11.py tests/test_clean_model_reload_v112.py
+      - run: python -m pytest -q tests/test_real_nhanes.py tests/test_public_aggregate.py tests/test_nhanes_refinement.py tests/test_v08.py tests/test_phq_xport_zero.py tests/test_survival_v09.py tests/test_nhats_v09.py tests/test_case_engine_v10.py tests/test_case_forensics_v11.py tests/test_case_model_io_v11.py tests/test_clean_model_reload_v112.py tests/test_decision_quality_v12.py
       - name: Public payload validation
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           data_dir=Path('web/public/data')
-          expected={'nhanes-aggregate.json','nhanes-refinement.json','nhanes-cohort-profile.json','nhanes-case-audit-v11.json'}
+          expected={'nhanes-aggregate.json','nhanes-refinement.json','nhanes-cohort-profile.json','nhanes-case-audit-v11.json','nhanes-decision-quality-v12.json'}
           files={x.name for x in data_dir.iterdir() if x.is_file()}
           assert files==expected,(files, expected)
           forbidden={'SEQN','patient','patients','cases','caseId','raw_predictions','individual_scores','date_of_birth'}
@@ -41,6 +41,12 @@ jobs:
                   assert 'local_examples' not in obj
                   assert all(x['n']>=50 for x in obj['evaluation']['calibration'])
                   assert all(x['n']>=100 for x in obj['evaluation']['subgroups'])
+              elif fname=='nhanes-decision-quality-v12.json':
+                  assert obj['schema']=='FRAILTYSCOPE_PUBLIC_DECISION_QUALITY_V12'
+                  assert obj['counts']=={'validation':292,'evaluation':1257,'events':246}
+                  assert len(obj['thresholds'])==14
+                  assert all(x['n']>=100 and min(x['events'],x['n']-x['events'])>=20 for x in obj['subgroups'])
+                  assert all(x['n']>=50 and min(x['events'],x['n']-x['events'])>=10 for x in obj['calibration_bands'])
               else:
                   assert obj['counts']['total']>=2000
           print('PASS: Only validated real NHANES aggregate exports')

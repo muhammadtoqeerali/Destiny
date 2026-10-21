@@ -5,9 +5,10 @@ import {Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContain
 import study from '../../public/data/nhanes-aggregate.json';
 import refined from '../../public/data/nhanes-refinement.json';
 import { EvidenceWorkbenchV11 } from './evidence-workbench-v11';
+import { DecisionQualityV12 } from './decision-quality-v12';
 
-type Section = 'Dataset' | 'Preprocessing' | 'Model training' | 'Performance' | 'Interpretability' | 'Benchmark' | 'Deep analysis';
-const steps:Section[]=['Dataset','Preprocessing','Model training','Performance','Interpretability','Benchmark','Deep analysis'];
+type Section = 'Dataset' | 'Preprocessing' | 'Model training' | 'Performance' | 'Interpretability' | 'Benchmark' | 'Deep analysis' | 'Decision quality';
+const steps:Section[]=['Dataset','Preprocessing','Model training','Performance','Interpretability','Benchmark','Deep analysis','Decision quality'];
 const pct=(v:number)=>(v*100).toFixed(1)+'%';
 const short=(s:string)=>s==='Logistic regression'?'Logistic':s==='Histogram gradient boosting'?'Hist. Boost':s;
 function Panel({title,subtitle,children}:{title:string;subtitle?:string;children:React.ReactNode}){return <section className="v7-card"><div className="v7-cardhead"><h3>{title}</h3>{subtitle&&<p>{subtitle}</p>}</div>{children}</section>}
@@ -66,6 +67,7 @@ export function AdminResearchHub(){
     <Panel title="Measurement and analysis boundaries"><div className="v7-checks">{refined.analysisNotes.map(n=><div key={n}><ShieldCheck size={17}/><span>{n}</span></div>)}</div></Panel>
    </>}
    {tab==='Deep analysis'&&<EvidenceWorkbenchV11/>}
+   {tab==='Decision quality'&&<DecisionQualityV12/>}
    <footer className="v7-portal-foot">FrailtyScope · NHANES linked mortality · Aggregate research reporting</footer>
  </div>
 }
