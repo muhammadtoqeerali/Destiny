@@ -22,3 +22,5 @@ out/
 *.sqlite
 *.db
 .DS_Store
+
+*.tsbuildinfo
