@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 
 const COOKIE = 'frailtyscope_admin_demo';
 const TTL = 8 * 60 * 60 * 1000;
-// Public synthetic-data demo only. Set BOTH variables in Vercel for private use.
+// Public aggregate-metrics demo only. Set BOTH variables in Vercel for private use.
 // Never use the demonstration default to guard real patient or HUNT research data.
 const password = () => process.env.ADMIN_PORTAL_PASSWORD || 'admin123';
 const secret = () => process.env.ADMIN_SESSION_SECRET || 'DEMO_ONLY_NOT_SECURE_' + password();

@@ -1,0 +1,105 @@
+{
+  "provenance": "REAL_NHANES_AGGREGATE_ONLY",
+  "source": "CDC/NCHS NHANES 2011–2014 public-use files and 2019 public-use linked mortality",
+  "target": "Approximately five-year all-cause mortality (perturbed public-use time)",
+  "population": "Eligible NHANES participants aged 65+ with classifiable follow-up",
+  "cycles": {
+    "development": "2011–2012",
+    "test": "2013–2014"
+  },
+  "counts": {
+    "development": 1165,
+    "train": 873,
+    "validation": 292,
+    "test": 1257,
+    "test_events": 246,
+    "total": 2422
+  },
+  "features": [
+    "Age (top-coded at 80)",
+    "Sex",
+    "Body mass index",
+    "Walking / stair / stooping difficulty",
+    "Heart failure",
+    "Coronary disease",
+    "Stroke",
+    "Cancer",
+    "Diabetes",
+    "Hypertension",
+    "Ever smoked",
+    "PHQ-9 questionnaire score"
+  ],
+  "algorithms": [
+    {
+      "name": "Regularized logistic regression",
+      "roc_auc": 0.794,
+      "average_precision": 0.535,
+      "brier": 0.1288
+    },
+    {
+      "name": "Histogram gradient boosting",
+      "roc_auc": 0.8046,
+      "average_precision": 0.5124,
+      "brier": 0.1288
+    },
+    {
+      "name": "XGBoost",
+      "roc_auc": 0.803,
+      "average_precision": 0.5366,
+      "brier": 0.1281
+    },
+    {
+      "name": "CatBoost",
+      "roc_auc": 0.7997,
+      "average_precision": 0.5343,
+      "brier": 0.127
+    }
+  ],
+  "selectedModel": "CatBoost",
+  "selection": "Lowest validation Brier score",
+  "threshold": 0.17,
+  "testAt50": {
+    "roc_auc": 0.7993,
+    "average_precision": 0.5242,
+    "brier": 0.1236,
+    "accuracy": 0.825,
+    "precision": 0.6413,
+    "recall": 0.2398,
+    "f1": 0.3491,
+    "confusion": {
+      "tn": 978,
+      "fp": 33,
+      "fn": 187,
+      "tp": 59
+    }
+  },
+  "testAtF2": {
+    "roc_auc": 0.7993,
+    "average_precision": 0.5242,
+    "brier": 0.1236,
+    "accuracy": 0.716,
+    "precision": 0.3836,
+    "recall": 0.7439,
+    "f1": 0.5062,
+    "confusion": {
+      "tn": 717,
+      "fp": 294,
+      "fn": 63,
+      "tp": 183
+    }
+  },
+  "auc95ci": [
+    0.7676,
+    0.826
+  ],
+  "majorityAccuracy": 0.8043,
+  "limitations": [
+    "Aggregate public-use NHANES outcomes only: no individual records or predictions on this site.",
+    "A US cohort, not HUNT or Norwegian patients. No generalization to NTNU clinical populations is established.",
+    "Public linked-mortality follow-up durations are perturbed for disclosure protection; horizon is approximate.",
+    "Observational survey, unweighted headline performance; proper survey-design-aware inference is pending.",
+    "This is a binary-horizon benchmark, not survival analysis; censoring, recalibration and prospective validation remain.",
+    "The selected probability threshold maximizes validation F2 and is not a medically approved triage threshold.",
+    "Not a clinical system, not an individual prognosis, not a medical device."
+  ]
+}

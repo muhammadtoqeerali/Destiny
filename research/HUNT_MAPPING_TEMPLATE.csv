@@ -1,0 +1,11 @@
+canonical_feature,nhanes_public_variable,proposed_hunt_variable,unit_or_category,availability,validation_notes
+age,RIDAGEYR,,years (top-coded at 80),pending,check HUNT survey year and baseline age
+sex,RIAGENDR,,categorical,pending,check coding and consent
+bmi,BMXBMI,,kg/m2,pending,check instrument and missingness
+walking_difficulty,PFQ061B,,ordinal 1-4,pending,HUNT may instead use objective gait speed - not equivalent
+stairs_difficulty,PFQ061C,,ordinal 1-4,pending,verify questionnaire wording
+heart_failure,MCQ160B,,binary,pending,self-reported vs registry diagnoses differ
+stroke,MCQ160F,,binary,pending,confirm before baseline
+hypertension,BPQ020,,binary,pending,diagnosis/medication definition
+phq9_score,DPQ010..DPQ090,,total 0-27,pending,not equivalent to all depression measures
+outcome_5yr,2019 LMF MORTSTAT and PERMTH_EXM,,binary 60-month event,pending,define HUNT followup and registry linkage separately

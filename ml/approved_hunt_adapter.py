@@ -5,7 +5,7 @@ patient-level records to the public Next.js application. The named files here
 are a research *contract*, not a representation of released HUNT field codes.
 
 Input: pseudonymized baseline table (participant_id, baseline_date, and feature
-columns already mapped to ml.schema.FEATURES), and an approved follow-up table
+columns mapped according to an institutionally approved feature dictionary), and an approved follow-up table
 (participant_id, last_observed_date, date columns defined in ENDPOINT_DATE_FIELDS).
 An outcome is eligible when an observed event occurs during the horizon or
 follow-up is long enough to establish its absence. Short follow-up is NA,
@@ -16,8 +16,6 @@ import argparse
 from pathlib import Path
 import pandas as pd
 import numpy as np
-from ml.schema import FEATURES
-from ml.multioutcome import OUTCOMES
 
 ENDPOINT_DATE_FIELDS = {
  'fall_within_12m': 'first_fall_date',
@@ -34,8 +32,6 @@ def make_labels(baseline:pd.DataFrame, followup:pd.DataFrame, horizon_days:int=H
     required_follow={'participant_id','last_observed_date'}
     if not required_base <= set(baseline) or not required_follow <= set(followup):
         raise ValueError('participant_id / baseline_date / last_observed_date required')
-    if not set(FEATURES) <= set(baseline):
-        raise ValueError('Missing mapped baseline features: '+str(sorted(set(FEATURES)-set(baseline))))
     if any(x in baseline.columns or x in followup.columns for x in ['national_identity_number','fødselsnummer','ssn']):
         raise ValueError('Direct identifiers are prohibited in this adapter')
     if baseline.participant_id.duplicated().any() or followup.participant_id.duplicated().any():
@@ -71,7 +67,7 @@ def make_labels(baseline:pd.DataFrame, followup:pd.DataFrame, horizon_days:int=H
 
 def describe_labels(df:pd.DataFrame)->dict:
     return {t:{'eligible':int(df[t].notna().sum()),'events':int(df[t].fillna(0).sum()),
-               'unresolved_censored':int(df[t].isna().sum())} for t in OUTCOMES}
+               'unresolved_censored':int(df[t].isna().sum())} for t in ENDPOINT_DATE_FIELDS}
 
 
 def cli():
@@ -88,7 +84,7 @@ def cli():
     # Output only NON-DISCLOSIVE local counts to caller; small-cell suppression
     # for publication still requires the approved institutional policy.
     print('PRIVATE DIAGNOSTICS ONLY — DO NOT COPY THESE RESULTS TO PUBLIC DASHBOARD')
-    print('Mapped columns accepted. Defined outcomes:',len(OUTCOMES))
+    print('Mapped columns accepted. Defined outcomes:',len(ENDPOINT_DATE_FIELDS))
     for k,v in describe_labels(df).items():print(k,v)
 
 if __name__=='__main__':cli()

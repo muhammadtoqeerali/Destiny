@@ -24,3 +24,7 @@ out/
 .DS_Store
 
 *.tsbuildinfo
+
+# Local generated research output; never publish with git
+catboost_info/
+*.tsbuildinfo
