@@ -1,0 +1,14 @@
+{
+  "case_id": "replace_with_assignment_case_id",
+  "display_name": "Replace with official task title",
+  "source": {"path": "data/REPLACE_WITH_AUTHORIZED_CSV.csv"},
+  "id_column": "REPLACE_WITH_RECORD_ID",
+  "task": "classification",
+  "target": "REPLACE_WITH_OUTCOME",
+  "features": {"numeric": ["REPLACE_WITH_NUMERIC_FEATURE"], "categorical": ["REPLACE_WITH_CATEGORICAL_FEATURE"]},
+  "split": {"strategy": "random", "validation_fraction":0.25, "evaluation_fraction":0.25},
+  "models": ["dummy", "logistic", "random_forest", "hist_boost", "xgboost", "catboost"],
+  "selection_metric": "brier",
+  "cv_folds": 3,
+  "trials_per_model": 6
+}

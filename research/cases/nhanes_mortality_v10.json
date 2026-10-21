@@ -1,0 +1,22 @@
+{
+  "case_id": "nhanes_mortality_v10",
+  "display_name": "NHANES 2011–2014 mortality benchmark",
+  "source": {
+    "path": "data/processed/nhanes_5yr_local.csv",
+    "provenance": {"column":"data_origin", "value":"NHANES_PUBLIC_2019_LMF"}
+  },
+  "id_column": "SEQN",
+  "task": "classification",
+  "target": "outcome_5yr",
+  "features": {
+    "numeric": ["age", "bmi", "walking_difficulty", "stairs_difficulty", "stooping_difficulty", "heart_failure", "coronary_disease", "stroke", "cancer", "diabetes", "hypertension", "ever_smoked", "phq9_score"],
+    "categorical": ["sex"]
+  },
+  "split": {
+    "strategy": "cohort", "column":"cycle", "development":"2011-2012", "evaluation":"2013-2014", "validation_fraction":0.25
+  },
+  "models": ["dummy", "logistic", "random_forest", "hist_boost", "xgboost", "catboost"],
+  "selection_metric": "brier",
+  "cv_folds": 3,
+  "trials_per_model": 6
+}
