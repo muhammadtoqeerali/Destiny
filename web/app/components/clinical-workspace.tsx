@@ -5,11 +5,12 @@ import { Activity, BarChart3, CalendarDays, Check, ClipboardList, FileHeart, Hea
 import { Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import study from '../../public/data/nhanes-aggregate.json';
 import enhanced from '../../public/data/nhanes-refinement.json';
+import profiles from '../../public/data/nhanes-cohort-profile.json';
 
-type Page = 'Population overview' | 'Patient assessment' | 'Visit history' | 'Model evidence';
+type Page = 'Population overview' | 'Health profiles' | 'Patient assessment' | 'Visit history' | 'Model evidence';
 type CaseValues = Record<string,string>;
 type Visit = {id:number;date:string;bmi:number|null;phq:number|null};
-const PAGES:Page[] = ['Population overview','Patient assessment','Visit history','Model evidence'];
+const PAGES:Page[] = ['Population overview','Health profiles','Patient assessment','Visit history','Model evidence'];
 const LABELS:Record<string,string> = {
   age:'Age (years)',sex:'Sex',bmi:'Body mass index (kg/m²)',phq9_score:'PHQ-9 total (0–27)',
   walking_difficulty:'Walking difficulty',stairs_difficulty:'Stair difficulty',stooping_difficulty:'Stooping difficulty',
@@ -28,6 +29,8 @@ function Box({title,desc,children}:{title:string;desc?:string;children:React.Rea
 function Pill({children}:{children:React.ReactNode}){return <span className="v7-pill">{children}</span>}
 export function ClinicalWorkspace(){
  const [page,setPage]=useState<Page>('Population overview');
+ const [group,setGroup]=useState('All 65+');
+ const activeGroup=profiles.groups.find(x=>x.name===group)||profiles.groups[0];
  const [profile,setProfile]=useState<CaseValues>({});
  const [visits,setVisits]=useState<Visit[]>([]);
  const [visitDate,setVisitDate]=useState('');
@@ -56,6 +59,20 @@ export function ClinicalWorkspace(){
    <Box title="Health domains in the study" desc="Baseline information available to the research models"><div className="v7-domain-list">{[['Mobility','Walking, stairs and stooping difficulty'],['Physical health','BMI, diabetes, stroke, cardiovascular disease and cancer'],['Mental health','PHQ-9 depressive-symptom score'],['Demographics','Age, sex and smoking history']].map(([a,b])=><div key={a}><span className="v7-dot"/><strong>{a}</strong><p>{b}</p></div>)}</div></Box></div>
    <div className="v7-two"><Box title="Data availability" desc="Observed values before missing-data preprocessing"><div className="v7-coverage">{enhanced.featureCoverage.slice().sort((a,b)=>a.observed-b.observed).map(f=><div className="v7-cover-row" key={f.name}><span>{f.name}</span><div className="v7-cover-track"><i style={{width:f.observed+'%'}}/></div><b>{f.observed.toFixed(1)}%</b></div>)}</div></Box>
    <Box title="Clinical study endpoint" desc="All-cause mortality follow-up from public linked records"><div className="v7-summary-line"><span>Outcome</span><strong>All-cause mortality</strong></div><div className="v7-summary-line"><span>Observation horizon</span><strong>Approximately five years</strong></div><div className="v7-summary-line"><span>Model</span><strong>{enhanced.selectedModel}</strong></div><div className="v7-summary-line"><span>Held-out ROC-AUC</span><strong>{enhanced.test.roc_auc.toFixed(3)}</strong></div><div className="v7-info"><Info size={18}/> Cohort statistics describe research participants and do not establish individual prognosis.</div></Box></div>
+  </>}
+  {page==='Health profiles'&&<>
+   <Header eyebrow="COHORT HEALTH CHARACTERISTICS" title="Health profiles" description="Observed health indicators across NHANES participant groups, using published aggregate statistics rather than individual records."/>
+   <div className="v8-profile-controls"><label htmlFor="v8-group">Participant group</label><select id="v8-group" value={group} onChange={e=>setGroup(e.target.value)}>{profiles.groups.map(g=><option key={g.name} value={g.name}>{g.name} · {g.n.toLocaleString()} records</option>)}</select></div>
+   <div className="v7-stats"><div><span>Records in group</span><strong>{activeGroup.n.toLocaleString()}</strong><small>Eligible linked observations</small></div><div><span>Weighted mean BMI</span><strong>{activeGroup.mean_bmi_weighted===null?'—':activeGroup.mean_bmi_weighted.toFixed(1)}</strong><small>kg/m² · observed participants</small></div><div><span>Conditions shown</span><strong>{activeGroup.conditions.length}</strong><small>Disclosure-screened indicators</small></div><div><span>Mobility indicators</span><strong>{activeGroup.mobility.length}</strong><small>Available domain comparisons</small></div></div>
+   <div className="v7-two">
+    <Box title="Reported health conditions" desc="Survey-weighted prevalence among participants with recorded responses">
+     <div className="v8-bars">{activeGroup.conditions.length?activeGroup.conditions.map(c=><div key={c.label} className="v8-barrow"><div><b>{c.label}</b><small>{c.n_observed} recorded · {c.percent.toFixed(1)}% unweighted</small></div><div className="v8-bartrack"><span style={{width:c.weighted_percent+'%'}}/></div><strong>{c.weighted_percent.toFixed(1)}%</strong></div>):<p className="v7-empty">No indicators meet the group-level reporting threshold.</p>}</div>
+    </Box>
+    <Box title="Functional difficulty" desc="Reported some/much difficulty or unable to perform the activity">
+     <div className="v8-bars">{activeGroup.mobility.length?activeGroup.mobility.map(m=><div key={m.label} className="v8-barrow"><div><b>{m.label}</b><small>{m.n_observed} recorded · {m.percent.toFixed(1)}% unweighted</small></div><div className="v8-bartrack"><span style={{width:m.weighted_percent+'%'}}/></div><strong>{m.weighted_percent.toFixed(1)}%</strong></div>):<p className="v7-empty">No indicators meet the group-level reporting threshold.</p>}</div>
+    </Box>
+   </div>
+   <div className="v7-info"><Info size={18}/> Group summaries use survey weights. Intervals and population inference require full complex-survey design analysis. Suppressed cells are not shown.</div>
   </>}
   {page==='Patient assessment'&&<>
    <Header eyebrow="STRUCTURED HEALTH PROFILE" title="Patient assessment" description="Enter measurements to organize a de-identified clinical review. Assessment details remain in this browser session and are not submitted to the server."/>

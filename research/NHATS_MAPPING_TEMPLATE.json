@@ -1,0 +1,10 @@
+{
+  "participant_key": "REPLACE_FROM_OFFICIAL_CODEBOOK",
+  "waves": ["REPLACE_FROM_OFFICIAL_CODEBOOK", "REPLACE_FROM_OFFICIAL_CODEBOOK"],
+  "variables": {
+    "mobility": "REPLACE_FROM_OFFICIAL_CODEBOOK",
+    "cognition": "REPLACE_FROM_OFFICIAL_CODEBOOK",
+    "daily_function": "REPLACE_FROM_OFFICIAL_CODEBOOK"
+  },
+  "outcome_definition_verified": false
+}

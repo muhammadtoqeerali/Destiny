@@ -1,0 +1,566 @@
+{
+  "provenance": "REAL_NHANES_AGGREGATE_ONLY",
+  "dataset": "NHANES 2011–2014",
+  "source": "CDC/NCHS",
+  "population": "Participants 65+ with eligible linked-mortality follow-up",
+  "groups": [
+    {
+      "name": "All 65+",
+      "n": 2422,
+      "mean_bmi_weighted": 28.5,
+      "conditions": [
+        {
+          "group": "All 65+",
+          "label": "Heart failure",
+          "n_observed": 2408,
+          "percent": 9.1,
+          "weighted_percent": 9.6
+        },
+        {
+          "group": "All 65+",
+          "label": "Coronary heart disease",
+          "n_observed": 2401,
+          "percent": 11.6,
+          "weighted_percent": 12.2
+        },
+        {
+          "group": "All 65+",
+          "label": "Stroke",
+          "n_observed": 2416,
+          "percent": 10.2,
+          "weighted_percent": 9.4
+        },
+        {
+          "group": "All 65+",
+          "label": "History of cancer",
+          "n_observed": 2422,
+          "percent": 23.3,
+          "weighted_percent": 27.4
+        },
+        {
+          "group": "All 65+",
+          "label": "Diabetes",
+          "n_observed": 2317,
+          "percent": 25.9,
+          "weighted_percent": 21.5
+        },
+        {
+          "group": "All 65+",
+          "label": "Hypertension",
+          "n_observed": 2416,
+          "percent": 65.9,
+          "weighted_percent": 63.7
+        },
+        {
+          "group": "All 65+",
+          "label": "Ever smoked",
+          "n_observed": 2420,
+          "percent": 49.6,
+          "weighted_percent": 50.5
+        }
+      ],
+      "mobility": [
+        {
+          "label": "Walking",
+          "group": "All 65+",
+          "n_observed": 1811,
+          "percent": 21.8,
+          "weighted_percent": 21.3
+        },
+        {
+          "label": "Stairs",
+          "group": "All 65+",
+          "n_observed": 1820,
+          "percent": 14.9,
+          "weighted_percent": 14.3
+        },
+        {
+          "label": "Stooping",
+          "group": "All 65+",
+          "n_observed": 2368,
+          "percent": 50.0,
+          "weighted_percent": 47.5
+        }
+      ]
+    },
+    {
+      "name": "65–69",
+      "n": 742,
+      "mean_bmi_weighted": 29.1,
+      "conditions": [
+        {
+          "group": "65–69",
+          "label": "Heart failure",
+          "n_observed": 739,
+          "percent": 5.1,
+          "weighted_percent": 6.8
+        },
+        {
+          "group": "65–69",
+          "label": "Coronary heart disease",
+          "n_observed": 738,
+          "percent": 7.0,
+          "weighted_percent": 9.2
+        },
+        {
+          "group": "65–69",
+          "label": "Stroke",
+          "n_observed": 742,
+          "percent": 6.3,
+          "weighted_percent": 6.6
+        },
+        {
+          "group": "65–69",
+          "label": "History of cancer",
+          "n_observed": 742,
+          "percent": 16.2,
+          "weighted_percent": 21.9
+        },
+        {
+          "group": "65–69",
+          "label": "Diabetes",
+          "n_observed": 704,
+          "percent": 26.4,
+          "weighted_percent": 21.7
+        },
+        {
+          "group": "65–69",
+          "label": "Hypertension",
+          "n_observed": 742,
+          "percent": 60.8,
+          "weighted_percent": 55.7
+        },
+        {
+          "group": "65–69",
+          "label": "Ever smoked",
+          "n_observed": 742,
+          "percent": 53.5,
+          "weighted_percent": 55.4
+        }
+      ],
+      "mobility": [
+        {
+          "label": "Walking",
+          "group": "65–69",
+          "n_observed": 627,
+          "percent": 17.5,
+          "weighted_percent": 16.2
+        },
+        {
+          "label": "Stairs",
+          "group": "65–69",
+          "n_observed": 631,
+          "percent": 12.2,
+          "weighted_percent": 11.2
+        },
+        {
+          "label": "Stooping",
+          "group": "65–69",
+          "n_observed": 733,
+          "percent": 42.7,
+          "weighted_percent": 38.2
+        }
+      ]
+    },
+    {
+      "name": "70–74",
+      "n": 623,
+      "mean_bmi_weighted": 29.3,
+      "conditions": [
+        {
+          "group": "70–74",
+          "label": "Heart failure",
+          "n_observed": 620,
+          "percent": 8.7,
+          "weighted_percent": 8.6
+        },
+        {
+          "group": "70–74",
+          "label": "Coronary heart disease",
+          "n_observed": 621,
+          "percent": 11.0,
+          "weighted_percent": 11.8
+        },
+        {
+          "group": "70–74",
+          "label": "Stroke",
+          "n_observed": 620,
+          "percent": 9.7,
+          "weighted_percent": 9.1
+        },
+        {
+          "group": "70–74",
+          "label": "History of cancer",
+          "n_observed": 623,
+          "percent": 21.5,
+          "weighted_percent": 23.8
+        },
+        {
+          "group": "70–74",
+          "label": "Diabetes",
+          "n_observed": 596,
+          "percent": 26.2,
+          "weighted_percent": 20.9
+        },
+        {
+          "group": "70–74",
+          "label": "Hypertension",
+          "n_observed": 619,
+          "percent": 65.3,
+          "weighted_percent": 63.7
+        },
+        {
+          "group": "70–74",
+          "label": "Ever smoked",
+          "n_observed": 622,
+          "percent": 48.7,
+          "weighted_percent": 50.3
+        }
+      ],
+      "mobility": [
+        {
+          "label": "Walking",
+          "group": "70–74",
+          "n_observed": 500,
+          "percent": 20.0,
+          "weighted_percent": 21.1
+        },
+        {
+          "label": "Stairs",
+          "group": "70–74",
+          "n_observed": 503,
+          "percent": 12.5,
+          "weighted_percent": 12.7
+        },
+        {
+          "label": "Stooping",
+          "group": "70–74",
+          "n_observed": 616,
+          "percent": 41.9,
+          "weighted_percent": 42.0
+        }
+      ]
+    },
+    {
+      "name": "75–79",
+      "n": 402,
+      "mean_bmi_weighted": 29.0,
+      "conditions": [
+        {
+          "group": "75–79",
+          "label": "Heart failure",
+          "n_observed": 398,
+          "percent": 9.5,
+          "weighted_percent": 10.2
+        },
+        {
+          "group": "75–79",
+          "label": "Coronary heart disease",
+          "n_observed": 397,
+          "percent": 11.1,
+          "weighted_percent": 12.1
+        },
+        {
+          "group": "75–79",
+          "label": "Stroke",
+          "n_observed": 401,
+          "percent": 10.5,
+          "weighted_percent": 7.7
+        },
+        {
+          "group": "75–79",
+          "label": "History of cancer",
+          "n_observed": 402,
+          "percent": 30.3,
+          "weighted_percent": 36.8
+        },
+        {
+          "group": "75–79",
+          "label": "Diabetes",
+          "n_observed": 390,
+          "percent": 31.3,
+          "weighted_percent": 27.4
+        },
+        {
+          "group": "75–79",
+          "label": "Hypertension",
+          "n_observed": 401,
+          "percent": 68.3,
+          "weighted_percent": 65.3
+        },
+        {
+          "group": "75–79",
+          "label": "Ever smoked",
+          "n_observed": 402,
+          "percent": 53.5,
+          "weighted_percent": 51.3
+        }
+      ],
+      "mobility": [
+        {
+          "label": "Walking",
+          "group": "75–79",
+          "n_observed": 295,
+          "percent": 24.7,
+          "weighted_percent": 23.7
+        },
+        {
+          "label": "Stairs",
+          "group": "75–79",
+          "n_observed": 292,
+          "percent": 18.2,
+          "weighted_percent": 17.0
+        },
+        {
+          "label": "Stooping",
+          "group": "75–79",
+          "n_observed": 391,
+          "percent": 54.7,
+          "weighted_percent": 51.4
+        }
+      ]
+    },
+    {
+      "name": "80+",
+      "n": 655,
+      "mean_bmi_weighted": 26.6,
+      "conditions": [
+        {
+          "group": "80+",
+          "label": "Heart failure",
+          "n_observed": 651,
+          "percent": 13.8,
+          "weighted_percent": 13.7
+        },
+        {
+          "group": "80+",
+          "label": "Coronary heart disease",
+          "n_observed": 645,
+          "percent": 17.7,
+          "weighted_percent": 16.7
+        },
+        {
+          "group": "80+",
+          "label": "Stroke",
+          "n_observed": 653,
+          "percent": 14.9,
+          "weighted_percent": 14.5
+        },
+        {
+          "group": "80+",
+          "label": "History of cancer",
+          "n_observed": 655,
+          "percent": 28.9,
+          "weighted_percent": 32.4
+        },
+        {
+          "group": "80+",
+          "label": "Diabetes",
+          "n_observed": 627,
+          "percent": 21.7,
+          "weighted_percent": 18.2
+        },
+        {
+          "group": "80+",
+          "label": "Hypertension",
+          "n_observed": 654,
+          "percent": 70.8,
+          "weighted_percent": 73.2
+        },
+        {
+          "group": "80+",
+          "label": "Ever smoked",
+          "n_observed": 654,
+          "percent": 43.7,
+          "weighted_percent": 43.9
+        }
+      ],
+      "mobility": [
+        {
+          "label": "Walking",
+          "group": "80+",
+          "n_observed": 389,
+          "percent": 28.5,
+          "weighted_percent": 29.2
+        },
+        {
+          "label": "Stairs",
+          "group": "80+",
+          "n_observed": 394,
+          "percent": 20.1,
+          "weighted_percent": 20.1
+        },
+        {
+          "label": "Stooping",
+          "group": "80+",
+          "n_observed": 628,
+          "percent": 63.7,
+          "weighted_percent": 63.5
+        }
+      ]
+    },
+    {
+      "name": "Female",
+      "n": 1253,
+      "mean_bmi_weighted": 28.6,
+      "conditions": [
+        {
+          "group": "Female",
+          "label": "Heart failure",
+          "n_observed": 1248,
+          "percent": 9.0,
+          "weighted_percent": 9.3
+        },
+        {
+          "group": "Female",
+          "label": "Coronary heart disease",
+          "n_observed": 1243,
+          "percent": 8.4,
+          "weighted_percent": 8.5
+        },
+        {
+          "group": "Female",
+          "label": "Stroke",
+          "n_observed": 1249,
+          "percent": 9.8,
+          "weighted_percent": 9.2
+        },
+        {
+          "group": "Female",
+          "label": "History of cancer",
+          "n_observed": 1253,
+          "percent": 21.9,
+          "weighted_percent": 25.8
+        },
+        {
+          "group": "Female",
+          "label": "Diabetes",
+          "n_observed": 1199,
+          "percent": 23.8,
+          "weighted_percent": 19.5
+        },
+        {
+          "group": "Female",
+          "label": "Hypertension",
+          "n_observed": 1250,
+          "percent": 68.5,
+          "weighted_percent": 65.8
+        },
+        {
+          "group": "Female",
+          "label": "Ever smoked",
+          "n_observed": 1252,
+          "percent": 35.9,
+          "weighted_percent": 40.4
+        }
+      ],
+      "mobility": [
+        {
+          "label": "Walking",
+          "group": "Female",
+          "n_observed": 903,
+          "percent": 26.4,
+          "weighted_percent": 25.0
+        },
+        {
+          "label": "Stairs",
+          "group": "Female",
+          "n_observed": 906,
+          "percent": 18.4,
+          "weighted_percent": 18.0
+        },
+        {
+          "label": "Stooping",
+          "group": "Female",
+          "n_observed": 1222,
+          "percent": 56.0,
+          "weighted_percent": 53.8
+        }
+      ]
+    },
+    {
+      "name": "Male",
+      "n": 1169,
+      "mean_bmi_weighted": 28.4,
+      "conditions": [
+        {
+          "group": "Male",
+          "label": "Heart failure",
+          "n_observed": 1160,
+          "percent": 9.3,
+          "weighted_percent": 9.9
+        },
+        {
+          "group": "Male",
+          "label": "Coronary heart disease",
+          "n_observed": 1158,
+          "percent": 14.9,
+          "weighted_percent": 16.9
+        },
+        {
+          "group": "Male",
+          "label": "Stroke",
+          "n_observed": 1167,
+          "percent": 10.5,
+          "weighted_percent": 9.8
+        },
+        {
+          "group": "Male",
+          "label": "History of cancer",
+          "n_observed": 1169,
+          "percent": 24.8,
+          "weighted_percent": 29.5
+        },
+        {
+          "group": "Male",
+          "label": "Diabetes",
+          "n_observed": 1118,
+          "percent": 28.2,
+          "weighted_percent": 24.2
+        },
+        {
+          "group": "Male",
+          "label": "Hypertension",
+          "n_observed": 1166,
+          "percent": 63.1,
+          "weighted_percent": 61.1
+        },
+        {
+          "group": "Male",
+          "label": "Ever smoked",
+          "n_observed": 1168,
+          "percent": 64.3,
+          "weighted_percent": 63.3
+        }
+      ],
+      "mobility": [
+        {
+          "label": "Walking",
+          "group": "Male",
+          "n_observed": 908,
+          "percent": 17.2,
+          "weighted_percent": 17.0
+        },
+        {
+          "label": "Stairs",
+          "group": "Male",
+          "n_observed": 914,
+          "percent": 11.5,
+          "weighted_percent": 9.9
+        },
+        {
+          "label": "Stooping",
+          "group": "Male",
+          "n_observed": 1146,
+          "percent": 43.7,
+          "weighted_percent": 39.7
+        }
+      ]
+    }
+  ],
+  "method": "Survey-weighted descriptive percentages; no design-based uncertainty estimates",
+  "notes": [
+    "PHQ-9 excluded from descriptive profiles pending raw-data completeness review"
+  ],
+  "small_cell_rule": "Only variables with ≥50 observed records and ≥20 per category are reported"
+}
