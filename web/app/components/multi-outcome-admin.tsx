@@ -4,9 +4,10 @@ import {Activity, BarChart3, BrainCircuit, CheckCircle2, Database, Info, Layers,
 import {Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import study from '../../public/data/nhanes-aggregate.json';
 import refined from '../../public/data/nhanes-refinement.json';
+import { EvidenceWorkbenchV11 } from './evidence-workbench-v11';
 
-type Section = 'Dataset' | 'Preprocessing' | 'Model training' | 'Performance' | 'Interpretability' | 'Benchmark';
-const steps:Section[]=['Dataset','Preprocessing','Model training','Performance','Interpretability','Benchmark'];
+type Section = 'Dataset' | 'Preprocessing' | 'Model training' | 'Performance' | 'Interpretability' | 'Benchmark' | 'Deep analysis';
+const steps:Section[]=['Dataset','Preprocessing','Model training','Performance','Interpretability','Benchmark','Deep analysis'];
 const pct=(v:number)=>(v*100).toFixed(1)+'%';
 const short=(s:string)=>s==='Logistic regression'?'Logistic':s==='Histogram gradient boosting'?'Hist. Boost':s;
 function Panel({title,subtitle,children}:{title:string;subtitle?:string;children:React.ReactNode}){return <section className="v7-card"><div className="v7-cardhead"><h3>{title}</h3>{subtitle&&<p>{subtitle}</p>}</div>{children}</section>}
@@ -64,6 +65,7 @@ export function AdminResearchHub(){
     <Panel title="Model attribution" subtitle={refined.shap.length?'Mean absolute SHAP on a small validation subset':'Permutation method used'}>{refined.shap.length?<div className="v7-importance">{refined.shap.slice(0,10).map(x=><div key={x.name}><span>{x.name}</span><div><i style={{width:Math.min(100,x.mean_abs_shap*950)+'%'}}/></div><b>{x.mean_abs_shap.toFixed(3)}</b></div>)}</div>:<div className="v7-info"><Info size={18}/> SHAP summary unavailable for this run. Permutation importance is shown separately.</div>}<p className="v7-fine">SHAP values describe differences from a background model prediction; not causal relationships or treatment effects.</p></Panel></div>
     <Panel title="Measurement and analysis boundaries"><div className="v7-checks">{refined.analysisNotes.map(n=><div key={n}><ShieldCheck size={17}/><span>{n}</span></div>)}</div></Panel>
    </>}
+   {tab==='Deep analysis'&&<EvidenceWorkbenchV11/>}
    <footer className="v7-portal-foot">FrailtyScope · NHANES linked mortality · Aggregate research reporting</footer>
  </div>
 }

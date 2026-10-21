@@ -1,0 +1,1774 @@
+{
+  "provenance": "REAL_NHANES_AGGREGATE_ONLY",
+  "schema": "FRAILTYSCOPE_PUBLIC_CASE_AUDIT_V11",
+  "source": "CDC NHANES 2011–2014; linked mortality 2019 public-use",
+  "case_id": "nhanes_mortality_v10",
+  "counts": {
+    "all": 2422,
+    "train": 873,
+    "validation": 292,
+    "evaluation": 1257
+  },
+  "data_contract": {
+    "outcome": "Approximately five-year all-cause mortality",
+    "task": "Binary classification",
+    "split": "2011–2012 development; 2013–2014 evaluation",
+    "model_input_columns": 14,
+    "excluded_from_predictors": [
+      "Respondent ID",
+      "Survey-cycle split key",
+      "Linked mortality timing",
+      "Outcome label",
+      "Survey sampling weight"
+    ]
+  },
+  "data_integrity": {
+    "phq9_observed_percent": 90.96,
+    "source_check_mismatches": 0,
+    "xport_zero_values_normalized": 15827,
+    "reporting": "Verified against raw CDC DPQ files after correcting SAS XPORT zero aliases"
+  },
+  "features": [
+    {
+      "feature": "age",
+      "label": "Age (years; 80+ top-coded)",
+      "description": "Interview age; age 80+ is top-coded in this public-use cohort.",
+      "type": "numeric",
+      "observed": 2422,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 16,
+      "summary": {
+        "min": 65.0,
+        "p01": 65.0,
+        "q25": 69.0,
+        "median": 73.0,
+        "q75": 80.0,
+        "p99": 80.0,
+        "max": 80.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "64.999–68.0",
+          "n": 605
+        },
+        {
+          "bin": "68.0–71.0",
+          "n": 406
+        },
+        {
+          "bin": "71.0–75.0",
+          "n": 449
+        },
+        {
+          "bin": "75.0–80.0",
+          "n": 962
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "bmi",
+      "label": "Body mass index (kg/m²)",
+      "description": "Exam-measured body mass index; not a clinical diagnosis.",
+      "type": "numeric",
+      "observed": 2359,
+      "missing": 63,
+      "missing_pct": 2.6,
+      "unique": 300,
+      "summary": {
+        "min": 13.4,
+        "p01": 17.6,
+        "q25": 24.35,
+        "median": 27.6,
+        "q75": 31.7,
+        "p99": 46.184,
+        "max": 65.1
+      },
+      "iqr_outlier_pct": 2.15,
+      "distribution": [
+        {
+          "bin": "13.399–23.8",
+          "n": 489
+        },
+        {
+          "bin": "23.8–26.4",
+          "n": 460
+        },
+        {
+          "bin": "26.4–29.1",
+          "n": 467
+        },
+        {
+          "bin": "29.1–32.8",
+          "n": 475
+        },
+        {
+          "bin": "32.8–65.1",
+          "n": 468
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "walking_difficulty",
+      "label": "Walking limitation (1–4)",
+      "description": "Reported difficulty walking; 1=no, 2=some, 3=much, 4=unable.",
+      "type": "numeric",
+      "observed": 1811,
+      "missing": 611,
+      "missing_pct": 25.23,
+      "unique": 4,
+      "summary": {
+        "min": 1.0,
+        "p01": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "p99": 4.0,
+        "max": 4.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No difficulty",
+          "n": 1417
+        },
+        {
+          "bin": "Some difficulty",
+          "n": 270
+        },
+        {
+          "bin": "Much difficulty",
+          "n": 64
+        },
+        {
+          "bin": "Unable",
+          "n": 60
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "stairs_difficulty",
+      "label": "Stair limitation (1–4)",
+      "description": "Reported difficulty on stairs; 1=no, 2=some, 3=much, 4=unable.",
+      "type": "numeric",
+      "observed": 1820,
+      "missing": 602,
+      "missing_pct": 24.86,
+      "unique": 4,
+      "summary": {
+        "min": 1.0,
+        "p01": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "p99": 4.0,
+        "max": 4.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No difficulty",
+          "n": 1548
+        },
+        {
+          "bin": "Some difficulty",
+          "n": 212
+        },
+        {
+          "bin": "Much difficulty",
+          "n": 40
+        },
+        {
+          "bin": "Unable",
+          "n": 20
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "stooping_difficulty",
+      "label": "Stooping limitation (1–4)",
+      "description": "Reported difficulty stooping; 1=no, 2=some, 3=much, 4=unable.",
+      "type": "numeric",
+      "observed": 2368,
+      "missing": 54,
+      "missing_pct": 2.23,
+      "unique": 4,
+      "summary": {
+        "min": 1.0,
+        "p01": 1.0,
+        "q25": 1.0,
+        "median": 2.0,
+        "q75": 2.0,
+        "p99": 4.0,
+        "max": 4.0
+      },
+      "iqr_outlier_pct": 9.45,
+      "distribution": [
+        {
+          "bin": "No difficulty",
+          "n": 1183
+        },
+        {
+          "bin": "Some difficulty",
+          "n": 681
+        },
+        {
+          "bin": "Much difficulty",
+          "n": 275
+        },
+        {
+          "bin": "Unable",
+          "n": 229
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "heart_failure",
+      "label": "Heart failure",
+      "description": "Recorded study variable; interpret using source codebook.",
+      "type": "numeric",
+      "observed": 2408,
+      "missing": 14,
+      "missing_pct": 0.58,
+      "unique": 2,
+      "summary": {
+        "min": 0.0,
+        "p01": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No",
+          "n": 2188
+        },
+        {
+          "bin": "Yes",
+          "n": 220
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "coronary_disease",
+      "label": "Coronary disease",
+      "description": "Recorded study variable; interpret using source codebook.",
+      "type": "numeric",
+      "observed": 2401,
+      "missing": 21,
+      "missing_pct": 0.87,
+      "unique": 2,
+      "summary": {
+        "min": 0.0,
+        "p01": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No",
+          "n": 2123
+        },
+        {
+          "bin": "Yes",
+          "n": 278
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "stroke",
+      "label": "Stroke",
+      "description": "Recorded study variable; interpret using source codebook.",
+      "type": "numeric",
+      "observed": 2416,
+      "missing": 6,
+      "missing_pct": 0.25,
+      "unique": 2,
+      "summary": {
+        "min": 0.0,
+        "p01": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No",
+          "n": 2170
+        },
+        {
+          "bin": "Yes",
+          "n": 246
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "cancer",
+      "label": "Cancer history",
+      "description": "Recorded study variable; interpret using source codebook.",
+      "type": "numeric",
+      "observed": 2422,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 2,
+      "summary": {
+        "min": 0.0,
+        "p01": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No",
+          "n": 1857
+        },
+        {
+          "bin": "Yes",
+          "n": 565
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "diabetes",
+      "label": "Diabetes",
+      "description": "Recorded study variable; interpret using source codebook.",
+      "type": "numeric",
+      "observed": 2317,
+      "missing": 105,
+      "missing_pct": 4.34,
+      "unique": 2,
+      "summary": {
+        "min": 0.0,
+        "p01": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 1.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No",
+          "n": 1717
+        },
+        {
+          "bin": "Yes",
+          "n": 600
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "hypertension",
+      "label": "Hypertension",
+      "description": "Recorded study variable; interpret using source codebook.",
+      "type": "numeric",
+      "observed": 2416,
+      "missing": 6,
+      "missing_pct": 0.25,
+      "unique": 2,
+      "summary": {
+        "min": 0.0,
+        "p01": 0.0,
+        "q25": 0.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No",
+          "n": 824
+        },
+        {
+          "bin": "Yes",
+          "n": 1592
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "ever_smoked",
+      "label": "Smoking history",
+      "description": "Recorded study variable; interpret using source codebook.",
+      "type": "numeric",
+      "observed": 2420,
+      "missing": 2,
+      "missing_pct": 0.08,
+      "unique": 2,
+      "summary": {
+        "min": 0.0,
+        "p01": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 1.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "iqr_outlier_pct": 0.0,
+      "distribution": [
+        {
+          "bin": "No",
+          "n": 1219
+        },
+        {
+          "bin": "Yes",
+          "n": 1201
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "phq9_score",
+      "label": "PHQ-9 (0–27)",
+      "description": "Sum of nine valid responses coded 0–3; requires all nine valid items.",
+      "type": "numeric",
+      "observed": 2203,
+      "missing": 219,
+      "missing_pct": 9.04,
+      "unique": 26,
+      "summary": {
+        "min": 0.0,
+        "p01": 0.0,
+        "q25": 0.0,
+        "median": 1.0,
+        "q75": 4.0,
+        "p99": 19.0,
+        "max": 27.0
+      },
+      "iqr_outlier_pct": 6.23,
+      "distribution": [
+        {
+          "bin": "-0.001–1.0",
+          "n": 1110
+        },
+        {
+          "bin": "1.0–2.2",
+          "n": 212
+        },
+        {
+          "bin": "2.2–5.0",
+          "n": 449
+        },
+        {
+          "bin": "5.0–27.0",
+          "n": 432
+        }
+      ],
+      "distribution_suppressed_n": 0
+    },
+    {
+      "feature": "sex",
+      "label": "Sex",
+      "description": "Sex code from the NHANES public-use questionnaire.",
+      "type": "categorical",
+      "observed": 2422,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 2,
+      "distribution": [
+        {
+          "bin": "Female",
+          "n": 1253
+        },
+        {
+          "bin": "Male",
+          "n": 1169
+        }
+      ],
+      "distribution_suppressed_n": 0
+    }
+  ],
+  "cohort_shift": [
+    {
+      "feature": "phq9_score",
+      "standardized_mean_difference": 0.1613,
+      "development_missing_pct": 9.7,
+      "evaluation_missing_pct": 8.43
+    },
+    {
+      "feature": "age",
+      "standardized_mean_difference": 0.0625,
+      "development_missing_pct": 0.0,
+      "evaluation_missing_pct": 0.0
+    },
+    {
+      "feature": "ever_smoked",
+      "standardized_mean_difference": 0.059,
+      "development_missing_pct": 0.0,
+      "evaluation_missing_pct": 0.16
+    },
+    {
+      "feature": "heart_failure",
+      "standardized_mean_difference": 0.0536,
+      "development_missing_pct": 0.69,
+      "evaluation_missing_pct": 0.48
+    },
+    {
+      "feature": "walking_difficulty",
+      "standardized_mean_difference": 0.0471,
+      "development_missing_pct": 26.01,
+      "evaluation_missing_pct": 24.5
+    },
+    {
+      "feature": "bmi",
+      "standardized_mean_difference": 0.0453,
+      "development_missing_pct": 2.83,
+      "evaluation_missing_pct": 2.39
+    },
+    {
+      "feature": "stairs_difficulty",
+      "standardized_mean_difference": 0.0433,
+      "development_missing_pct": 25.06,
+      "evaluation_missing_pct": 24.66
+    },
+    {
+      "feature": "cancer",
+      "standardized_mean_difference": 0.0382,
+      "development_missing_pct": 0.0,
+      "evaluation_missing_pct": 0.0
+    },
+    {
+      "feature": "hypertension",
+      "standardized_mean_difference": 0.0374,
+      "development_missing_pct": 0.26,
+      "evaluation_missing_pct": 0.24
+    },
+    {
+      "feature": "stroke",
+      "standardized_mean_difference": 0.036,
+      "development_missing_pct": 0.17,
+      "evaluation_missing_pct": 0.32
+    },
+    {
+      "feature": "coronary_disease",
+      "standardized_mean_difference": 0.0351,
+      "development_missing_pct": 0.86,
+      "evaluation_missing_pct": 0.88
+    },
+    {
+      "feature": "stooping_difficulty",
+      "standardized_mean_difference": 0.0091,
+      "development_missing_pct": 3.0,
+      "evaluation_missing_pct": 1.51
+    },
+    {
+      "feature": "diabetes",
+      "standardized_mean_difference": 0.0008,
+      "development_missing_pct": 3.61,
+      "evaluation_missing_pct": 5.01
+    }
+  ],
+  "correlations": [
+    {
+      "a": "walking_difficulty",
+      "b": "stairs_difficulty",
+      "spearman_rho": 0.564
+    },
+    {
+      "a": "stairs_difficulty",
+      "b": "stooping_difficulty",
+      "spearman_rho": 0.4533
+    },
+    {
+      "a": "walking_difficulty",
+      "b": "stooping_difficulty",
+      "spearman_rho": 0.4318
+    },
+    {
+      "a": "heart_failure",
+      "b": "coronary_disease",
+      "spearman_rho": 0.3187
+    },
+    {
+      "a": "stooping_difficulty",
+      "b": "phq9_score",
+      "spearman_rho": 0.3091
+    },
+    {
+      "a": "walking_difficulty",
+      "b": "phq9_score",
+      "spearman_rho": 0.2304
+    },
+    {
+      "a": "age",
+      "b": "stooping_difficulty",
+      "spearman_rho": 0.2096
+    },
+    {
+      "a": "bmi",
+      "b": "diabetes",
+      "spearman_rho": 0.1995
+    },
+    {
+      "a": "walking_difficulty",
+      "b": "heart_failure",
+      "spearman_rho": 0.1983
+    },
+    {
+      "a": "bmi",
+      "b": "hypertension",
+      "spearman_rho": 0.1957
+    },
+    {
+      "a": "stooping_difficulty",
+      "b": "heart_failure",
+      "spearman_rho": 0.1878
+    },
+    {
+      "a": "stooping_difficulty",
+      "b": "hypertension",
+      "spearman_rho": 0.1763
+    },
+    {
+      "a": "stooping_difficulty",
+      "b": "stroke",
+      "spearman_rho": 0.1755
+    },
+    {
+      "a": "age",
+      "b": "bmi",
+      "spearman_rho": -0.1734
+    },
+    {
+      "a": "stairs_difficulty",
+      "b": "phq9_score",
+      "spearman_rho": 0.1675
+    },
+    {
+      "a": "bmi",
+      "b": "stooping_difficulty",
+      "spearman_rho": 0.1608
+    },
+    {
+      "a": "heart_failure",
+      "b": "hypertension",
+      "spearman_rho": 0.1596
+    },
+    {
+      "a": "stroke",
+      "b": "hypertension",
+      "spearman_rho": 0.156
+    }
+  ],
+  "preprocessing": {
+    "input_feature_count": 14,
+    "output_feature_count": 15,
+    "methods": [
+      {
+        "feature": "age",
+        "label": "Age (years; 80+ top-coded)",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 0,
+        "validation_missing": 0,
+        "after_missing": 0,
+        "impute_value": 73.0,
+        "center": 73.5166,
+        "scale": 5.3701,
+        "observed_training_median": 73.0,
+        "transformed_training_median": -0.0962,
+        "before_range": {
+          "min": 65.0,
+          "p01": 65.0,
+          "q25": 69.0,
+          "median": 73.0,
+          "q75": 80.0,
+          "p99": 80.0,
+          "max": 80.0
+        },
+        "after_range": {
+          "min": -1.5859,
+          "p01": -1.5859,
+          "q25": -0.8411,
+          "median": -0.0962,
+          "q75": 1.2073,
+          "p99": 1.2073,
+          "max": 1.2073
+        }
+      },
+      {
+        "feature": "bmi",
+        "label": "Body mass index (kg/m²)",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 30,
+        "validation_missing": 3,
+        "after_missing": 0,
+        "impute_value": 27.3,
+        "center": 28.1227,
+        "scale": 5.7928,
+        "observed_training_median": 27.3,
+        "transformed_training_median": -0.142,
+        "before_range": {
+          "min": 15.4,
+          "p01": 16.984,
+          "q25": 24.0,
+          "median": 27.3,
+          "q75": 31.7,
+          "p99": 45.316,
+          "max": 56.3
+        },
+        "after_range": {
+          "min": -2.1963,
+          "p01": -1.9125,
+          "q25": -0.6944,
+          "median": -0.142,
+          "q75": 0.5658,
+          "p99": 2.9577,
+          "max": 4.8642
+        }
+      },
+      {
+        "feature": "walking_difficulty",
+        "label": "Walking limitation (1–4)",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 237,
+        "validation_missing": 66,
+        "after_missing": 0,
+        "impute_value": 1.0,
+        "center": 1.2417,
+        "scale": 0.6314,
+        "observed_training_median": 1.0,
+        "transformed_training_median": -0.3828,
+        "before_range": {
+          "min": 1.0,
+          "p01": 1.0,
+          "q25": 1.0,
+          "median": 1.0,
+          "q75": 1.0,
+          "p99": 4.0,
+          "max": 4.0
+        },
+        "after_range": {
+          "min": -0.3828,
+          "p01": -0.3828,
+          "q25": -0.3828,
+          "median": -0.3828,
+          "q75": -0.3828,
+          "p99": 4.3688,
+          "max": 4.3688
+        }
+      },
+      {
+        "feature": "stairs_difficulty",
+        "label": "Stair limitation (1–4)",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 229,
+        "validation_missing": 63,
+        "after_missing": 0,
+        "impute_value": 1.0,
+        "center": 1.1661,
+        "scale": 0.5008,
+        "observed_training_median": 1.0,
+        "transformed_training_median": -0.3317,
+        "before_range": {
+          "min": 1.0,
+          "p01": 1.0,
+          "q25": 1.0,
+          "median": 1.0,
+          "q75": 1.0,
+          "p99": 4.0,
+          "max": 4.0
+        },
+        "after_range": {
+          "min": -0.3317,
+          "p01": -0.3317,
+          "q25": -0.3317,
+          "median": -0.3317,
+          "q75": -0.3317,
+          "p99": 5.6592,
+          "max": 5.6592
+        }
+      },
+      {
+        "feature": "stooping_difficulty",
+        "label": "Stooping limitation (1–4)",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 26,
+        "validation_missing": 9,
+        "after_missing": 0,
+        "impute_value": 2.0,
+        "center": 1.8293,
+        "scale": 0.9783,
+        "observed_training_median": 2.0,
+        "transformed_training_median": 0.1745,
+        "before_range": {
+          "min": 1.0,
+          "p01": 1.0,
+          "q25": 1.0,
+          "median": 2.0,
+          "q75": 2.0,
+          "p99": 4.0,
+          "max": 4.0
+        },
+        "after_range": {
+          "min": -0.8477,
+          "p01": -0.8477,
+          "q25": -0.8477,
+          "median": 0.1745,
+          "q75": 0.1745,
+          "p99": 2.2188,
+          "max": 2.2188
+        }
+      },
+      {
+        "feature": "heart_failure",
+        "label": "Heart failure",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 7,
+        "validation_missing": 1,
+        "after_missing": 0,
+        "impute_value": 0.0,
+        "center": 0.0974,
+        "scale": 0.2965,
+        "observed_training_median": 0.0,
+        "transformed_training_median": -0.3284,
+        "before_range": {
+          "min": 0.0,
+          "p01": 0.0,
+          "q25": 0.0,
+          "median": 0.0,
+          "q75": 0.0,
+          "p99": 1.0,
+          "max": 1.0
+        },
+        "after_range": {
+          "min": -0.3284,
+          "p01": -0.3284,
+          "q25": -0.3284,
+          "median": -0.3284,
+          "q75": -0.3284,
+          "p99": 3.0448,
+          "max": 3.0448
+        }
+      },
+      {
+        "feature": "coronary_disease",
+        "label": "Coronary disease",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 8,
+        "validation_missing": 2,
+        "after_missing": 0,
+        "impute_value": 0.0,
+        "center": 0.1042,
+        "scale": 0.3056,
+        "observed_training_median": 0.0,
+        "transformed_training_median": -0.3411,
+        "before_range": {
+          "min": 0.0,
+          "p01": 0.0,
+          "q25": 0.0,
+          "median": 0.0,
+          "q75": 0.0,
+          "p99": 1.0,
+          "max": 1.0
+        },
+        "after_range": {
+          "min": -0.3411,
+          "p01": -0.3411,
+          "q25": -0.3411,
+          "median": -0.3411,
+          "q75": -0.3411,
+          "p99": 2.9315,
+          "max": 2.9315
+        }
+      },
+      {
+        "feature": "stroke",
+        "label": "Stroke",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 2,
+        "validation_missing": 0,
+        "after_missing": 0,
+        "impute_value": 0.0,
+        "center": 0.1168,
+        "scale": 0.3212,
+        "observed_training_median": 0.0,
+        "transformed_training_median": -0.3637,
+        "before_range": {
+          "min": 0.0,
+          "p01": 0.0,
+          "q25": 0.0,
+          "median": 0.0,
+          "q75": 0.0,
+          "p99": 1.0,
+          "max": 1.0
+        },
+        "after_range": {
+          "min": -0.3637,
+          "p01": -0.3637,
+          "q25": -0.3637,
+          "median": -0.3637,
+          "q75": -0.3637,
+          "p99": 2.7493,
+          "max": 2.7493
+        }
+      },
+      {
+        "feature": "cancer",
+        "label": "Cancer history",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 0,
+        "validation_missing": 0,
+        "after_missing": 0,
+        "impute_value": 0.0,
+        "center": 0.2279,
+        "scale": 0.4195,
+        "observed_training_median": 0.0,
+        "transformed_training_median": -0.5434,
+        "before_range": {
+          "min": 0.0,
+          "p01": 0.0,
+          "q25": 0.0,
+          "median": 0.0,
+          "q75": 0.0,
+          "p99": 1.0,
+          "max": 1.0
+        },
+        "after_range": {
+          "min": -0.5434,
+          "p01": -0.5434,
+          "q25": -0.5434,
+          "median": -0.5434,
+          "q75": -0.5434,
+          "p99": 1.8404,
+          "max": 1.8404
+        }
+      },
+      {
+        "feature": "diabetes",
+        "label": "Diabetes",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 36,
+        "validation_missing": 6,
+        "after_missing": 0,
+        "impute_value": 0.0,
+        "center": 0.2577,
+        "scale": 0.4374,
+        "observed_training_median": 0.0,
+        "transformed_training_median": -0.5893,
+        "before_range": {
+          "min": 0.0,
+          "p01": 0.0,
+          "q25": 0.0,
+          "median": 0.0,
+          "q75": 1.0,
+          "p99": 1.0,
+          "max": 1.0
+        },
+        "after_range": {
+          "min": -0.5893,
+          "p01": -0.5893,
+          "q25": -0.5893,
+          "median": -0.5893,
+          "q75": 1.6971,
+          "p99": 1.6971,
+          "max": 1.6971
+        }
+      },
+      {
+        "feature": "hypertension",
+        "label": "Hypertension",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 3,
+        "validation_missing": 0,
+        "after_missing": 0,
+        "impute_value": 1.0,
+        "center": 0.6541,
+        "scale": 0.4757,
+        "observed_training_median": 1.0,
+        "transformed_training_median": 0.7273,
+        "before_range": {
+          "min": 0.0,
+          "p01": 0.0,
+          "q25": 0.0,
+          "median": 1.0,
+          "q75": 1.0,
+          "p99": 1.0,
+          "max": 1.0
+        },
+        "after_range": {
+          "min": -1.375,
+          "p01": -1.375,
+          "q25": -1.375,
+          "median": 0.7273,
+          "q75": 0.7273,
+          "p99": 0.7273,
+          "max": 0.7273
+        }
+      },
+      {
+        "feature": "ever_smoked",
+        "label": "Smoking history",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 0,
+        "validation_missing": 0,
+        "after_missing": 0,
+        "impute_value": 1.0,
+        "center": 0.5166,
+        "scale": 0.4997,
+        "observed_training_median": 1.0,
+        "transformed_training_median": 0.9673,
+        "before_range": {
+          "min": 0.0,
+          "p01": 0.0,
+          "q25": 0.0,
+          "median": 1.0,
+          "q75": 1.0,
+          "p99": 1.0,
+          "max": 1.0
+        },
+        "after_range": {
+          "min": -1.0338,
+          "p01": -1.0338,
+          "q25": -1.0338,
+          "median": 0.9673,
+          "q75": 0.9673,
+          "p99": 0.9673,
+          "max": 0.9673
+        }
+      },
+      {
+        "feature": "phq9_score",
+        "label": "PHQ-9 (0–27)",
+        "method": "Median imputation + z-score",
+        "fit_partition": "Training only",
+        "training_missing": 95,
+        "validation_missing": 18,
+        "after_missing": 0,
+        "impute_value": 1.0,
+        "center": 2.6128,
+        "scale": 3.8236,
+        "observed_training_median": 1.0,
+        "transformed_training_median": -0.4218,
+        "before_range": {
+          "min": 0.0,
+          "p01": 0.0,
+          "q25": 0.0,
+          "median": 1.0,
+          "q75": 4.0,
+          "p99": 19.23,
+          "max": 27.0
+        },
+        "after_range": {
+          "min": -0.6833,
+          "p01": -0.6833,
+          "q25": -0.6833,
+          "median": -0.4218,
+          "q75": 0.3628,
+          "p99": 4.2858,
+          "max": 6.3781
+        }
+      },
+      {
+        "feature": "sex",
+        "label": "Sex",
+        "method": "Most frequent imputation + one-hot encoding",
+        "fit_partition": "Training only",
+        "training_missing": 0,
+        "validation_missing": 0,
+        "after_missing": 0,
+        "impute_value": "Female",
+        "output_columns": [
+          "sex = Female",
+          "sex = Male"
+        ]
+      }
+    ],
+    "quantile_examples": [
+      {
+        "feature": "age",
+        "label": "Age (years; 80+ top-coded)",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          69.0,
+          73.0,
+          80.0
+        ],
+        "after": [
+          -0.8411,
+          -0.0962,
+          1.2073
+        ]
+      },
+      {
+        "feature": "bmi",
+        "label": "Body mass index (kg/m²)",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          24.0,
+          27.3,
+          31.7
+        ],
+        "after": [
+          -0.7117,
+          -0.142,
+          0.6175
+        ]
+      },
+      {
+        "feature": "walking_difficulty",
+        "label": "Walking limitation (1–4)",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "after": [
+          -0.3828,
+          -0.3828,
+          -0.3828
+        ]
+      },
+      {
+        "feature": "stairs_difficulty",
+        "label": "Stair limitation (1–4)",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "after": [
+          -0.3317,
+          -0.3317,
+          -0.3317
+        ]
+      },
+      {
+        "feature": "stooping_difficulty",
+        "label": "Stooping limitation (1–4)",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          1.0,
+          2.0,
+          2.0
+        ],
+        "after": [
+          -0.8477,
+          0.1745,
+          0.1745
+        ]
+      },
+      {
+        "feature": "heart_failure",
+        "label": "Heart failure",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "after": [
+          -0.3284,
+          -0.3284,
+          -0.3284
+        ]
+      },
+      {
+        "feature": "coronary_disease",
+        "label": "Coronary disease",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "after": [
+          -0.3411,
+          -0.3411,
+          -0.3411
+        ]
+      },
+      {
+        "feature": "stroke",
+        "label": "Stroke",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "after": [
+          -0.3637,
+          -0.3637,
+          -0.3637
+        ]
+      },
+      {
+        "feature": "cancer",
+        "label": "Cancer history",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "after": [
+          -0.5434,
+          -0.5434,
+          -0.5434
+        ]
+      },
+      {
+        "feature": "diabetes",
+        "label": "Diabetes",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "after": [
+          -0.5893,
+          -0.5893,
+          1.6971
+        ]
+      },
+      {
+        "feature": "hypertension",
+        "label": "Hypertension",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          0.0,
+          1.0,
+          1.0
+        ],
+        "after": [
+          -1.375,
+          0.7273,
+          0.7273
+        ]
+      },
+      {
+        "feature": "ever_smoked",
+        "label": "Smoking history",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          0.0,
+          1.0,
+          1.0
+        ],
+        "after": [
+          -1.0338,
+          0.9673,
+          0.9673
+        ]
+      },
+      {
+        "feature": "phq9_score",
+        "label": "PHQ-9 (0–27)",
+        "source": "Training quartile values; not individual records",
+        "before": [
+          0.0,
+          1.0,
+          4.0
+        ],
+        "after": [
+          -0.6833,
+          -0.4218,
+          0.3628
+        ]
+      }
+    ]
+  },
+  "selection": {
+    "metric": "brier",
+    "model": "catboost",
+    "candidates": [
+      {
+        "name": "dummy",
+        "cv_score": null,
+        "validation": {
+          "n": 292,
+          "roc_auc": 0.5,
+          "average_precision": 0.205479,
+          "brier": 0.16326,
+          "accuracy": 0.794521,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "threshold": 0.5,
+          "confusion": {
+            "tn": 232,
+            "fp": 0,
+            "fn": 60,
+            "tp": 0
+          }
+        },
+        "parameters": {},
+        "fit_search_seconds": 0.01
+      },
+      {
+        "name": "logistic",
+        "cv_score": 0.14027,
+        "validation": {
+          "n": 292,
+          "roc_auc": 0.77148,
+          "average_precision": 0.509159,
+          "brier": 0.135664,
+          "accuracy": 0.818493,
+          "precision": 0.769231,
+          "recall": 0.166667,
+          "f1": 0.273973,
+          "threshold": 0.5,
+          "confusion": {
+            "tn": 229,
+            "fp": 3,
+            "fn": 50,
+            "tp": 10
+          }
+        },
+        "parameters": {
+          "C": 0.0369595828299083
+        },
+        "fit_search_seconds": 0.11
+      },
+      {
+        "name": "random_forest",
+        "cv_score": 0.140934,
+        "validation": {
+          "n": 292,
+          "roc_auc": 0.77931,
+          "average_precision": 0.524711,
+          "brier": 0.135738,
+          "accuracy": 0.808219,
+          "precision": 1.0,
+          "recall": 0.066667,
+          "f1": 0.125,
+          "threshold": 0.5,
+          "confusion": {
+            "tn": 232,
+            "fp": 0,
+            "fn": 56,
+            "tp": 4
+          }
+        },
+        "parameters": {
+          "n_estimators": 160,
+          "max_depth": 8,
+          "min_samples_leaf": 6
+        },
+        "fit_search_seconds": 1.7
+      },
+      {
+        "name": "hist_boost",
+        "cv_score": 0.145705,
+        "validation": {
+          "n": 292,
+          "roc_auc": 0.751616,
+          "average_precision": 0.530918,
+          "brier": 0.139032,
+          "accuracy": 0.804795,
+          "precision": 1.0,
+          "recall": 0.05,
+          "f1": 0.095238,
+          "threshold": 0.5,
+          "confusion": {
+            "tn": 232,
+            "fp": 0,
+            "fn": 57,
+            "tp": 3
+          }
+        },
+        "parameters": {
+          "max_iter": 70,
+          "max_leaf_nodes": 5,
+          "learning_rate": 0.025585719181814588,
+          "l2_regularization": 1.4105812681274308
+        },
+        "fit_search_seconds": 0.99
+      },
+      {
+        "name": "xgboost",
+        "cv_score": 0.145675,
+        "validation": {
+          "n": 292,
+          "roc_auc": 0.760704,
+          "average_precision": 0.507222,
+          "brier": 0.138201,
+          "accuracy": 0.811644,
+          "precision": 0.857143,
+          "recall": 0.1,
+          "f1": 0.179104,
+          "threshold": 0.5,
+          "confusion": {
+            "tn": 231,
+            "fp": 1,
+            "fn": 54,
+            "tp": 6
+          }
+        },
+        "parameters": {
+          "n_estimators": 100,
+          "max_depth": 2,
+          "learning_rate": 0.031406071445054855,
+          "reg_lambda": 5.357096703719268
+        },
+        "fit_search_seconds": 0.5
+      },
+      {
+        "name": "catboost",
+        "cv_score": 0.14317,
+        "validation": {
+          "n": 292,
+          "roc_auc": 0.781609,
+          "average_precision": 0.530837,
+          "brier": 0.134636,
+          "accuracy": 0.815068,
+          "precision": 0.8,
+          "recall": 0.133333,
+          "f1": 0.228571,
+          "threshold": 0.5,
+          "confusion": {
+            "tn": 230,
+            "fp": 2,
+            "fn": 52,
+            "tp": 8
+          }
+        },
+        "parameters": {
+          "iterations": 160,
+          "depth": 6,
+          "learning_rate": 0.021803063120100535,
+          "l2_leaf_reg": 3.337645170268292
+        },
+        "fit_search_seconds": 1.02
+      }
+    ],
+    "permutation_importance_validation": [
+      {
+        "feature": "age",
+        "mean_metric_drop": 0.161087
+      },
+      {
+        "feature": "sex",
+        "mean_metric_drop": 0.019253
+      },
+      {
+        "feature": "stooping_difficulty",
+        "mean_metric_drop": 0.015421
+      },
+      {
+        "feature": "phq9_score",
+        "mean_metric_drop": 0.009866
+      },
+      {
+        "feature": "coronary_disease",
+        "mean_metric_drop": 0.006873
+      },
+      {
+        "feature": "heart_failure",
+        "mean_metric_drop": 0.006489
+      },
+      {
+        "feature": "stairs_difficulty",
+        "mean_metric_drop": 0.002658
+      },
+      {
+        "feature": "walking_difficulty",
+        "mean_metric_drop": 0.002586
+      },
+      {
+        "feature": "diabetes",
+        "mean_metric_drop": 0.001413
+      },
+      {
+        "feature": "stroke",
+        "mean_metric_drop": -0.00012
+      },
+      {
+        "feature": "cancer",
+        "mean_metric_drop": -0.00079
+      },
+      {
+        "feature": "hypertension",
+        "mean_metric_drop": -0.000814
+      },
+      {
+        "feature": "ever_smoked",
+        "mean_metric_drop": -0.001245
+      },
+      {
+        "feature": "bmi",
+        "mean_metric_drop": -0.003041
+      }
+    ],
+    "learning_curve": [
+      {
+        "train_n": 218,
+        "training_brier": 0.1026,
+        "validation_brier": 0.1405
+      },
+      {
+        "train_n": 436,
+        "training_brier": 0.1149,
+        "validation_brier": 0.1398
+      },
+      {
+        "train_n": 654,
+        "training_brier": 0.122,
+        "validation_brier": 0.1364
+      },
+      {
+        "train_n": 873,
+        "training_brier": 0.1226,
+        "validation_brier": 0.1346
+      }
+    ]
+  },
+  "evaluation": {
+    "metrics": {
+      "n": 1257,
+      "roc_auc": 0.791758,
+      "average_precision": 0.510206,
+      "brier": 0.129447,
+      "accuracy": 0.708831,
+      "precision": 0.376543,
+      "recall": 0.743902,
+      "f1": 0.5,
+      "threshold": 0.22,
+      "confusion": {
+        "tn": 708,
+        "fp": 303,
+        "fn": 63,
+        "tp": 183
+      }
+    },
+    "baseline": {
+      "n": 1257,
+      "roc_auc": 0.5,
+      "average_precision": 0.195704,
+      "brier": 0.157471,
+      "accuracy": 0.804296,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "threshold": 0.5,
+      "confusion": {
+        "tn": 1011,
+        "fp": 0,
+        "fn": 246,
+        "tp": 0
+      }
+    },
+    "calibration": [
+      {
+        "bin": 1,
+        "n": 158,
+        "predicted": 0.0796,
+        "observed": 0.0253
+      },
+      {
+        "bin": 2,
+        "n": 157,
+        "predicted": 0.0971,
+        "observed": 0.051
+      },
+      {
+        "bin": 3,
+        "n": 157,
+        "predicted": 0.1172,
+        "observed": 0.0892
+      },
+      {
+        "bin": 4,
+        "n": 157,
+        "predicted": 0.1491,
+        "observed": 0.1338
+      },
+      {
+        "bin": 5,
+        "n": 157,
+        "predicted": 0.197,
+        "observed": 0.1146
+      },
+      {
+        "bin": 6,
+        "n": 157,
+        "predicted": 0.2628,
+        "observed": 0.2166
+      },
+      {
+        "bin": 7,
+        "n": 157,
+        "predicted": 0.337,
+        "observed": 0.3312
+      },
+      {
+        "bin": 8,
+        "n": 157,
+        "predicted": 0.4559,
+        "observed": 0.6051
+      }
+    ],
+    "subgroups": [
+      {
+        "group": "65–69",
+        "n": 395,
+        "events": 25,
+        "event_rate": 0.0633,
+        "roc_auc": 0.6971,
+        "recall": 0.24,
+        "false_positive_rate": 0.0378,
+        "brier": 0.0595
+      },
+      {
+        "group": "70–74",
+        "n": 334,
+        "events": 40,
+        "event_rate": 0.1198,
+        "roc_auc": 0.6425,
+        "recall": 0.3,
+        "false_positive_rate": 0.1463,
+        "brier": 0.1044
+      },
+      {
+        "group": "75–79",
+        "n": 199,
+        "events": 40,
+        "event_rate": 0.201,
+        "roc_auc": 0.6675,
+        "recall": 0.6,
+        "false_positive_rate": 0.3836,
+        "brier": 0.1493
+      },
+      {
+        "group": "80+",
+        "n": 329,
+        "events": 141,
+        "event_rate": 0.4286,
+        "roc_auc": 0.6951,
+        "recall": 1.0,
+        "false_positive_rate": 0.984,
+        "brier": 0.2268
+      },
+      {
+        "group": "Female",
+        "n": 668,
+        "events": 124,
+        "event_rate": 0.1856,
+        "roc_auc": 0.7928,
+        "recall": 0.7258,
+        "false_positive_rate": 0.2794,
+        "brier": 0.1229
+      },
+      {
+        "group": "Male",
+        "n": 589,
+        "events": 122,
+        "event_rate": 0.2071,
+        "roc_auc": 0.7896,
+        "recall": 0.7623,
+        "false_positive_rate": 0.3233,
+        "brier": 0.1369
+      }
+    ],
+    "observed_prevalence": 0.1957
+  },
+  "enhancement": {
+    "method": "Validation-only cross-fitted Platt recalibration",
+    "model": "catboost",
+    "rule": {
+      "accepted": false,
+      "required_min_brier_gain": 0.002,
+      "raw_validation_brier": 0.134636,
+      "crossfit_calibrated_brier": 0.133476,
+      "oof_brier_gain": 0.00116,
+      "raw_validation_auc": 0.781609,
+      "crossfit_calibrated_auc": 0.776006,
+      "decision": "Cross-fitted validation Brier improvement and AUC noninferiority; evaluation unseen"
+    },
+    "thresholds": {
+      "original": 0.22,
+      "calibrated_oof_f2": 0.2,
+      "selected": 0.22
+    },
+    "later_cycle": {
+      "original": {
+        "n": 1257,
+        "roc_auc": 0.791758,
+        "average_precision": 0.510206,
+        "brier": 0.129447,
+        "accuracy": 0.708831,
+        "precision": 0.376543,
+        "recall": 0.743902,
+        "f1": 0.5,
+        "threshold": 0.22,
+        "confusion": {
+          "tn": 708,
+          "fp": 303,
+          "fn": 63,
+          "tp": 183
+        }
+      },
+      "selected": {
+        "n": 1257,
+        "roc_auc": 0.791758,
+        "average_precision": 0.510206,
+        "brier": 0.129447,
+        "accuracy": 0.708831,
+        "precision": 0.376543,
+        "recall": 0.743902,
+        "f1": 0.5,
+        "threshold": 0.22,
+        "confusion": {
+          "tn": 708,
+          "fp": 303,
+          "fn": 63,
+          "tp": 183
+        }
+      }
+    }
+  },
+  "methodology": {
+    "selection": "Lowest validation Brier score among trained candidates, following training-only Optuna CV.",
+    "data_split": "Training and validation: 2011–2012; evaluation: 2013–2014.",
+    "is_external_validation": false,
+    "preprocessing": "Fitted on training subset only; no evaluation-derived parameters.",
+    "limitations": [
+      "Later survey cycle had already been inspected in earlier project iterations.",
+      "Population survey with unweighted model-performance metrics; no design-based confidence intervals.",
+      "Public mortality times may be disclosure-perturbed. Not a clinical prediction system."
+    ]
+  }
+}

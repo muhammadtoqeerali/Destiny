@@ -418,4 +418,7 @@ def main():
     print('EXPERIMENT SUMMARY:',out/'experiment_summary.md')
     print('MODEL:',report['selected_model'],'EVALUATION:',report['evaluation'])
     print('No individual rows or predictions published.')
-if __name__=='__main__':main()
+if __name__=='__main__':
+    # Run via canonical module: CatBoost adapters must never pickle as __main__.
+    from ml.case_engine_v10 import main as canonical_main
+    canonical_main()
