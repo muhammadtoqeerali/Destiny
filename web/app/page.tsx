@@ -12,12 +12,15 @@ import {
   ResponsiveContainer, Tooltip, XAxis, YAxis
 } from 'recharts';
 import demo from '../public/data/demo.json';
+import { DeveloperWorkspace, ClinicalWorkspace } from './workspaces';
 
-type Screen = 'Overview' | 'Patients' | 'Model evaluation' | 'Data readiness' | 'Research notes';
+type Screen = 'Developer studio' | 'Clinical review' | 'Overview' | 'Patients' | 'Model evaluation' | 'Data readiness' | 'Research notes';
 type Patient = (typeof demo.patients)[number];
 type RiskBand = 'All' | 'Lower' | 'Moderate' | 'Higher';
 
 const nav: { name: Screen; icon: typeof LayoutDashboard }[] = [
+  { name: 'Developer studio', icon: BrainCircuit },
+  { name: 'Clinical review', icon: HeartPulse },
   { name: 'Overview', icon: LayoutDashboard },
   { name: 'Patients', icon: Users },
   { name: 'Model evaluation', icon: BarChart3 },
@@ -80,7 +83,7 @@ function PatientPanel({ patient, showOpen, onOpen }: { patient: Patient; showOpe
 }
 
 export default function Home() {
-  const [active, setActive] = useState<Screen>('Overview');
+  const [active, setActive] = useState<Screen>('Developer studio');
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<RiskBand>('All');
   const [selectedId, setSelectedId] = useState(demo.patients[0].id);
@@ -100,7 +103,7 @@ export default function Home() {
         <div><div className="brand-name">FrailtyScope<span className="brand-star">.</span></div><div className="brand-desc">EXPLAINABLE AGEING & HEALTH</div></div>
         <button className="mobile-close" onClick={() => setMobileOpen(false)} aria-label="Close navigation"><X size={20}/></button>
       </div>
-      <div className="sidebar-label">WORKSPACE</div>
+      <div className="sidebar-label">RESEARCH & CLINICAL WORKSPACES</div>
       <nav aria-label="Primary navigation" className="nav-list">{nav.map(item => <button key={item.name}
         onClick={() => changeScreen(item.name)} className={`nav-item ${active === item.name ? 'active' : ''}`}>
         <item.icon size={18}/><span>{item.name}</span>{active === item.name && <div className="nav-active-mark"/>}
@@ -111,7 +114,7 @@ export default function Home() {
         <div className="study-foot"><span className="study-indicator"/> Independent demonstration</div>
       </div>
       <div className="sidebar-bottom"><div className="data-safety"><ShieldCheck size={18}/><span><strong>Synthetic-only workspace</strong><small>No real patient data</small></span></div>
-        <div className="side-version">Research prototype · v0.2.0</div></div>
+        <div className="side-version">Research prototype · v0.3.0</div></div>
     </aside>
     {mobileOpen && <button className="mobile-backdrop" aria-label="Close menu" onClick={() => setMobileOpen(false)}/>}
     <main className="main-area">
@@ -123,6 +126,8 @@ export default function Home() {
         <div className="safety-strip"><span className="safety-icon"><FlaskConical size={16}/></span>
           <span><strong>Research demonstration:</strong> All individuals and outcomes are generated. Scores and findings are not derived from HUNT and are not suitable for patient care.</span>
           <span className="safety-label">SYNTHETIC DATA</span></div>
+        {active === 'Developer studio' && <DeveloperWorkspace/>}
+        {active === 'Clinical review' && <ClinicalWorkspace/>}
         {active === 'Overview' && <>
           <section className="welcome-section"><div><div className="eyebrow">RESEARCH OVERVIEW <span className="tiny-dot"/> PHASE 02</div>
             <h1>Making frailty risk <em>understandable.</em></h1><p>Explore a reproducible machine-learning demonstration designed around the questions behind digital care for older adults.</p></div>
