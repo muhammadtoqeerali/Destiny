@@ -1,0 +1,47 @@
+{
+  "schema": "FRAILTYSCOPE_JOINT_SELECTION_V16",
+  "case_id": "REPLACE_WITH_EXISTING_CASE_ID",
+  "manifest": "research/cases/REPLACE_CASE_MANIFEST.json",
+  "strategy_protocol": "research/cases/REPLACE_STRATEGY_PROTOCOL.json",
+  "metric": "brier",
+  "families": [
+    "logistic",
+    "hist_boost",
+    "random_forest",
+    "xgboost",
+    "catboost"
+  ],
+  "variants": [
+    {
+      "name": "reference",
+      "drop_features": [],
+      "numeric_missing_indicators": false
+    },
+    {
+      "name": "missingness_indicators",
+      "drop_features": [],
+      "numeric_missing_indicators": true
+    }
+  ],
+  "baseline_family": "logistic",
+  "baseline_regularization_grid": [
+    0.015,
+    0.03,
+    0.06,
+    0.12,
+    0.3,
+    0.7,
+    2.0
+  ],
+  "outer_folds": 3,
+  "inner_folds": 3,
+  "outer_seeds": [
+    4216
+  ],
+  "screen_trials": 2,
+  "refine_trials": 8,
+  "top_k": 3,
+  "practical_tie_margin": 0.001,
+  "prior_exploration_of_development": false,
+  "holdout_policy": "development_only_no_evaluation"
+}
