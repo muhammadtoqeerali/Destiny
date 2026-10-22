@@ -1,0 +1,17 @@
+{
+  "schema": "FRAILTYSCOPE_RELIABILITY_AUDIT_V18",
+  "case_id": "nhanes_mortality_v10",
+  "v16_config": "research/cases/nhanes_joint_selection_v16.json",
+  "v16_protocol_sha256": "02bc7b56f487870ba1815161be1663697d817e2d07042f622f0fb44c6a125cb9",
+  "frozen_selected_pair": "random_forest__missingness_indicators",
+  "outer_folds": 3,
+  "inner_folds": 3,
+  "outer_seeds": [6219, 6220],
+  "methods": ["identity", "sigmoid", "isotonic"],
+  "isotonic_min_calibration_n": 1000,
+  "calibration_bins": 6,
+  "min_calibration_bin_n": 40,
+  "min_missing_group_n": 35,
+  "post_hoc_development_reuse": true,
+  "holdout_policy": "development_only_no_evaluation"
+}

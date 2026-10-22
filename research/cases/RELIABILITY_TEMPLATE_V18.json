@@ -1,0 +1,17 @@
+{
+  "schema": "FRAILTYSCOPE_RELIABILITY_AUDIT_V18",
+  "case_id": "replace_case_id",
+  "v16_config": "research/cases/YOUR_JOINT_SELECTION_CONFIG.json",
+  "v16_protocol_sha256": "REPLACE_WITH_v16_CANONICAL_SHA256",
+  "frozen_selected_pair": "REPLACE_WITH_FAMILY__VARIANT_FROM_LOCAL_V16_SELECTION",
+  "outer_folds": 3,
+  "inner_folds": 3,
+  "outer_seeds": [6219, 6220],
+  "methods": ["identity", "sigmoid", "isotonic"],
+  "isotonic_min_calibration_n": 1000,
+  "calibration_bins": 6,
+  "min_calibration_bin_n": 40,
+  "min_missing_group_n": 35,
+  "post_hoc_development_reuse": true,
+  "holdout_policy": "development_only_no_evaluation"
+}
