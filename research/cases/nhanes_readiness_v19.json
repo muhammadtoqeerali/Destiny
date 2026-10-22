@@ -1,0 +1,91 @@
+{
+  "schema": "FRAILTYSCOPE_DATA_READINESS_V19",
+  "case_id": "nhanes_mortality_v10",
+  "source": {
+    "path": "data/processed/nhanes_5yr_local.csv",
+    "expected_sha256": "6f95e34c2e36a9c2493e904f3c140e1f67e10db475c1d02c5a37e2b527bdbfa7",
+    "provenance": {
+      "column": "data_origin",
+      "value": "NHANES_PUBLIC_2019_LMF"
+    }
+  },
+  "id_column": "SEQN",
+  "target": "outcome_5yr",
+  "features": {
+    "numeric": [
+      "age",
+      "bmi",
+      "walking_difficulty",
+      "stairs_difficulty",
+      "stooping_difficulty",
+      "heart_failure",
+      "coronary_disease",
+      "stroke",
+      "cancer",
+      "diabetes",
+      "hypertension",
+      "ever_smoked",
+      "phq9_score"
+    ],
+    "categorical": [
+      "sex"
+    ]
+  },
+  "split": {
+    "design": "cohort",
+    "column": "cycle",
+    "development": "2011-2012",
+    "holdout": "2013-2014",
+    "holdout_status": "previously_inspected"
+  },
+  "outcome": {
+    "type": "binary_fixed_horizon",
+    "index_time": "baseline NHANES 2011–2012 interview/examination",
+    "prediction_horizon": "approximately five-year mortality; review link timing and available follow-up",
+    "label_followup_status": "unverified"
+  },
+  "records": {
+    "grain": "one_record_per_person",
+    "group_column": null,
+    "time_column": null
+  },
+  "missingness_semantics": {
+    "walking_difficulty": {
+      "status": "unverified",
+      "evidence_reference": ""
+    },
+    "stairs_difficulty": {
+      "status": "unverified",
+      "evidence_reference": ""
+    },
+    "stooping_difficulty": {
+      "status": "unverified",
+      "evidence_reference": ""
+    },
+    "phq9_score": {
+      "status": "unverified",
+      "evidence_reference": ""
+    }
+  },
+  "numeric_bounds": {
+    "walking_difficulty": [
+      1,
+      4
+    ],
+    "stairs_difficulty": [
+      1,
+      4
+    ],
+    "stooping_difficulty": [
+      1,
+      4
+    ],
+    "phq9_score": [
+      0,
+      27
+    ]
+  },
+  "post_index_columns": [],
+  "post_hoc_development_exploration": true,
+  "min_reporting_n": 35
+}

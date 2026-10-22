@@ -1,0 +1,48 @@
+{
+  "schema": "FRAILTYSCOPE_DATA_READINESS_V19",
+  "case_id": "replace_with_new_case_id",
+  "source": {
+    "path": "data/processed/REPLACE_ME.csv",
+    "expected_sha256": null
+  },
+  "id_column": "participant_id",
+  "target": "event_observed",
+  "features": {
+    "numeric": [
+      "age",
+      "biomarker"
+    ],
+    "categorical": [
+      "sex"
+    ]
+  },
+  "split": {
+    "design": "cohort",
+    "column": "collection_wave",
+    "development": "earlier",
+    "holdout": "later",
+    "holdout_status": "locked_new"
+  },
+  "outcome": {
+    "type": "time_to_event",
+    "index_time": "baseline examination (REVIEW)",
+    "prediction_horizon": "five years (REVIEW)",
+    "duration_column": "followup_duration",
+    "event_column": "event_observed"
+  },
+  "records": {
+    "grain": "repeated_visits",
+    "time_column": "visit_date",
+    "group_column": null
+  },
+  "missingness_semantics": {
+    "biomarker": {
+      "status": "unverified",
+      "evidence_reference": ""
+    }
+  },
+  "numeric_bounds": {},
+  "post_index_columns": [],
+  "post_hoc_development_exploration": false,
+  "min_reporting_n": 35
+}
