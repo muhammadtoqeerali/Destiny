@@ -1,0 +1,27 @@
+{
+  "schema": "FRAILTYSCOPE_TASK_MODEL_PROTOCOL_V26",
+  "case_id": "replace_with_approved_case_id",
+  "related_v25_protocol": "research/cases/REPLACE_APPROVED_V25_RECIPE.json",
+  "related_private_v25_review": "artifacts/cases/REPLACE_CASE/foldsafe_v25/REPLACE/foldsafe_review.json",
+  "holdout_history": "locked_new",
+  "prior_exploration": false,
+  "prediction_index_status": "provisional",
+  "scope": "synthetic_only_blueprint",
+  "real_data_execution_permitted": false,
+  "model_fitting_permitted": false,
+  "holdout_scoring_permitted": false,
+  "clinical_use_permitted": false,
+  "public_export_permitted": false,
+  "task": "regression",
+  "split_policy": "person_disjoint",
+  "n_splits": 3,
+  "random_seed": 1701,
+  "selection_rule": "development_cv_only",
+  "test_set_role": "not_accessed",
+  "primary_metric": "mae",
+  "candidates": [
+    {"name": "dummy_mean", "params": {}},
+    {"name": "ridge", "params": {"alpha": 1.0}},
+    {"name": "random_forest", "params": {"n_estimators": 40, "max_depth": 4, "min_samples_leaf": 2}}
+  ]
+}

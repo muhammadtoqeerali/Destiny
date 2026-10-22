@@ -1,0 +1,28 @@
+{
+  "schema": "FRAILTYSCOPE_TASK_MODEL_PROTOCOL_V26",
+  "case_id": "nhanes_mortality_v10",
+  "related_v25_protocol": "research/cases/nhanes_foldsafe_v25.json",
+  "related_private_v25_review": "artifacts/cases/nhanes_mortality_v10/foldsafe_v25/37b324da931e/foldsafe_review.json",
+  "holdout_history": "previously_inspected",
+  "prior_exploration": true,
+  "prediction_index_status": "provisional",
+  "scope": "synthetic_only_blueprint",
+  "real_data_execution_permitted": false,
+  "model_fitting_permitted": false,
+  "holdout_scoring_permitted": false,
+  "clinical_use_permitted": false,
+  "public_export_permitted": false,
+  "task": "classification",
+  "split_policy": "person_disjoint",
+  "n_splits": 3,
+  "random_seed": 1701,
+  "selection_rule": "development_cv_only",
+  "test_set_role": "not_accessed",
+  "primary_metric": "brier",
+  "candidates": [
+    {"name": "dummy_prior", "params": {}},
+    {"name": "logistic", "params": {"C": 1.0}},
+    {"name": "random_forest", "params": {"n_estimators": 40, "max_depth": 4, "min_samples_leaf": 2}},
+    {"name": "hist_gradient_boosting", "params": {"max_iter": 40, "learning_rate": 0.1, "max_leaf_nodes": 7}}
+  ]
+}
