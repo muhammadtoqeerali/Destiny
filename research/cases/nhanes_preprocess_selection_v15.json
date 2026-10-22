@@ -1,0 +1,13 @@
+{
+  "schema": "FRAILTYSCOPE_NESTED_PREPROCESS_SELECTION_V15",
+  "case_id": "nhanes_mortality_v10",
+  "ablation_config": "research/cases/nhanes_ablation_v14.json",
+  "primary_metric": "brier",
+  "variants": ["reference", "missingness_indicators"],
+  "outer_folds": 3,
+  "inner_folds": 3,
+  "outer_seeds": [3411, 3412],
+  "regularization_grid": [0.015, 0.03, 0.06, 0.12, 0.3, 0.7, 2.0],
+  "practical_tie_margin": 0.001,
+  "holdout_policy": "development_only_no_evaluation"
+}
