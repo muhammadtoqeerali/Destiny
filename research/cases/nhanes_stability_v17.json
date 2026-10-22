@@ -1,0 +1,18 @@
+{
+  "schema": "FRAILTYSCOPE_STABILITY_PROTOCOL_V17",
+  "case_id": "nhanes_mortality_v10",
+  "v16_config": "research/cases/nhanes_joint_selection_v16.json",
+  "v16_protocol_sha256": "02bc7b56f487870ba1815161be1663697d817e2d07042f622f0fb44c6a125cb9",
+  "metric": "brier",
+  "outer_seeds": [
+    4217,
+    4218
+  ],
+  "permutation_repeats": 2,
+  "importance_top_k": 5,
+  "calibration_bins": 6,
+  "min_calibration_bin_n": 40,
+  "max_estimated_fits": 1400,
+  "prior_development_exploration": true,
+  "holdout_policy": "development_only_no_evaluation"
+}
