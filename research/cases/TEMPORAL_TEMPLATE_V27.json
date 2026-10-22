@@ -1,0 +1,35 @@
+{
+  "schema": "FRAILTYSCOPE_TEMPORAL_PROTOCOL_V27",
+  "case_id": "REPLACE_CASE_ID",
+  "related_v26_protocol": "research/cases/REPLACE_PRIOR_MODEL_CONTRACT.json",
+  "related_private_v26_review": "artifacts/cases/REPLACE_CASE_ID/task_models_v26/REPLACE_HASH/task_model_review.json",
+  "holdout_history": "locked_new",
+  "prior_exploration": false,
+  "prediction_index_status": "provisional",
+  "source_task": "classification",
+  "specialist_demo_tasks": ["right_censored_survival", "next_observed_visit_regression"],
+  "split_policy": "person_disjoint",
+  "n_splits": 3,
+  "random_seed": 1701,
+  "survival": {
+    "censoring": "right",
+    "time_origin": "prediction_index",
+    "competing_events": "unsupported",
+    "cox_ties": "breslow",
+    "censoring_brier": "training_ipcw"
+  },
+  "longitudinal": {
+    "target": "next_observed_visit_value",
+    "input_window": "index_visit_only",
+    "prediction_horizon": "variable_next_observed_visit",
+    "dropout_model": "not_implemented"
+  },
+  "selection_rule": "synthetic_development_only",
+  "independent_holdout": "not_accessed",
+  "scope": "synthetic_only_blueprint",
+  "real_data_execution_permitted": false,
+  "model_fitting_permitted": false,
+  "holdout_scoring_permitted": false,
+  "clinical_use_permitted": false,
+  "public_export_permitted": false
+}
