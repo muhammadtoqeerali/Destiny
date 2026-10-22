@@ -1,0 +1,180 @@
+{
+  "schema": "FRAILTYSCOPE_RESEARCH_EVIDENCE_PROTOCOL_V22",
+  "case_id": "replace_with_new_case_id",
+  "use_class": "research_only",
+  "holdout_history": "locked_new",
+  "prior_exploration": false,
+  "deployment_permitted": false,
+  "publish_private_evidence": false,
+  "related_readiness_v19": null,
+  "controls": {
+    "legal_access": {
+      "state": "pending",
+      "note": "Not assessed. Are approvals, data rights and project scope valid?",
+      "evidence": []
+    },
+    "secure_environment": {
+      "state": "pending",
+      "note": "Not assessed. Are authorized storage, compute, access and retention defined?",
+      "evidence": []
+    },
+    "privacy_disclosure": {
+      "state": "pending",
+      "note": "Not assessed. Are outputs, small cells and participant-level exports controlled?",
+      "evidence": []
+    },
+    "stakeholder_question": {
+      "state": "pending",
+      "note": "Not assessed. Is the actual research/clinical question and intended user defined?",
+      "evidence": []
+    },
+    "population_sampling": {
+      "state": "pending",
+      "note": "Not assessed. Are source population, selection, eligibility and nonparticipation characterized?",
+      "evidence": []
+    },
+    "provenance_versions": {
+      "state": "pending",
+      "note": "Not assessed. Are raw source, transformations, checksums and dictionary tracked?",
+      "evidence": []
+    },
+    "data_integrity": {
+      "state": "pending",
+      "note": "Not assessed. Have types, duplicates, ranges, units, joins and impossible values been checked?",
+      "evidence": []
+    },
+    "missingness_mechanisms": {
+      "state": "pending",
+      "note": "Not assessed. Are skips, nonresponse, unavailable values and codebook semantics distinguished?",
+      "evidence": []
+    },
+    "wave_site_harmonization": {
+      "state": "pending",
+      "note": "Not assessed. Are instruments/units/definitions compatible across waves and sites?",
+      "evidence": []
+    },
+    "outcome_index_horizon": {
+      "state": "pending",
+      "note": "Not assessed. Are prediction time, outcome, horizon and availability precisely defined?",
+      "evidence": []
+    },
+    "followup_censoring": {
+      "state": "pending",
+      "note": "Not assessed. Are censoring, competing risks and outcome ascertainment addressed?",
+      "evidence": []
+    },
+    "observation_grain": {
+      "state": "pending",
+      "note": "Not assessed. Are repeated visits, family/site groups and event dependence recognized?",
+      "evidence": []
+    },
+    "predictor_availability": {
+      "state": "pending",
+      "note": "Not assessed. Are all candidate predictors known at prediction time?",
+      "evidence": []
+    },
+    "leakage_prevention": {
+      "state": "pending",
+      "note": "Not assessed. Are IDs, proxies, transformations and tuning isolated from evaluation?",
+      "evidence": []
+    },
+    "splits_and_holdout": {
+      "state": "pending",
+      "note": "Not assessed. Are group/time/site splits and holdout reuse history recorded?",
+      "evidence": []
+    },
+    "missingness_processing": {
+      "state": "pending",
+      "note": "Not assessed. Are imputations/indicators/categories source-aware and learned inside folds?",
+      "evidence": []
+    },
+    "candidate_models": {
+      "state": "pending",
+      "note": "Not assessed. Are simple benchmarks and task-appropriate models compared fairly?",
+      "evidence": []
+    },
+    "tuning_and_reproducibility": {
+      "state": "pending",
+      "note": "Not assessed. Are selection, CV, random seeds and computational budgets reproducible?",
+      "evidence": []
+    },
+    "class_imbalance_sample_size": {
+      "state": "pending",
+      "note": "Not assessed. Are prevalence, event counts, power and effective sample size considered?",
+      "evidence": []
+    },
+    "survey_and_cluster_design": {
+      "state": "pending",
+      "note": "Not assessed. Are weights, PSUs, strata, site clustering and estimands handled if relevant?",
+      "evidence": []
+    },
+    "discrimination_and_error": {
+      "state": "pending",
+      "note": "Not assessed. Are task-appropriate discrimination and error scores planned?",
+      "evidence": []
+    },
+    "calibration_and_proper_scores": {
+      "state": "pending",
+      "note": "Not assessed. Are calibration and proper scores evaluated without leakage?",
+      "evidence": []
+    },
+    "clinical_decision_utility": {
+      "state": "pending",
+      "note": "Not assessed. Are thresholds, harms, net benefit and use-case value justified?",
+      "evidence": []
+    },
+    "uncertainty_and_robustness": {
+      "state": "pending",
+      "note": "Not assessed. Are intervals, sensitivity and model selection uncertainty handled?",
+      "evidence": []
+    },
+    "subgroups_fairness": {
+      "state": "pending",
+      "note": "Not assessed. Are subgroup sample sizes, heterogeneity and equity assessed safely?",
+      "evidence": []
+    },
+    "external_transportability": {
+      "state": "pending",
+      "note": "Not assessed. Is a genuinely independent transport/temporal/site evaluation planned?",
+      "evidence": []
+    },
+    "transparent_reporting": {
+      "state": "pending",
+      "note": "Not assessed. Are TRIPOD+AI and other study-specific reporting items planned?",
+      "evidence": []
+    },
+    "bias_applicability": {
+      "state": "pending",
+      "note": "Not assessed. Are PROBAST+AI risk of bias and applicability reviewed separately?",
+      "evidence": []
+    },
+    "figures_reproducibility": {
+      "state": "pending",
+      "note": "Not assessed. Are cohort flow, calibration, performance and versioned artifacts reproducible?",
+      "evidence": []
+    },
+    "limitations_communication": {
+      "state": "pending",
+      "note": "Not assessed. Are exploration, perturbed labels and intended-use limits explicit?",
+      "evidence": []
+    },
+    "deployment_scope": {
+      "state": "pending",
+      "note": "Not assessed. Is there a clear no-deployment or approved deployment boundary?",
+      "evidence": []
+    },
+    "drift_monitoring": {
+      "state": "pending",
+      "note": "Not assessed. Is a monitoring, updating and incident plan needed and defined?",
+      "evidence": []
+    },
+    "handoff_and_ownership": {
+      "state": "pending",
+      "note": "Not assessed. Are analyst, PI, custodian and approver roles assigned?",
+      "evidence": []
+    }
+  },
+  "local_evidence": [],
+  "expected_dataset_sha256": null,
+  "expected_raw_source_sha256": null
+}

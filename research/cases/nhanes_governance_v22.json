@@ -1,0 +1,256 @@
+{
+  "schema": "FRAILTYSCOPE_RESEARCH_EVIDENCE_PROTOCOL_V22",
+  "case_id": "nhanes_mortality_v10",
+  "use_class": "research_only",
+  "holdout_history": "previously_inspected",
+  "prior_exploration": true,
+  "deployment_permitted": false,
+  "publish_private_evidence": false,
+  "related_readiness_v19": "research/cases/nhanes_readiness_v19.json",
+  "controls": {
+    "legal_access": {
+      "state": "documented",
+      "note": "NHANES public-use data are permissible for local exploratory methods work; this is NOT evidence of authorization for HUNT data.",
+      "evidence": [
+        "https://www.cdc.gov/nchs/nhanes/",
+        "research/cases/nhanes_readiness_v19.json"
+      ]
+    },
+    "secure_environment": {
+      "state": "limited",
+      "note": "Input/output confinement under ignored data/ and artifacts/ exists in source, but institutional security attestation is separate.",
+      "evidence": [
+        "ml/case_engine_v10.py",
+        "research/DATA_READINESS_GATE_V19.md"
+      ]
+    },
+    "privacy_disclosure": {
+      "state": "documented",
+      "note": "Local-only experiment contracts and source-only CI restrictions are present; never publish participant or model records.",
+      "evidence": [
+        "research/SOURCE_SEMANTICS_V21.md",
+        "tests/test_case_source_semantics_v21.py"
+      ]
+    },
+    "stakeholder_question": {
+      "state": "limited",
+      "note": "Exploratory mortality benchmark defined; no real NTNU clinical decision owner, intervention or prospective use yet.",
+      "evidence": [
+        "research/cases/nhanes_mortality_v10.json"
+      ]
+    },
+    "population_sampling": {
+      "state": "limited",
+      "note": "Development cohort eligibility and examination-only linkage follow-up reconciled by local read-only checks; selection bias remains.",
+      "evidence": [
+        "ml/realdata_nhanes.py",
+        "research/cases/nhanes_readiness_v19.json"
+      ]
+    },
+    "provenance_versions": {
+      "state": "documented",
+      "note": "v0.19 data hash and public-use source provenance pinned; v0.20 PFQ lineage/source checks.",
+      "evidence": [
+        "research/cases/nhanes_readiness_v19.json",
+        "research/cases/nhanes_source_semantics_v21.json"
+      ]
+    },
+    "data_integrity": {
+      "state": "limited",
+      "note": "Development labels and PFQ features reconciled; this is not a complete audit of all wave/site data quality.",
+      "evidence": [
+        "ml/realdata_nhanes.py",
+        "research/DATA_READINESS_GATE_V19.md"
+      ]
+    },
+    "missingness_mechanisms": {
+      "state": "limited",
+      "note": "PFQ walking/stairs skips and code 5 reconciled; other variables and nonresponse require separate codebooks.",
+      "evidence": [
+        "research/SOURCE_SEMANTICS_V21.md",
+        "artifacts/cases/nhanes_mortality_v10/pfq_skip_v20/6f95e34c2e36_453ef39e7729.json"
+      ]
+    },
+    "wave_site_harmonization": {
+      "state": "pending",
+      "note": "Later cycles and future HUNT waves require independent instrument, timing, coding and measurement equivalence review.",
+      "evidence": []
+    },
+    "outcome_index_horizon": {
+      "state": "limited",
+      "note": "Approximate 60-month mortality label reconciled; public-use follow-up times can be synthetic. Cannot claim exact death timing.",
+      "evidence": [
+        "ml/realdata_nhanes.py",
+        "research/cases/nhanes_readiness_v19.json"
+      ]
+    },
+    "followup_censoring": {
+      "state": "limited",
+      "note": "Code excludes alive participants censored before 60 months; public-use follow-up perturbation remains a limitation.",
+      "evidence": [
+        "ml/realdata_nhanes.py",
+        "tests/test_real_nhanes.py"
+      ]
+    },
+    "observation_grain": {
+      "state": "documented",
+      "note": "One row per participant in frozen NHANES case; new repeated visit projects must use specialized designs.",
+      "evidence": [
+        "research/cases/nhanes_readiness_v19.json"
+      ]
+    },
+    "predictor_availability": {
+      "state": "pending",
+      "note": "Verify that each clinical predictor is recorded before or at the intended prediction index for the study.",
+      "evidence": []
+    },
+    "leakage_prevention": {
+      "state": "documented",
+      "note": "Source defines forbidden target/ID/time features and case-specific cohort split restrictions.",
+      "evidence": [
+        "ml/case_engine_v10.py",
+        "research/DATA_READINESS_GATE_V19.md"
+      ]
+    },
+    "splits_and_holdout": {
+      "state": "limited",
+      "note": "2013-2014 cohort was previously inspected; never claim independent pristine test based on that cohort.",
+      "evidence": [
+        "research/cases/nhanes_readiness_v19.json",
+        "research/SOURCE_SEMANTICS_V21.md"
+      ]
+    },
+    "missingness_processing": {
+      "state": "limited",
+      "note": "PFQ-specific status/category encoding improved repeated development CV but cannot be transferred automatically.",
+      "evidence": [
+        "research/SOURCE_SEMANTICS_V21.md"
+      ]
+    },
+    "candidate_models": {
+      "state": "documented",
+      "note": "v0.16 included logistic, histogram boosting, Random Forest, XGBoost and CatBoost as exploratory comparison.",
+      "evidence": [
+        "research/cases/nhanes_joint_selection_v16.json"
+      ]
+    },
+    "tuning_and_reproducibility": {
+      "state": "documented",
+      "note": "Versioned nested selection, stability and source-encoding designs exist; folds reuse development participants.",
+      "evidence": [
+        "research/cases/nhanes_joint_selection_v16.json",
+        "research/cases/nhanes_source_semantics_v21.json"
+      ]
+    },
+    "class_imbalance_sample_size": {
+      "state": "pending",
+      "note": "Document prevalence, effective sample-size/power, event-per-parameter and optimism relative to intended use.",
+      "evidence": []
+    },
+    "survey_and_cluster_design": {
+      "state": "limited",
+      "note": "NHANES design weights and clustered variance not built into the v0.16-v0.21 comparisons.",
+      "evidence": [
+        "research/SOURCE_SEMANTICS_V21.md"
+      ]
+    },
+    "discrimination_and_error": {
+      "state": "documented",
+      "note": "Brier, ROC-AUC, AP, log loss are computed on development folds, not independent evaluation.",
+      "evidence": [
+        "research/SOURCE_SEMANTICS_V21.md",
+        "artifacts/cases/nhanes_mortality_v10/source_semantics_v21/ec311d578734/encoding_diagnostic.json"
+      ]
+    },
+    "calibration_and_proper_scores": {
+      "state": "limited",
+      "note": "v0.17-v0.18 calibration and proper scoring experiments are exploratory; sigmoid not promoted.",
+      "evidence": [
+        "research/RELIABILITY_AND_MISSINGNESS_V18.md"
+      ]
+    },
+    "clinical_decision_utility": {
+      "state": "limited",
+      "note": "Exploratory threshold/decision-quality diagnostics exist but do not establish clinical utility.",
+      "evidence": [
+        "ml/case_engine_v10.py"
+      ]
+    },
+    "uncertainty_and_robustness": {
+      "state": "pending",
+      "note": "Plan valid clustered/survey intervals, participant bootstrap and sensitivity analysis where applicable.",
+      "evidence": []
+    },
+    "subgroups_fairness": {
+      "state": "pending",
+      "note": "Plan enough events per group, multiple comparison safeguards, intersectional equity and privacy rules.",
+      "evidence": []
+    },
+    "external_transportability": {
+      "state": "pending",
+      "note": "Obtain genuinely independent new-site or temporal data under approvals and frozen protocol before performance claims.",
+      "evidence": []
+    },
+    "transparent_reporting": {
+      "state": "pending",
+      "note": "Create TRIPOD+AI manuscript table, study diagram and fully specified methods for actual assignment.",
+      "evidence": []
+    },
+    "bias_applicability": {
+      "state": "pending",
+      "note": "Perform separate PROBAST+AI judgments for development and evaluation with named assessors.",
+      "evidence": []
+    },
+    "figures_reproducibility": {
+      "state": "limited",
+      "note": "Local aggregate diagnostic reports and source CI exist; a frozen manuscript-grade result bundle is not yet assembled.",
+      "evidence": [
+        "research/SOURCE_SEMANTICS_V21.md"
+      ]
+    },
+    "limitations_communication": {
+      "state": "documented",
+      "note": "Development reuse, inspected holdout, timing perturbation and no clinical validation stated in method documents.",
+      "evidence": [
+        "research/DATA_READINESS_GATE_V19.md",
+        "research/SOURCE_SEMANTICS_V21.md"
+      ]
+    },
+    "deployment_scope": {
+      "state": "documented",
+      "note": "The current NHANES system is research-only; no patient-level decision service or clinical deployment allowed.",
+      "evidence": [
+        "research/DATA_READINESS_GATE_V19.md"
+      ]
+    },
+    "drift_monitoring": {
+      "state": "not_applicable",
+      "note": "There is no deployed clinical or population risk-prediction model to monitor at this time.",
+      "evidence": []
+    },
+    "handoff_and_ownership": {
+      "state": "pending",
+      "note": "Assign responsible PI, domain expert, analyst, source custodian, sign-off and incident escalation for actual NTNU study.",
+      "evidence": []
+    }
+  },
+  "local_evidence": [
+    {
+      "type": "v19_readiness",
+      "path": "artifacts/cases/nhanes_mortality_v10/readiness_v19/f25b6ddc7218/readiness_audit.json",
+      "required": true
+    },
+    {
+      "type": "v20_pfq",
+      "path": "artifacts/cases/nhanes_mortality_v10/pfq_skip_v20/6f95e34c2e36_453ef39e7729.json",
+      "required": true
+    },
+    {
+      "type": "v21_semantics",
+      "path": "artifacts/cases/nhanes_mortality_v10/source_semantics_v21/ec311d578734/encoding_diagnostic.json",
+      "required": true
+    }
+  ],
+  "expected_dataset_sha256": "6f95e34c2e36a9c2493e904f3c140e1f67e10db475c1d02c5a37e2b527bdbfa7",
+  "expected_raw_source_sha256": "453ef39e77298921ff9d192cb03d40412e79100edd970e2bda13cf8e95937a10"
+}
