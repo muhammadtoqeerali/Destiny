@@ -1,0 +1,21 @@
+{
+  "schema": "FRAILTYSCOPE_SOURCE_SEMANTICS_V21",
+  "case_id": "nhanes_mortality_v10",
+  "case_manifest": "research/cases/nhanes_mortality_v10.json",
+  "v16_protocol": "research/cases/nhanes_joint_selection_v16.json",
+  "v16_protocol_sha256": "02bc7b56f487870ba1815161be1663697d817e2d07042f622f0fb44c6a125cb9",
+  "v16_local_report": "artifacts/cases/nhanes_mortality_v10/joint_selection_v16/02bc7b56f487/joint_selection.json",
+  "v16_model": "artifacts/cases/nhanes_mortality_v10/joint_selection_v16/02bc7b56f487/winner_development_only.joblib",
+  "v20_audit_relative": "artifacts/cases/nhanes_mortality_v10/pfq_skip_v20/6f95e34c2e36_453ef39e7729.json",
+  "raw_file": "AUTO_PFQ_G",
+  "processed_sha256": "6f95e34c2e36a9c2493e904f3c140e1f67e10db475c1d02c5a37e2b527bdbfa7",
+  "raw_pfq_sha256": "453ef39e77298921ff9d192cb03d40412e79100edd970e2bda13cf8e95937a10",
+  "frozen_pair": "random_forest__missingness_indicators",
+  "expected_development_n": 1165,
+  "primary_metric": "brier",
+  "methods": ["legacy_missing_indicators", "source_status_augmented", "source_categories"],
+  "folds": 3,
+  "seeds": [7319,7320,7321],
+  "post_hoc_development_reuse": true,
+  "holdout_policy": "development_only_no_evaluation"
+}
