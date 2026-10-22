@@ -1,0 +1,285 @@
+{
+  "schema": "FRAILTYSCOPE_FEATURE_TIMING_PROTOCOL_V23",
+  "case_id": "nhanes_mortality_v10",
+  "case_manifest": "research/cases/nhanes_mortality_v10.json",
+  "related_v22_protocol": "research/cases/nhanes_governance_v22.json",
+  "related_private_v22_ledger": "artifacts/cases/nhanes_mortality_v10/governance_v22/05216633ec95/evidence_ledger.json",
+  "holdout_history": "previously_inspected",
+  "prior_exploration": true,
+  "allow_model_fitting": false,
+  "allow_heldout_scoring": false,
+  "allow_clinical_inference": false,
+  "prediction_index": {
+    "event": "Completion of baseline MEC examination, proposed for later study-team confirmation",
+    "population": "NHANES adults aged 65+ with MEC examination and eligible mortality follow-up",
+    "definition_status": "provisional",
+    "approved_by_study_team": false,
+    "evidence": [
+      "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.htm",
+      "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BMX_G.htm",
+      "ml/realdata_nhanes.py"
+    ]
+  },
+  "predictors": {
+    "age": {
+      "kind": "numeric",
+      "source_file": "DEMO_G.XPT",
+      "source_variables": [
+        "RIDAGEYR"
+      ],
+      "units": "years, public-use top-coded at 80",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Numeric baseline age from RIDAGEYR; public-use participants aged 80+ are top-coded.",
+      "missing_semantics": "No recode for missing; index and survey age conventions require review.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "sex": {
+      "kind": "categorical",
+      "source_file": "DEMO_G.XPT",
+      "source_variables": [
+        "RIAGENDR"
+      ],
+      "units": "not applicable",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Categorical demographic field: raw codes 1=Male, 2=Female in processed source.",
+      "missing_semantics": "Missing/unknown codes not inferred; respect source dictionary.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "bmi": {
+      "kind": "numeric",
+      "source_file": "BMX_G.XPT",
+      "source_variables": [
+        "BMXBMI"
+      ],
+      "units": "kg/m2",
+      "measurement_phase": "mec_examination",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Original numeric BMXBMI retained only if between 12 and 70 in current source function.",
+      "missing_semantics": "Unobserved/filtered values become missing; distinguish no exam and out-of-range.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BMX_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "walking_difficulty": {
+      "kind": "ordinal",
+      "source_file": "PFQ_G.XPT",
+      "source_variables": [
+        "PFQ061B"
+      ],
+      "units": "coded response 1-4",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "PFQ 1-4 retained; raw code 5 set missing in processed file; PFQ054=1 can skip item.",
+      "missing_semantics": "Raw 279 PFQ054 skips plus 24 code-5 nonperformance in development; proven only NHANES PFQ.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PFQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "stairs_difficulty": {
+      "kind": "ordinal",
+      "source_file": "PFQ_G.XPT",
+      "source_variables": [
+        "PFQ061C"
+      ],
+      "units": "coded response 1-4",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "PFQ 1-4 retained; code 5 filtered; PFQ054=1 can skip item by questionnaire design.",
+      "missing_semantics": "Raw 279 PFQ054 skips plus 13 code-5 nonperformance in development.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PFQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "stooping_difficulty": {
+      "kind": "ordinal",
+      "source_file": "PFQ_G.XPT",
+      "source_variables": [
+        "PFQ061D"
+      ],
+      "units": "coded response 1-4",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "PFQ 1-4 retained; raw code 5 filtered. The B/C skip does not apply to D.",
+      "missing_semantics": "35 code-5 nonperformance values in development, zero B/C-style structural skip.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PFQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "heart_failure": {
+      "kind": "binary",
+      "source_file": "MCQ_G.XPT",
+      "source_variables": [
+        "MCQ160B"
+      ],
+      "units": "binary indicator",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Raw 1=yes, 2=no; other values set missing by recode_yes_no.",
+      "missing_semantics": "Refused, unknown and structurally inapplicable codes require source-specific review.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "coronary_disease": {
+      "kind": "binary",
+      "source_file": "MCQ_G.XPT",
+      "source_variables": [
+        "MCQ160C"
+      ],
+      "units": "binary indicator",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Raw 1=yes, 2=no; other values set missing by recode_yes_no.",
+      "missing_semantics": "Codebook-defined nonresponse or routing must be distinguished.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "stroke": {
+      "kind": "binary",
+      "source_file": "MCQ_G.XPT",
+      "source_variables": [
+        "MCQ160F"
+      ],
+      "units": "binary indicator",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Raw 1=yes, 2=no; other values set missing by recode_yes_no.",
+      "missing_semantics": "Codebook-defined nonresponse or routing must be distinguished.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "cancer": {
+      "kind": "binary",
+      "source_file": "MCQ_G.XPT",
+      "source_variables": [
+        "MCQ220"
+      ],
+      "units": "binary indicator",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Raw 1=yes, 2=no; other values set missing by recode_yes_no.",
+      "missing_semantics": "Codebook-defined nonresponse or routing must be distinguished.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "diabetes": {
+      "kind": "binary",
+      "source_file": "DIQ_G.XPT",
+      "source_variables": [
+        "DIQ010"
+      ],
+      "units": "binary indicator",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Raw 1=yes, 2=no; other values set missing by recode_yes_no.",
+      "missing_semantics": "Survey codes such as borderline diabetes must be reviewed before harmonization.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DIQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "hypertension": {
+      "kind": "binary",
+      "source_file": "BPQ_G.XPT",
+      "source_variables": [
+        "BPQ020"
+      ],
+      "units": "binary indicator",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Raw 1=yes, 2=no; other values set missing by recode_yes_no.",
+      "missing_semantics": "Self-report differs from measured BP and is not equivalent to measured diagnosis.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BPQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "ever_smoked": {
+      "kind": "binary",
+      "source_file": "SMQ_G.XPT",
+      "source_variables": [
+        "SMQ020"
+      ],
+      "units": "binary indicator",
+      "measurement_phase": "household_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Raw 1=yes, 2=no; other values set missing by recode_yes_no.",
+      "missing_semantics": "Check source refusal and not-known codes separately.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/SMQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    },
+    "phq9_score": {
+      "kind": "derived_numeric",
+      "source_file": "DPQ_G.XPT",
+      "source_variables": [
+        "DPQ010",
+        "DPQ020",
+        "DPQ030",
+        "DPQ040",
+        "DPQ050",
+        "DPQ060",
+        "DPQ070",
+        "DPQ080",
+        "DPQ090"
+      ],
+      "units": "PHQ-9 total, 0-27",
+      "measurement_phase": "mec_private_interview",
+      "availability_status": "pending_index_review",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Sum nine valid DPQ item codes 0-3 only if all 9 present; normalize known XPT zero alias.",
+      "missing_semantics": "Incomplete nine-item instruments become missing; distinguish refused/unknown from zero.",
+      "timing_rationale": "The survey collection phase is known, but exact individual measurement timestamp, operational index and access at prediction time have not been verified.",
+      "evidence": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DPQ_G.htm",
+        "ml/realdata_nhanes.py"
+      ]
+    }
+  }
+}

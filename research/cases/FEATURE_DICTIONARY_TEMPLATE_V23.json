@@ -1,0 +1,40 @@
+{
+  "schema": "FRAILTYSCOPE_FEATURE_TIMING_PROTOCOL_V23",
+  "case_id": "new_case_id",
+  "case_manifest": "research/cases/REPLACE_WITH_APPROVED_CASE.json",
+  "related_v22_protocol": "research/cases/REPLACE_WITH_CASE_EVIDENCE.json",
+  "related_private_v22_ledger": "artifacts/cases/REPLACE_CASE/governance_v22/REPLACE/evidence_ledger.json",
+  "holdout_history": "locked_new",
+  "prior_exploration": false,
+  "allow_model_fitting": false,
+  "allow_heldout_scoring": false,
+  "allow_clinical_inference": false,
+  "prediction_index": {
+    "event": "Define prediction event and precise clinical/survey time before data fitting",
+    "population": "Define eligible participant population",
+    "definition_status": "provisional",
+    "approved_by_study_team": false,
+    "evidence": [
+      "research/FEATURE_AVAILABILITY_V23.md"
+    ]
+  },
+  "predictors": {
+    "replace_with_actual_predictor": {
+      "kind": "numeric",
+      "source_file": "REPLACE_SOURCE.csv",
+      "source_variables": [
+        "REPLACE_SOURCE_VARIABLE"
+      ],
+      "units": "not yet specified",
+      "measurement_phase": "unknown",
+      "availability_status": "unknown",
+      "source_timing_verified_by_study_team": false,
+      "transformation": "Describe provenance and transformations before modeling",
+      "missing_semantics": "Document special codes, skip rules and nonresponse",
+      "timing_rationale": "Time of collection and prediction-time availability are not verified",
+      "evidence": [
+        "research/FEATURE_AVAILABILITY_V23.md"
+      ]
+    }
+  }
+}
