@@ -1,0 +1,31 @@
+# FrailtyScope v0.28 — Synthetic reliability and conditional uncertainty
+
+**Scope:** A *diagnostic*, not a new model-training, evaluation or publication workflow. Synthetic, invented, in-memory out-of-fold (OOF) predictions only. No actual NHANES/HUNT records, public aggregate research results, model artifacts, outcomes or holdout scoring. `synthetic_fixture=True` is an explicit caller contract, **not a secure access-control sandbox**. Do not pass real records. The source-only CLI reads repository protocols and optionally an earlier immutable private *metadata-only* JSON record.
+
+## What is implemented
+
+1. **Predictive diagnostics on externally provided synthetic OOF arrays:** Classification pooled Brier score, log loss, ROC AUC and average precision; regression MAE, RMSE and R²; prespecified v0.26 candidate identity and task/metric retained. No predictor features, labels or fitted models loaded by CLI. No automatic threshold search, calibration optimization or new candidate selection.
+2. **Calibration diagnostics:** Equal-width probability bins (with minimum sample support; tiny bins suppressed), event rate vs average prediction, and a descriptive logistic calibration intercept and slope when numerically estimable. A lower Brier score alone does **not** establish better calibration, because discrimination and uncertainty also affect it. The diagnostic slope/intercept uses a logistic fit on invented OOF outcomes; these parameters are never saved or applied as a prediction calibrator; a truly unbiased new calibrator requires its own separate training/calibration/evaluation design.
+3. **Participant-cluster paired bootstrap:** Resamples entire held-out synthetic participants *with replacement*, preserving each person's correlated rows, for conditional percentile intervals of the fixed-prediction **paired Brier-loss difference** (classification) or paired **absolute-error difference** (regression) relative to the prespecified dummy baseline. Negative difference favors the candidate. Bootstrap repeats do **not** re-fit feature transformations or models; they ignore model tuning/selection variability and are **not** clinical confidence intervals or fresh validation. For unequal group size, the illustration targets the row-averaged loss within the synthetic OOF collection, rather than an equal-person estimand.
+4. **Toy stress diagnostics:** Evaluate score changes after shifting predicted probabilities by ±0.05 (or regression predictions by ±0.05 in target units). **These are artificial prediction perturbations, not covariate shift, study transportability or genuine robustness to missingness.** No choice is tuned on these results.
+5. **Partition-first validation:** Every synthetic fold explicitly declares training and validation row/person IDs (and timestamps for a forward-time policy). The system checks disjoint training/validation participants for *all* policies, validates chronology if necessary, checks common candidate coverage and aligned arrays, bans validation-row repeats and repeated validation participants across folds, and demands sufficient synthetic support. The caller must actually produce honest held-out predictions; a metadata-only checker cannot independently prove their origin.
+
+## Important limitations and scientific boundaries
+
+- NHANES task stays **binary classification**, prediction index **provisional**, v0.24 maps **3 of 14** predictors, and its 2013–14 holdout was **previously inspected**. Source plan remains `BLOCKED_FOR_NEW_ANALYSIS`. It is not made a pristine external test by this release.
+- This synthetic-only v0.28 diagnostic API is **classification/regression only**. Specialized survival calibration needs censoring-aware observed risk, inverse censoring weighting, fixed horizons, event support and assumptions; longitudinal uncertainty needs within-person and visit/dropout processes. The existence of v0.27 toy demos is not sufficient to claim those analyses are validated.
+- Overlapping/repeated CV development cohorts and selecting among candidates create additional optimism. The reported conditional cluster percentile intervals hold the predictions and candidate identities fixed; they do **not** account for refitting, hyperparameter search or winner selection. Performance uncertainty from genuine resampling of the **whole learning pipeline** is a separate future capability.
+- A group-based split is not a survey-design-based estimator (strata, weights, PSUs, finite-population corrections). There is no clinical decision curve, group fairness result, approved threshold, subgroup disclosure or external validation.
+- Binning can conceal important local miscalibration; some diagnostic bins are deliberately omitted for low support. Logistic calibration intercept/slope may be nonestimable, unstable or inappropriately precise on small development samples and should not be presented as clinically validated.
+- No raw participant predictions or fitted estimators are serialized or exported. CLI `--plan` uses only source contracts; `--audit` additionally checks an already-existing v0.27 PRIVATE **metadata** report and creates an immutable PRIVATE v0.28 metadata review under ignored `artifacts/`.
+
+## Supported developer API (invented data only)
+
+`validate_design(cfg, v27, v26, recipe)`: fail-closed protocol checks; `make_plan(cfg)`: source-only review; `assess_synthetic_oof(cfg, fold_records, synthetic_fixture=True)`: accepts precomputed invented OOF predictions and separate fold metadata and returns aggregated toy metrics, diagnostic calibration/residuals, fixed-prediction paired cluster resampling, and artificial score shifts. It fits no predictive estimator and does not apply a calibrator; descriptive calibration slope/intercept may be estimated internally from synthetic OOF outcomes.
+
+Official methodological guidance:
+- scikit-learn probability calibration: https://scikit-learn.org/stable/modules/calibration.html
+- scikit-learn common pitfalls and data leakage: https://scikit-learn.org/stable/common_pitfalls.html
+- Clinical prediction model evaluation and appropriate internal validation: https://www.bmj.com/content/384/bmj-2023-074819
+
+**Engineering only:** Publication writing, slides, manuscript figures and clinical deployment remain separate; no model is claimed to be universally superior.
