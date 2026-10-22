@@ -1,0 +1,15 @@
+{
+  "schema": "FRAILTYSCOPE_CASE_STRATEGY_V13",
+  "case_id": "REPLACE_WITH_CASE_MANIFEST_ID",
+  "primary_metric": "brier",
+  "candidates": ["logistic", "hist_boost", "random_forest", "xgboost", "catboost"],
+  "outer_folds": 3,
+  "inner_folds": 3,
+  "screen_trials": 2,
+  "refine_trials": 10,
+  "top_k": 2,
+  "practical_tie_margin": 0.001,
+  "group_column": null,
+  "time_column": null,
+  "holdout_status": "locked_new"
+}
