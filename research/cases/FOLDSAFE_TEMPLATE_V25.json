@@ -1,0 +1,32 @@
+{
+  "schema": "FRAILTYSCOPE_FOLDSAFE_PROTOCOL_V25",
+  "case_id": "replace_with_approved_case",
+  "related_v24_protocol": "research/cases/REPLACE_HARMONIZATION.json",
+  "related_v23_protocol": "research/cases/REPLACE_DICTIONARY.json",
+  "related_private_v24_review": "artifacts/cases/REPLACE_CASE/harmonization_v24/REPLACE/report.json",
+  "holdout_history": "locked_new",
+  "prior_exploration": false,
+  "prediction_index_status": "provisional",
+  "scope": "synthetic_only_blueprint",
+  "real_data_execution_permitted": false,
+  "model_fitting_permitted": false,
+  "holdout_scoring_permitted": false,
+  "clinical_use_permitted": false,
+  "public_export_permitted": false,
+  "numeric_missing": "median",
+  "numeric_all_missing": "error",
+  "numeric_scale": "standard",
+  "numeric_indicators": true,
+  "categorical_missing": "constant",
+  "categorical_unknown": "error",
+  "status_unknown": "error",
+  "split_review": "person_disjoint",
+  "features": {
+    "replace_with_canonical_feature": {
+      "kind": "numeric", "representation": "numeric",
+      "source_status_required": true,
+      "allowed_values": null,
+      "allowed_statuses": ["observed", "not_recorded"]
+    }
+  }
+}

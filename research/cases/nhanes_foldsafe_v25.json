@@ -1,0 +1,44 @@
+{
+  "schema": "FRAILTYSCOPE_FOLDSAFE_PROTOCOL_V25",
+  "case_id": "nhanes_mortality_v10",
+  "related_v24_protocol": "research/cases/nhanes_harmonization_v24.json",
+  "related_v23_protocol": "research/cases/nhanes_dictionary_timing_v23.json",
+  "related_private_v24_review": "artifacts/cases/nhanes_mortality_v10/harmonization_v24/321abe8ef941/harmonization_review.json",
+  "holdout_history": "previously_inspected",
+  "prior_exploration": true,
+  "prediction_index_status": "provisional",
+  "scope": "synthetic_only_blueprint",
+  "real_data_execution_permitted": false,
+  "model_fitting_permitted": false,
+  "holdout_scoring_permitted": false,
+  "clinical_use_permitted": false,
+  "public_export_permitted": false,
+  "numeric_missing": "median",
+  "numeric_all_missing": "error",
+  "numeric_scale": "standard",
+  "numeric_indicators": true,
+  "categorical_missing": "constant",
+  "categorical_unknown": "error",
+  "status_unknown": "error",
+  "split_review": "person_disjoint",
+  "features": {
+    "walking_difficulty": {
+      "kind": "ordinal", "representation": "one_hot",
+      "source_status_required": true,
+      "allowed_values": [1, 2, 3, 4],
+      "allowed_statuses": ["observed", "structural_skip", "does_not_do_activity", "refused", "unknown"]
+    },
+    "stairs_difficulty": {
+      "kind": "ordinal", "representation": "one_hot",
+      "source_status_required": true,
+      "allowed_values": [1, 2, 3, 4],
+      "allowed_statuses": ["observed", "structural_skip", "does_not_do_activity", "refused", "unknown"]
+    },
+    "stooping_difficulty": {
+      "kind": "ordinal", "representation": "one_hot",
+      "source_status_required": true,
+      "allowed_values": [1, 2, 3, 4],
+      "allowed_statuses": ["observed", "does_not_do_activity", "refused", "unknown"]
+    }
+  }
+}
