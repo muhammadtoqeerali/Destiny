@@ -1,0 +1,15 @@
+{
+  "schema": "FRAILTYSCOPE_DEVELOPMENT_ABLATION_V14",
+  "case_id": "nhanes_mortality_v10",
+  "manifest": "research/cases/nhanes_mortality_v10.json",
+  "strategy_protocol": "research/cases/nhanes_strategy_v13.json",
+  "folds": 3,
+  "seeds": [2026, 2027, 2028],
+  "variants": [
+    {"name":"reference", "drop_features":[],"numeric_missing_indicators":false},
+    {"name":"missingness_indicators", "drop_features":[],"numeric_missing_indicators":true},
+    {"name":"omit_high_missing_mobility", "drop_features":["walking_difficulty","stairs_difficulty"],"numeric_missing_indicators":false},
+    {"name":"omit_all_mobility", "drop_features":["walking_difficulty","stairs_difficulty","stooping_difficulty"],"numeric_missing_indicators":false},
+    {"name":"omit_phq9", "drop_features":["phq9_score"],"numeric_missing_indicators":false}
+  ]
+}

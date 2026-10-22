@@ -1,0 +1,13 @@
+{
+  "schema":"FRAILTYSCOPE_DEVELOPMENT_ABLATION_V14",
+  "case_id":"REPLACE_WITH_CASE_ID",
+  "manifest":"research/cases/REPLACE_WITH_CASE_MANIFEST.json",
+  "strategy_protocol":"research/cases/REPLACE_WITH_V13_PROTOCOL.json",
+  "folds":3,
+  "seeds":[2026,2027,2028],
+  "variants":[
+    {"name":"reference","drop_features":[],"numeric_missing_indicators":false},
+    {"name":"missingness_indicators","drop_features":[],"numeric_missing_indicators":true},
+    {"name":"omit_questionnaire_domain","drop_features":["REPLACE_WITH_VERIFIED_FEATURE_NAME"],"numeric_missing_indicators":false}
+  ]
+}
