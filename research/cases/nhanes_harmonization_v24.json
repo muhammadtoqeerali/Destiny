@@ -1,0 +1,57 @@
+{
+  "schema": "FRAILTYSCOPE_HARMONIZATION_PROTOCOL_V24",
+  "case_id": "nhanes_mortality_v10",
+  "related_v23_protocol": "research/cases/nhanes_dictionary_timing_v23.json",
+  "related_private_v23_ledger": "artifacts/cases/nhanes_mortality_v10/field_timing_v23/5a762b55170f/dictionary_timing_audit.json",
+  "holdout_history": "previously_inspected",
+  "prior_exploration": true,
+  "prediction_index_status": "provisional",
+  "scope": "partial_blueprint",
+  "real_data_execution_permitted": false,
+  "model_fitting_permitted": false,
+  "holdout_scoring_permitted": false,
+  "public_export_permitted": false,
+  "waves": {
+    "2011-2012": {
+      "source_verified": true,
+      "features": {
+        "walking_difficulty": {
+          "source_column": "PFQ061B",
+          "kind": "ordinal",
+          "source_unit": "difficulty codes 1-4",
+          "canonical_unit": "difficulty codes 1-4",
+          "value_codes": {"1": 1, "2": 2, "3": 3, "4": 4},
+          "missing_codes": {"5": "does_not_do_activity", "7": "refused", "9": "unknown"},
+          "blank_status": "structural_skip",
+          "skip_if": {"column": "PFQ054", "equals": "1"},
+          "mapping_evidence": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PFQ_G.htm"
+        },
+        "stairs_difficulty": {
+          "source_column": "PFQ061C",
+          "kind": "ordinal",
+          "source_unit": "difficulty codes 1-4",
+          "canonical_unit": "difficulty codes 1-4",
+          "value_codes": {"1": 1, "2": 2, "3": 3, "4": 4},
+          "missing_codes": {"5": "does_not_do_activity", "7": "refused", "9": "unknown"},
+          "blank_status": "structural_skip",
+          "skip_if": {"column": "PFQ054", "equals": "1"},
+          "mapping_evidence": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PFQ_G.htm"
+        },
+        "stooping_difficulty": {
+          "source_column": "PFQ061D",
+          "kind": "ordinal",
+          "source_unit": "difficulty codes 1-4",
+          "canonical_unit": "difficulty codes 1-4",
+          "value_codes": {"1": 1, "2": 2, "3": 3, "4": 4},
+          "missing_codes": {"5": "does_not_do_activity", "7": "refused", "9": "unknown"},
+          "blank_status": null,
+          "mapping_evidence": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PFQ_G.htm"
+        }
+      }
+    }
+  },
+  "unmapped_predictors": [
+    "age", "bmi", "cancer", "coronary_disease", "diabetes", "ever_smoked",
+    "heart_failure", "hypertension", "phq9_score", "sex", "stroke"
+  ]
+}

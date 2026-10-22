@@ -1,0 +1,32 @@
+{
+  "schema": "FRAILTYSCOPE_HARMONIZATION_PROTOCOL_V24",
+  "case_id": "replace_with_approved_case_id",
+  "related_v23_protocol": "research/cases/REPLACE_V23_DICTIONARY.json",
+  "related_private_v23_ledger": "artifacts/cases/REPLACE_CASE/field_timing_v23/REPLACE/dictionary_timing_audit.json",
+  "holdout_history": "locked_new",
+  "prior_exploration": false,
+  "prediction_index_status": "provisional",
+  "scope": "partial_blueprint",
+  "real_data_execution_permitted": false,
+  "model_fitting_permitted": false,
+  "holdout_scoring_permitted": false,
+  "public_export_permitted": false,
+  "waves": {
+    "WAVE_A": {
+      "source_verified": true,
+      "features": {
+        "replace_with_actual_feature": {
+          "source_column": "REPLACE_SOURCE",
+          "kind": "categorical",
+          "source_unit": "source-coded category",
+          "canonical_unit": "canonical category",
+          "value_codes": {"A": "category_a", "B": "category_b"},
+          "missing_codes": {"7": "refused", "9": "unknown"},
+          "blank_status": "not_recorded",
+          "mapping_evidence": "research/HARMONIZATION_CONTRACT_V24.md"
+        }
+      }
+    }
+  },
+  "unmapped_predictors": ["REPLACE_OTHER_PREDICTORS_EXACTLY"]
+}
