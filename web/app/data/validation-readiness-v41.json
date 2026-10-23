@@ -1,0 +1,333 @@
+{
+  "schema": "FRAILTYSCOPE_VALIDATION_REHEARSAL_V41",
+  "mode": "PUBLIC_DOCUMENTS_AND_INVENTED_RECORDS_ONLY",
+  "clinical_inference": false,
+  "registered_clinical_models": 0,
+  "scientific_readiness": {
+    "case_id": "nhanes_mortality_v10",
+    "source_manifest": "research/cases/nhanes_mortality_v10.json",
+    "source_dictionary": "research/cases/nhanes_dictionary_timing_v23.json",
+    "source_harmonization": "research/cases/nhanes_harmonization_v24.json",
+    "source_readiness": "web/app/data/inference-readiness-v39.json",
+    "mapping_coverage": {
+      "historically_source_verified": 3,
+      "total_predictors": 14,
+      "not_mapped_in_v24_blueprint": 11,
+      "mapping_is_approved_for_clinical_serving": false
+    },
+    "prediction_index_approved": false,
+    "registered_clinical_models": 0,
+    "clinical_inference": false,
+    "features": [
+      {
+        "feature": "age",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "bmi",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "walking_difficulty",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "SOURCE_VERIFIED_PARTIAL_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "stairs_difficulty",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "SOURCE_VERIFIED_PARTIAL_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "stooping_difficulty",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "SOURCE_VERIFIED_PARTIAL_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "heart_failure",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "coronary_disease",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "stroke",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "cancer",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "diabetes",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "hypertension",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "ever_smoked",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "phq9_score",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      },
+      {
+        "feature": "sex",
+        "historical_source_wave": "2011-2012",
+        "public_mapping_status": "UNRESOLVED_IN_V24_BLUEPRINT",
+        "source_timing_approved": false,
+        "runtime_mapping_approved": false
+      }
+    ],
+    "outcome_plans": [
+      {
+        "id": "five_year_all_cause_mortality",
+        "name": "Approximately five-year all-cause mortality",
+        "target_definition_status": "HISTORICAL_MORTALITY_TARGET_REQUIRES_INDEX_REVIEW",
+        "baseline_prevalence_exclusion_approved": false,
+        "prediction_horizon_approved": false,
+        "censoring_and_competing_risks_approved": false,
+        "validated_preprocessor_registered": false,
+        "fitted_clinical_artifact_registered": false,
+        "external_validation_and_calibration_approved": false,
+        "medical_use_and_data_access_approved": false,
+        "patient_inference_permitted": false
+      },
+      {
+        "id": "incident_diabetes",
+        "name": "Future new diabetes diagnosis",
+        "target_definition_status": "NEW_ONSET_TARGET_NOT_DEFINED",
+        "baseline_prevalence_exclusion_approved": false,
+        "prediction_horizon_approved": false,
+        "censoring_and_competing_risks_approved": false,
+        "validated_preprocessor_registered": false,
+        "fitted_clinical_artifact_registered": false,
+        "external_validation_and_calibration_approved": false,
+        "medical_use_and_data_access_approved": false,
+        "patient_inference_permitted": false
+      },
+      {
+        "id": "incident_stroke",
+        "name": "Future stroke",
+        "target_definition_status": "NEW_ONSET_TARGET_NOT_DEFINED",
+        "baseline_prevalence_exclusion_approved": false,
+        "prediction_horizon_approved": false,
+        "censoring_and_competing_risks_approved": false,
+        "validated_preprocessor_registered": false,
+        "fitted_clinical_artifact_registered": false,
+        "external_validation_and_calibration_approved": false,
+        "medical_use_and_data_access_approved": false,
+        "patient_inference_permitted": false
+      },
+      {
+        "id": "incident_heart_failure",
+        "name": "Future heart failure",
+        "target_definition_status": "NEW_ONSET_TARGET_NOT_DEFINED",
+        "baseline_prevalence_exclusion_approved": false,
+        "prediction_horizon_approved": false,
+        "censoring_and_competing_risks_approved": false,
+        "validated_preprocessor_registered": false,
+        "fitted_clinical_artifact_registered": false,
+        "external_validation_and_calibration_approved": false,
+        "medical_use_and_data_access_approved": false,
+        "patient_inference_permitted": false
+      }
+    ],
+    "next_decisions": [
+      "Study-team/index-time approval",
+      "Complete source-to-form and preprocessor mappings",
+      "Obtain disease incidence, censoring and competing-risk protocols",
+      "Obtain permitted fitted artifacts and independent clinical validation",
+      "Approve secure identity, privacy and clinician oversight before any patient scoring"
+    ]
+  },
+  "fictional_validation": {
+    "provenance": "SYNTHETIC_GENERATED_ONLY",
+    "holdback_kind": "SAME_GENERATOR_FIXED_240_NOT_IN_MODEL_FIT",
+    "independent_clinical_validation": false,
+    "patient_data_used": false,
+    "n_fit_invented": 960,
+    "n_check_invented": 240,
+    "metrics": [
+      {
+        "id": "fictional_pathway_a",
+        "name": "Invented outcome A",
+        "n": 240,
+        "synthetic_positives": 129,
+        "brier": 0.230967,
+        "synthetic_auc": 0.657448,
+        "ece_5bins": 0.036527,
+        "brier_bootstrap_interval_95": [
+          0.208291,
+          0.250277
+        ],
+        "calibration_bins": [
+          {
+            "bin": 1,
+            "n": 0,
+            "mean_probability": null,
+            "observed_fraction": null
+          },
+          {
+            "bin": 2,
+            "n": 42,
+            "mean_probability": 0.341101,
+            "observed_fraction": 0.380952
+          },
+          {
+            "bin": 3,
+            "n": 94,
+            "mean_probability": 0.489416,
+            "observed_fraction": 0.457447
+          },
+          {
+            "bin": 4,
+            "n": 101,
+            "mean_probability": 0.698327,
+            "observed_fraction": 0.663366
+          },
+          {
+            "bin": 5,
+            "n": 3,
+            "mean_probability": 0.814487,
+            "observed_fraction": 1.0
+          }
+        ]
+      },
+      {
+        "id": "fictional_pathway_b",
+        "name": "Invented outcome B",
+        "n": 240,
+        "synthetic_positives": 117,
+        "brier": 0.242484,
+        "synthetic_auc": 0.60246,
+        "ece_5bins": 0.044229,
+        "brier_bootstrap_interval_95": [
+          0.227242,
+          0.257123
+        ],
+        "calibration_bins": [
+          {
+            "bin": 1,
+            "n": 2,
+            "mean_probability": 0.196005,
+            "observed_fraction": 0.5
+          },
+          {
+            "bin": 2,
+            "n": 75,
+            "mean_probability": 0.340678,
+            "observed_fraction": 0.426667
+          },
+          {
+            "bin": 3,
+            "n": 121,
+            "mean_probability": 0.495183,
+            "observed_fraction": 0.479339
+          },
+          {
+            "bin": 4,
+            "n": 42,
+            "mean_probability": 0.658112,
+            "observed_fraction": 0.619048
+          },
+          {
+            "bin": 5,
+            "n": 0,
+            "mean_probability": null,
+            "observed_fraction": null
+          }
+        ]
+      },
+      {
+        "id": "fictional_pathway_c",
+        "name": "Invented outcome C",
+        "n": 240,
+        "synthetic_positives": 151,
+        "brier": 0.224572,
+        "synthetic_auc": 0.635762,
+        "ece_5bins": 0.034494,
+        "brier_bootstrap_interval_95": [
+          0.20115,
+          0.246447
+        ],
+        "calibration_bins": [
+          {
+            "bin": 1,
+            "n": 0,
+            "mean_probability": null,
+            "observed_fraction": null
+          },
+          {
+            "bin": 2,
+            "n": 28,
+            "mean_probability": 0.344218,
+            "observed_fraction": 0.464286
+          },
+          {
+            "bin": 3,
+            "n": 70,
+            "mean_probability": 0.505328,
+            "observed_fraction": 0.5
+          },
+          {
+            "bin": 4,
+            "n": 91,
+            "mean_probability": 0.69697,
+            "observed_fraction": 0.703297
+          },
+          {
+            "bin": 5,
+            "n": 51,
+            "mean_probability": 0.842512,
+            "observed_fraction": 0.764706
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      "Generated labels and predictors are invented, not mortality or future diseases.",
+      "The holdback shares the synthetic generator with training; not external validation.",
+      "Bootstrap ranges describe invented check rows only; not clinical confidence intervals."
+    ]
+  }
+}

@@ -13,6 +13,7 @@ import {InferenceReadinessV37, FictionalScoringLabV37} from './inference-readine
 import {ClinicalOutcomeRegistryV38, FictionalMultiOutcomeLabV38} from './multioutcome-lab-v38';
 import {ReadinessEvidenceV39} from './inference-evidence-v39';
 import {SyntheticServerV40} from './synthetic-server-v40';
+import {ValidationGateV41} from './validation-gate-v41';
 
 type Page = 'Population overview' | 'Health profiles' | 'Patient assessment' | 'Visit history' | 'Model evidence';
 type CaseValues = Record<string,string>;
@@ -127,6 +128,7 @@ export function ClinicalWorkspace(){
      <FictionalScoringLabV37/>
      <FictionalMultiOutcomeLabV38/>
      <SyntheticServerV40/>
+     <ValidationGateV41/>
   </>}
   </div>
   <footer className="v7-portal-foot">FrailtyScope · CDC/NCHS NHANES linked mortality · Population research · Not a clinical prediction service</footer>
