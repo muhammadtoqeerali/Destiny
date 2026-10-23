@@ -7,6 +7,7 @@ import {Activity, ArrowRight, BarChart3, BookOpen, Check, CheckCircle2, ChevronR
 import specialist from '../../public/data/nhanes-aggregate.json';
 import refined from '../../public/data/nhanes-refinement.json';
 import general from '../../public/data/nhanes-decision-quality-v12.json';
+import { ReleaseStatusV34 } from './release-status-v34';
 
 type View = 'overview'|'pipeline'|'models'|'assurance';
 type Measure = 'auc'|'brier';
@@ -75,6 +76,7 @@ export function EngineStudioV33(){
       <div className="v33-hero-stat-row"><span><b>72</b> synthetic rows</span><span><b>36</b> fictional people</span><span><b>3</b> folds</span></div>
     </div>
    </header>
+   <ReleaseStatusV34/>
    <nav className="v33-nav" aria-label="Engine Studio views">{tabs.map(t=><button key={t.id} type="button" onClick={()=>setView(t.id)} aria-current={view===t.id?'page':undefined} className={view===t.id?'selected':''}><strong>{t.label}</strong><small>{t.sub}</small></button>)}</nav>
 
    {view==='overview'&&<div className="v33-view" aria-label="Mission control">
@@ -84,7 +86,7 @@ export function EngineStudioV33(){
        <div className="v33-stat-card"><Database size={20}/><span>Historical benchmark</span><strong>2,422</strong><small>NHANES observations · 2011–2014</small></div>
        <div className="v33-stat-card"><Layers3 size={20}/><span>Source mappings</span><strong>3 <i>/ 14</i></strong><small>Reviewed predictors for integration</small></div>
        <div className="v33-stat-card"><GitBranch size={20}/><span>Synthetic CV demonstration</span><strong>3</strong><small>Person-disjoint development folds</small></div>
-       <div className="v33-stat-card"><ClipboardCheck size={20}/><span>Regression suite at v0.32</span><strong>708</strong><small>Passed · 1 skipped (workstation log)</small></div>
+       <div className="v33-stat-card"><ClipboardCheck size={20}/><span>Synthetic repeatability</span><strong>2</strong><small>Matching v0.30 aggregate runs · seed 1701</small></div>
      </div>
      <div className="v33-summary-grid">
        <article className="v33-glass-panel"><div className="v33-panel-label"><Workflow size={16}/> CURRENT STAGE</div><div className="v33-panel-number">0{active+1} <span>/ 07</span></div><h4>{stage.title}</h4><p>{stage.description}</p><button type="button" className="v33-primary" onClick={()=>setView('pipeline')}>Inspect this stage <ArrowRight size={16}/></button></article>
