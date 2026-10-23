@@ -52,7 +52,7 @@ def run():
                 page.get_by_role('button',name='Remove visit 2026-01-15').click()
                 expect(page.get_by_text('No visits recorded.')).to_be_visible()
                 page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Model evidence').click()
-                expect(page.get_by_role('heading',name='Understand the model evidence')).to_be_visible()
+                expect(page.get_by_role('heading',name='How an assessment becomes an explanation')).to_be_visible()
                 if label=='mobile':
                     assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth + 2'), 'Horizontal overflow in Doctor Portal'
                 assert not errors,(label,errors)

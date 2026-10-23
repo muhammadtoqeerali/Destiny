@@ -26,3 +26,4 @@ done
 printf '=== Browser QA against isolated production build on loopback ===\n'
 FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_qa_v34.py
 FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_doctor_v35.py
+FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_doctor_v36.py

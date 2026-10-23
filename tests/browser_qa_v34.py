@@ -64,7 +64,7 @@ def run():
                 page.get_by_role('button',name='Add visit').click()
                 expect(page.get_by_text('dated assessments entered')).to_be_visible()
                 page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Model evidence',exact=True).click()
-                expect(page.get_by_role('heading',name='Understand the model evidence')).to_be_visible()
+                expect(page.get_by_role('heading',name='How an assessment becomes an explanation')).to_be_visible()
                 print(f'PASS [{name}] Doctor Portal navigation, validity, and temporary visit behavior')
 
                 page.goto(BASE+'/admin',wait_until='domcontentloaded')
