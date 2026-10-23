@@ -9,7 +9,7 @@ if not re.fullmatch(r'http://127\.0\.0\.1:[0-9]{2,5}',BASE):
 
 def run():
     with sync_playwright() as pw:
-        browser=pw.chromium.launch(headless=True)
+        browser=pw.chromium.launch(headless=True,executable_path=os.environ.get('FRAILTYSCOPE_QA_CHROMIUM') or None)
         try:
             for label,viewport in [('desktop',{'width':1440,'height':900}),('mobile',{'width':390,'height':844})]:
                 context=browser.new_context(viewport=viewport,reduced_motion='reduce')

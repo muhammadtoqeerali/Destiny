@@ -55,5 +55,5 @@ def test_documented_historical_data_untouched_and_private_workflow_blocked():
 def test_ci_runs_chromium_and_source_regression():
     s=source('.github/workflows/ci.yml')
     for w in ('tests/test_demo_qa_v34.py','playwright==1.56.0',
-              'python -m playwright install chromium','scripts/run_browser_qa_v34.sh'):
+              'FRAILTYSCOPE_QA_CHROMIUM','scripts/run_browser_qa_v34.sh'):
         assert w in s

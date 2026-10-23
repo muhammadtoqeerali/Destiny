@@ -57,10 +57,10 @@ def test_doctor_browser_suite_is_mandatory_on_local_runner():
     assert 'tests/browser_qa_v34.py' in runner
     assert 'tests/browser_doctor_v35.py' in runner
     ci=source('.github/workflows/ci.yml')
-    assert 'python -m playwright install chromium' in ci
+    assert 'FRAILTYSCOPE_QA_CHROMIUM' in ci
     assert 'tests/test_doctor_v35.py' in ci
     prior_regression=source('tests/test_demo_qa_v34.py')
-    assert "'python -m playwright install chromium'" in prior_regression
+    assert "'FRAILTYSCOPE_QA_CHROMIUM'" in prior_regression
     assert 'http://127.0.0.1:$PORT' in runner
     browser=source('tests/browser_doctor_v35.py')
     assert '127\\.0\\.0\\.1' in browser

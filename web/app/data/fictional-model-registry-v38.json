@@ -1,0 +1,79 @@
+{
+  "schema": "FRAILTYSCOPE_FICTIONAL_MULTI_OUTCOME_V38",
+  "provenance": "SYNTHETIC_GENERATED_ONLY",
+  "version": "synthetic-v38.0",
+  "independent_clinical_validation": false,
+  "clinical_use_permitted": false,
+  "training": {
+    "generated_records": 1200,
+    "fit_records": 960,
+    "synthetic_check_records": 240,
+    "seed": 38062026,
+    "algorithm": "deterministic_batch_gradient_descent",
+    "any_real_participants": false
+  },
+  "features": [
+    "age_signal",
+    "bmi_signal",
+    "phq_signal",
+    "movement_signal",
+    "history_signal",
+    "smoking_signal"
+  ],
+  "models": [
+    {
+      "id": "fictional_pathway_a",
+      "title": "Invented outcome A",
+      "description": "Fictional output A, unrelated to real illness",
+      "intercept": -0.494577,
+      "weights": {
+        "age_signal": 0.64916,
+        "bmi_signal": 0.142248,
+        "phq_signal": 0.174833,
+        "movement_signal": 0.301193,
+        "history_signal": 0.056269,
+        "smoking_signal": 0.132247
+      },
+      "model_type": "synthetic_logistic_regression",
+      "trained_on": "generated_fictional_examples",
+      "clinical_use_permitted": false,
+      "outcome_is_real": false
+    },
+    {
+      "id": "fictional_pathway_b",
+      "title": "Invented outcome B",
+      "description": "Fictional output B, unrelated to real illness",
+      "intercept": -0.592967,
+      "weights": {
+        "age_signal": 0.274585,
+        "bmi_signal": -0.335009,
+        "phq_signal": 0.245409,
+        "movement_signal": 0.604544,
+        "history_signal": 0.042061,
+        "smoking_signal": -0.120186
+      },
+      "model_type": "synthetic_logistic_regression",
+      "trained_on": "generated_fictional_examples",
+      "clinical_use_permitted": false,
+      "outcome_is_real": false
+    },
+    {
+      "id": "fictional_pathway_c",
+      "title": "Invented outcome C",
+      "description": "Fictional output C, unrelated to real illness",
+      "intercept": -0.070878,
+      "weights": {
+        "age_signal": 0.0072,
+        "bmi_signal": 0.274723,
+        "phq_signal": 0.729143,
+        "movement_signal": 0.168141,
+        "history_signal": -0.240702,
+        "smoking_signal": 0.252569
+      },
+      "model_type": "synthetic_logistic_regression",
+      "trained_on": "generated_fictional_examples",
+      "clinical_use_permitted": false,
+      "outcome_is_real": false
+    }
+  ]
+}
