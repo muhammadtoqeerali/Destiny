@@ -1,0 +1,32 @@
+/* v0.44 public research handoff; no patient scoring, responsive to narrow screens. */
+.v44-handoff{border:1px solid #d1e2e8;border-radius:18px;background:#f8fbfc;padding:clamp(15px,3vw,27px);color:#173f50;display:flex;flex-direction:column;gap:17px;overflow-wrap:anywhere}
+.v44-handoff header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px}
+.v44-handoff header>div{max-width:720px}
+.v44-kicker{display:flex;align-items:center;gap:8px;color:#116271;font-size:11px;font-weight:800;letter-spacing:1px}
+.v44-handoff h3{font-weight:850;font-size:clamp(21px,2vw,27px);margin:8px 0}
+.v44-handoff p{line-height:1.65;font-size:13px;color:#426575;margin:6px 0}
+.v44-locked{display:inline-flex;align-items:center;gap:8px;background:#fff2e7;color:#81500d;border:1px solid #e8c8a5;padding:9px 12px;border-radius:9px;font-size:12px;font-weight:800}
+.v44-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.v44-stat-grid>div{border:1px solid #d7e7ea;background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:5px}
+.v44-stat-grid b{font-size:28px;color:#1d6372;line-height:1.1}
+.v44-stat-grid span{font-size:11px;color:#4d6671;line-height:1.4}
+.v44-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.v44-tabs button{border:1px solid #aacbd0;border-radius:9px;background:#fff;color:#225967;padding:10px 13px;cursor:pointer;font-weight:750;font-size:12px}
+.v44-tabs button[aria-pressed="true"]{background:#e5f4f4;color:#124c56;border-color:#187484}
+.v44-tabs button:focus-visible,.v44-filter select:focus-visible{outline:3px solid #558dac;outline-offset:2px}
+.v44-panel{display:flex;flex-direction:column;gap:12px}
+.v44-filter{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:12px;font-weight:750}
+.v44-filter select{border:1px solid #b7d0d8;border-radius:8px;background:#fff;padding:8px;color:#17495b;font:inherit;max-width:100%}
+.v44-requests{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.v44-requests article{border:1px solid #d5e5e9;background:#fff;padding:15px;border-radius:11px;min-width:0}
+.v44-item-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px;justify-content:space-between}
+.v44-item-head strong{font-size:13px;text-transform:capitalize}
+.v44-item-head span{border:1px solid #e4cfb8;background:#fff6ec;color:#775217;border-radius:6px;padding:4px 7px;font-size:10px;font-weight:800}
+.v44-requests small{display:block;font-size:11px;color:#876039;line-height:1.5}
+.v44-requests ul{padding-left:19px;margin:6px 0;font-size:12px;line-height:1.65;color:#4b6670}
+.v44-handoff footer{display:flex;align-items:flex-start;gap:10px;background:#fffbf3;border:1px solid #ecdbc2;border-radius:10px;padding:12px}
+.v44-handoff footer svg{flex-shrink:0;color:#866127;margin-top:3px}
+.v44-handoff .v44-source{display:flex;gap:8px;align-items:flex-start;font-size:11px}
+.v44-handoff code{overflow-wrap:anywhere;font-size:11px}
+@media(max-width:660px){.v44-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.v44-requests{grid-template-columns:1fr}.v44-tabs button{flex:1 1 100%;text-align:left}}
+@media(prefers-reduced-motion:reduce){.v44-handoff *{scroll-behavior:auto;transition:none}}

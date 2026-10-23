@@ -1,0 +1,418 @@
+{
+  "schema": "FRAILTYSCOPE_STUDY_HANDOFF_V44",
+  "scope": "PUBLIC_RESEARCH_HANDOFF_NO_APPROVALS_OR_PATIENT_DATA",
+  "case_id": "nhanes_mortality_v10",
+  "source_sha256": {
+    "web/app/data/model-translation-v42.json": "e446401dd84173c20b79537f9a4886b6fd51c857b45a535c18615ec23d232b7b",
+    "web/app/data/artifact-acceptance-v43.json": "9051fdd93d556222eb6a38b1b0871e2add574feb64c5a454b67f08a60eff9efd",
+    "web/app/data/inference-readiness-v39.json": "0f9ce9d0de8105ae48d89cc3ee07975ed64f966b9e53a2f34785cbd5b97ff4b3",
+    "research/cases/nhanes_workflow_v29.json": "1f4d73f9f4cb7673f382f5321c60a2ae8ace6646305a701ffef9dda24be1fd2f"
+  },
+  "clinical_inference": false,
+  "registered_clinical_models": 0,
+  "clinical_promotion_decision": "DENIED",
+  "mapping_summary": {
+    "candidate_predictors": 14,
+    "partial_source_mappings": 3,
+    "unresolved_source_mappings": 11,
+    "prediction_time_approvals": 0
+  },
+  "feature_evidence_requests": [
+    {
+      "id": "age",
+      "source_file_candidate": "DEMO_G.XPT",
+      "source_variables_candidate": [
+        "RIDAGEYR"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "NHANES public-use ages 80+ are top-coded; Doctor form permits 81–110. Never infer unobserved ages from RIDAGEYR.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "bmi",
+      "source_file_candidate": "BMX_G.XPT",
+      "source_variables_candidate": [
+        "BMXBMI"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Existing research source logic documents 12–70, while Doctor input currently permits 10–70.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "walking_difficulty",
+      "source_file_candidate": "PFQ_G.XPT",
+      "source_variables_candidate": [
+        "PFQ061B"
+      ],
+      "source_mapping_status": "PARTIAL_2011_2012_ONLY",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "NHANES PFQ uses coded 1–4 difficulty, 5 nonperformance and item-specific PFQ054 structural skips; free form status text is not an approved source transform.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "stairs_difficulty",
+      "source_file_candidate": "PFQ_G.XPT",
+      "source_variables_candidate": [
+        "PFQ061C"
+      ],
+      "source_mapping_status": "PARTIAL_2011_2012_ONLY",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "NHANES PFQ uses coded 1–4 difficulty, 5 nonperformance and item-specific PFQ054 structural skips; free form status text is not an approved source transform.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "stooping_difficulty",
+      "source_file_candidate": "PFQ_G.XPT",
+      "source_variables_candidate": [
+        "PFQ061D"
+      ],
+      "source_mapping_status": "PARTIAL_2011_2012_ONLY",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Code 5 nonperformance must be preserved; the PFQ054 structural skip for walking/stairs does not apply to stooping.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "heart_failure",
+      "source_file_candidate": "MCQ_G.XPT",
+      "source_variables_candidate": [
+        "MCQ160B"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "coronary_disease",
+      "source_file_candidate": "MCQ_G.XPT",
+      "source_variables_candidate": [
+        "MCQ160C"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "stroke",
+      "source_file_candidate": "MCQ_G.XPT",
+      "source_variables_candidate": [
+        "MCQ160F"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "cancer",
+      "source_file_candidate": "MCQ_G.XPT",
+      "source_variables_candidate": [
+        "MCQ220"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "diabetes",
+      "source_file_candidate": "DIQ_G.XPT",
+      "source_variables_candidate": [
+        "DIQ010"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "hypertension",
+      "source_file_candidate": "BPQ_G.XPT",
+      "source_variables_candidate": [
+        "BPQ020"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "ever_smoked",
+      "source_file_candidate": "SMQ_G.XPT",
+      "source_variables_candidate": [
+        "SMQ020"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "phq9_score",
+      "source_file_candidate": "DPQ_G.XPT",
+      "source_variables_candidate": [
+        "DPQ010",
+        "DPQ020",
+        "DPQ030",
+        "DPQ040",
+        "DPQ050",
+        "DPQ060",
+        "DPQ070",
+        "DPQ080",
+        "DPQ090"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Nine DPQ item responses must be validated at the source before a total is derived; a manually entered total is not equivalent source evidence.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    },
+    {
+      "id": "sex",
+      "source_file_candidate": "DEMO_G.XPT",
+      "source_variables_candidate": [
+        "RIAGENDR"
+      ],
+      "source_mapping_status": "UNRESOLVED",
+      "prediction_time_status": "NOT_APPROVED",
+      "doctor_input_equivalence": "NOT_VERIFIED",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "deliverables": [
+        "Signed source-variable codebook and source-wave mapping",
+        "Index-time availability and transformation specification",
+        "Documented missingness, structural skips and Doctor-form equivalence"
+      ],
+      "existing_gaps": [
+        "Survey raw codes and human-readable form choices require a reviewed, exact categorical transform.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ],
+      "signed_review_received": false
+    }
+  ],
+  "outcome_evidence_requests": [
+    {
+      "id": "five_year_all_cause_mortality",
+      "proposed_only": true,
+      "individual_scoring_available": false,
+      "source_evidence": "HISTORICAL_MORTALITY_CASE_NOT_APPROVED",
+      "reviewer_role": "Clinical investigator / epidemiologist",
+      "deliverables": [
+        "Freeze baseline MEC prediction index and approximately 5-year all-cause mortality target",
+        "Document right censoring, all-cause mortality linkage and transportability",
+        "Commission a new independent, previously untouched validation protocol"
+      ],
+      "evidence_received": false
+    },
+    {
+      "id": "incident_diabetes",
+      "proposed_only": true,
+      "individual_scoring_available": false,
+      "source_evidence": "NO_VERIFIED_INCIDENT_TARGET_OR_APPROVED_MODEL",
+      "reviewer_role": "Clinical investigator / epidemiologist",
+      "deliverables": [
+        "Define new-onset event versus prevalent history at baseline and exact prediction horizon",
+        "Verify longitudinal diagnosis/event ascertainment with dates and follow-up",
+        "Specify censoring, death as competing event, and external evaluation population"
+      ],
+      "evidence_received": false
+    },
+    {
+      "id": "incident_stroke",
+      "proposed_only": true,
+      "individual_scoring_available": false,
+      "source_evidence": "NO_VERIFIED_INCIDENT_TARGET_OR_APPROVED_MODEL",
+      "reviewer_role": "Clinical investigator / epidemiologist",
+      "deliverables": [
+        "Define new-onset event versus prevalent history at baseline and exact prediction horizon",
+        "Verify longitudinal diagnosis/event ascertainment with dates and follow-up",
+        "Specify censoring, death as competing event, and external evaluation population"
+      ],
+      "evidence_received": false
+    },
+    {
+      "id": "incident_heart_failure",
+      "proposed_only": true,
+      "individual_scoring_available": false,
+      "source_evidence": "NO_VERIFIED_INCIDENT_TARGET_OR_APPROVED_MODEL",
+      "reviewer_role": "Clinical investigator / epidemiologist",
+      "deliverables": [
+        "Define new-onset event versus prevalent history at baseline and exact prediction horizon",
+        "Verify longitudinal diagnosis/event ascertainment with dates and follow-up",
+        "Specify censoring, death as competing event, and external evaluation population"
+      ],
+      "evidence_received": false
+    }
+  ],
+  "governance_requests": [
+    {
+      "id": "ethics_and_controller",
+      "owner": "Institutional data controller / ethics board",
+      "required": "Written data-use authority, intended use, population, ethics and legal/regulatory determination",
+      "approval_verified": false
+    },
+    {
+      "id": "prediction_index",
+      "owner": "Principal investigator / study-team lead",
+      "required": "Frozen index date, endpoint horizons, measurement availability and leakage review",
+      "approval_verified": false
+    },
+    {
+      "id": "source_mapping",
+      "owner": "NHANES questionnaire and harmonization team",
+      "required": "14 approved source-to-input mappings and preprocessor parity / missingness evidence",
+      "approval_verified": false
+    },
+    {
+      "id": "incident_outcomes",
+      "owner": "Clinical outcomes and linkage team",
+      "required": "Disease-specific incident outcomes with dates, censoring and competing event rules",
+      "approval_verified": false
+    },
+    {
+      "id": "model_provenance",
+      "owner": "Research ML lead / independent reviewer",
+      "required": "Reproducible approved fitted model and exact preprocessor, signed immutable provenance",
+      "approval_verified": false
+    },
+    {
+      "id": "external_validation",
+      "owner": "Independent validation group",
+      "required": "New independent untouched cohort, calibration, subgroup uncertainty and clinical utility",
+      "approval_verified": false
+    },
+    {
+      "id": "clinical_security",
+      "owner": "Privacy, security and clinical governance",
+      "required": "Authenticated workflow, consent basis, no public PHI, clinician oversight, monitoring and rollback",
+      "approval_verified": false
+    }
+  ],
+  "approval_documents_received": 0,
+  "next_milestone": "Authorized study-team decisions and independent evidence, not another synthetic model fit",
+  "safety_note": "Questionnaire for research oversight only. Candidate source variables are not approved clinical inputs; prevalence questions do not establish incident diabetes, stroke or heart failure. Never submit patient records or confidential review documents to this public repository."
+}
