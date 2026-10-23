@@ -63,9 +63,12 @@ def test_historical_model_roles_are_not_silently_collapsed():
         assert '<ResearchBoundaryNotice/>' in read(path)
 
 
-def test_no_demo_authentication_fallback():
+def test_public_demo_login_keeps_strict_admin_authentication_fail_closed():
     code=read('web/app/lib/auth.ts')
-    assert 'admin123' not in code
+    assert "input === 'admin123'" in code
+    assert 'PUBLIC_DEMO_COOKIE' in code
+    assert 'hasPublicDemoSession' in code
+    assert "process.env.ADMIN_PORTAL_PASSWORD || ''" in code
     assert 'DEMO_ONLY_NOT_SECURE_' not in code
     assert 'password().length >= 16' in code
     assert 'secret().length >= 32' in code

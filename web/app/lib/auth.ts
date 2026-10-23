@@ -3,6 +3,8 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 import { cookies } from 'next/headers';
 
 const COOKIE = 'frailtyscope_admin_demo';
+const PUBLIC_DEMO_COOKIE = 'frailtyscope_public_aggregate_demo_v32';
+const PUBLIC_DEMO_VALUE = 'aggregate-view-only';
 const TTL = 8 * 60 * 60 * 1000;
 // Public aggregate-metrics demo only. Set BOTH variables in Vercel for private use.
 // Never use the demonstration default to guard real patient or HUNT research data.
@@ -42,6 +44,33 @@ export async function hasAdminSession(): Promise<boolean> {
   return expected.length === received.length && timingSafeEqual(expected, received);
 }
 
+/** This fixed passcode is intentionally public and MUST NEVER protect private
+ * data, research workflows, APIs, administrative writes or private artifacts.
+ * It only opens the static, published-aggregate demonstration dashboard.
+ */
+export function isPublicDemoPasscode(input: string): boolean {
+  return input === 'admin123';
+}
+
+export async function openPublicDemoSession(): Promise<void> {
+  (await cookies()).set(PUBLIC_DEMO_COOKIE, PUBLIC_DEMO_VALUE, {
+    httpOnly: true, secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax', path: '/', maxAge: Math.ceil(TTL / 1000),
+  });
+}
+
+export async function hasPublicDemoSession(): Promise<boolean> {
+  // Intentionally NOT an authorization mechanism: cookie is forgeable by design.
+  // Do not use this function for any access other than public aggregate views.
+  return (await cookies()).get(PUBLIC_DEMO_COOKIE)?.value === PUBLIC_DEMO_VALUE;
+}
+
+export async function canViewPublicDashboard(): Promise<boolean> {
+  return await hasAdminSession() || await hasPublicDemoSession();
+}
+
 export async function closeAdminSession() {
-  (await cookies()).delete(COOKIE);
+  const store = await cookies();
+  store.delete(COOKIE);
+  store.delete(PUBLIC_DEMO_COOKIE);
 }
