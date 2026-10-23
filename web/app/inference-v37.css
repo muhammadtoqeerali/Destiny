@@ -1,0 +1,45 @@
+/* v0.37: synthetic-only inference demonstration; scoped to Doctor Portal. */
+.v37-readiness,.v37-lab{--v37-ink:#153948;--v37-line:#d4e5e9;color:var(--v37-ink);border:1px solid var(--v37-line);border-radius:20px;overflow:hidden}
+.v37-readiness{padding:24px 27px;background:linear-gradient(115deg,#f3f9fa,#fff);display:grid;gap:15px}
+.v37-readiness-top,.v37-readiness-bottom{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.v37-overline{display:inline-flex;align-items:center;gap:8px;color:#247380;font-size:10px;font-weight:850;letter-spacing:1.1px}
+.v37-readiness h3,.v37-lab h3{font:800 clamp(19px,2vw,28px)/1.3 Manrope,sans-serif;letter-spacing:-.5px;margin:10px 0 8px;color:#153948}
+.v37-readiness p,.v37-lab p{line-height:1.7;font-size:13px;color:#58737d;margin:0}
+.v37-locked,.v37-synthetic-stamp{display:flex;align-items:center;gap:8px;border-radius:9px;padding:11px 13px;background:#fff2e6;color:#854b20;border:1px solid #efd6b8;font-size:11px;font-weight:800;flex-shrink:0}
+.v37-readiness-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.v37-readiness-metrics>div{padding:14px 17px;border-radius:11px;border:1px solid #dfedef;background:#fff;display:flex;flex-direction:column;gap:4px}
+.v37-readiness-metrics strong{font-size:26px;font-weight:850;color:#0f5867}.v37-readiness-metrics span{font-size:11px;color:#617b83}
+.v37-reasons{border-top:1px solid #dbe9ec;padding:11px 0 0;font-size:12px;color:#416673}
+.v37-reasons summary{cursor:pointer;font-weight:750}.v37-reasons li{margin:8px 0;line-height:1.65}
+.v37-readiness-bottom{align-items:center;border-top:1px solid #dbe9ec;padding-top:15px}
+.v37-readiness-bottom>span{display:flex;align-items:flex-start;gap:7px;font-size:11px;line-height:1.6;color:#607b84;max-width:520px}
+.v37-readiness-bottom button{display:inline-flex;align-items:center;gap:7px;min-height:40px;background:#0e6171;color:white;border:0;border-radius:9px;padding:10px 14px;font-size:12px;font-weight:750}
+.v37-lab{background:#fff;padding:clamp(18px,3vw,32px);margin-top:17px}
+.v37-lab-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap}
+.v37-lab-head>div{max-width:740px}.v37-lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:20px}
+.v37-lab-controls,.v37-output{border:1px solid #dbe7e9;border-radius:14px;background:#f6fafb;padding:22px;min-width:0}
+.v37-lab h4{font-size:13px;font-weight:800;margin:0 0 19px;color:#204b5c}
+.v37-lab-controls label{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;font-weight:750;margin:18px 0 10px}
+.v37-lab-controls output{font-size:16px;font-weight:850;color:#0b6b76;font-variant-numeric:tabular-nums}
+.v37-lab-controls input[type=range]{display:block;width:100%;accent-color:#0d7180;cursor:pointer}
+.v37-lab-controls select{width:100%;background:white;border:1px solid #c9dfe5;border-radius:8px;padding:12px;color:#214d5d;font-size:12px}
+.v37-lab .v37-reset{display:inline-flex;align-items:center;gap:8px;background:white;border:1px solid #cbdde3;border-radius:9px;margin-top:17px;padding:10px 14px;font-size:12px;font-weight:750;color:#246071}
+.v37-lab .v37-lab-small{display:flex;align-items:flex-start;gap:8px;margin-top:18px;font-size:11px}
+.v37-output{background:linear-gradient(145deg,#103749,#0f5365);color:white;border-color:#103749}
+.v37-output h4,.v37-output p{color:#e4f4f5}.v37-output-number{display:flex;flex-direction:column;gap:4px;margin:23px 0 18px}
+.v37-output-number>span{font:850 clamp(43px,6vw,74px)/1 Manrope,sans-serif;letter-spacing:-2px;font-variant-numeric:tabular-nums}.v37-output-number small{font-size:12px;color:#d0e3e7}
+.v37-output-track{background:#ffffff35;height:13px;border-radius:8px;overflow:hidden;margin-bottom:20px}.v37-output-track>span{height:100%;display:block;border-radius:8px;background:#88d8d5;transition:width .25s ease}
+.v37-formula{padding:12px;background:#ffffff16;border-radius:8px;margin:20px 0 9px;display:flex;flex-wrap:wrap;gap:7px;align-items:center;font:650 13px/1.7 ui-monospace,monospace;overflow-wrap:anywhere}
+.v37-formula>span{color:#c4ffed}.v37-formula-small{font:11px/1.6 ui-monospace,monospace;color:#d3e9eb}
+.v37-effects{padding:25px 0 9px}.v37-effects-head{display:flex;gap:15px;justify-content:space-between;flex-wrap:wrap;align-items:baseline}.v37-effects-head>span{font-size:11px;color:#6a8390}
+.v37-effect{display:grid;grid-template-columns:minmax(115px,1fr) minmax(90px,1.4fr) 64px;align-items:center;gap:15px;padding:12px 0;border-bottom:1px solid #edf2f3}
+.v37-effect>div:first-child{display:flex;flex-direction:column;gap:4px}.v37-effect strong{font-size:12px}.v37-effect small{font-size:10px;color:#77919a}
+.v37-effect-axis{height:15px;border-radius:4px;background:#edf4f5;position:relative;overflow:hidden}.v37-effect-axis .v37-zero{position:absolute;left:50%;height:100%;width:2px;background:#40656c;z-index:1}
+.v37-positive,.v37-negative{position:absolute;top:2px;height:11px;border-radius:2px;background:#38a497}.v37-negative{background:#d69f6c}
+.v37-effect>b{font-size:12px;text-align:right;font-variant-numeric:tabular-nums}
+.v37-boundary{display:flex;align-items:flex-start;gap:11px;background:#fff4e8;border:1px solid #f0dcc5;padding:16px;border-radius:10px;font-size:12px;line-height:1.7;color:#785332}
+.v37-lab-footer{display:flex;gap:8px;align-items:center;margin-top:18px!important;font-size:11px!important}
+.v37-lab button:focus-visible,.v37-lab input:focus-visible,.v37-lab select:focus-visible,.v37-readiness button:focus-visible,.v37-reasons summary:focus-visible{outline:3px solid #bd841d;outline-offset:3px}
+@media(max-width:850px){.v37-lab-grid{grid-template-columns:1fr}.v37-readiness-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){.v37-readiness{padding:18px}.v37-readiness-metrics{grid-template-columns:1fr 1fr}.v37-readiness-metrics>div:last-child{grid-column:1/-1}.v37-effect{grid-template-columns:minmax(92px,1fr) minmax(75px,1fr) 50px;gap:7px}.v37-effect small{font-size:9px}.v37-lab-controls,.v37-output{padding:17px}.v37-synthetic-stamp{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.v37-output-track>span{transition:none}}

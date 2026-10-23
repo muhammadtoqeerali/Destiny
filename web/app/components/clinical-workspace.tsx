@@ -9,6 +9,7 @@ import profiles from '../../public/data/nhanes-cohort-profile.json';
 import { ResearchBoundaryNotice } from './research-boundary-notice';
 import { DoctorHeroV35, CohortSnapshotV35 } from './doctor-visuals-v35';
 import {DoctorJourneyV36, FollowUpSummaryV36, PredictionStoryV36} from './doctor-journey-v36';
+import {InferenceReadinessV37, FictionalScoringLabV37} from './inference-readiness-v37';
 
 type Page = 'Population overview' | 'Health profiles' | 'Patient assessment' | 'Visit history' | 'Model evidence';
 type CaseValues = Record<string,string>;
@@ -90,6 +91,7 @@ export function ClinicalWorkspace(){
   </>}
   {page==='Patient assessment'&&<>
    <Header eyebrow="STRUCTURED HEALTH PROFILE" title="Patient assessment" description="Enter de-identified observations to create a live descriptive health snapshot. No personal prediction is calculated or stored."/>
+   <InferenceReadinessV37 profile={profile} onExplore={()=>setPage('Model evidence')}/>
    <DoctorJourneyV36 profile={profile} visits={visits} onViewFollowUp={()=>setPage('Visit history')}/>
    <div className="v7-info"><ShieldCheck size={18}/> Use de-identified information only. Do not enter patient names, dates of birth, addresses or record numbers into this public research portal.</div>
    <div className="v7-profile-layout"><div className="v7-profile-form">
@@ -117,6 +119,7 @@ export function ClinicalWorkspace(){
    {page==='Model evidence'&&<>
      <Header eyebrow="HOW THE ENGINE WOULD WORK" title="How an assessment becomes an explanation" description="A visual walkthrough for nontechnical readers. It illustrates the process; it does not run NHANES inference or attribute real model effects."/>
      <PredictionStoryV36 profile={profile}/>
+     <FictionalScoringLabV37/>
   </>}
   </div>
   <footer className="v7-portal-foot">FrailtyScope · CDC/NCHS NHANES linked mortality · Population research · Not a clinical prediction service</footer>
