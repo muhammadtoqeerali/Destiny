@@ -43,9 +43,9 @@ def run():
 
                 page.goto(BASE+'/doctor',wait_until='domcontentloaded')
                 expect(page.get_by_role('heading',name='Clinical overview')).to_be_visible()
-                page.get_by_role('button',name='Health profiles').click()
+                page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Health profiles',exact=True).click()
                 expect(page.get_by_role('heading',name='Health profiles')).to_be_visible()
-                page.get_by_role('button',name='Patient assessment').click()
+                page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Patient assessment',exact=True).click()
                 expect(page.get_by_role('heading',name='Patient assessment')).to_be_visible()
                 age=page.get_by_label('Age',exact=True)
                 age.fill('64')
@@ -56,14 +56,14 @@ def run():
                 expect(page.get_by_text('Mobility items reporting difficulty')).to_be_visible()
                 # Structural/nonperformance responses must not count as difficulty.
                 assert page.locator('.v7-summary-line').filter(has_text='Mobility items reporting difficulty').locator('strong').inner_text().strip()=='0'
-                page.get_by_role('button',name='Visit history').click()
+                page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Visit history',exact=True).click()
                 expect(page.get_by_role('heading',name='Follow-up measurements')).to_be_visible()
                 page.get_by_label('Visit date').fill('2026-01-15')
                 # A BMI measurement is required for a visit entry.
                 page.get_by_label('BMI (kg/m²)').fill('26.5')
                 page.get_by_role('button',name='Add visit').click()
                 expect(page.get_by_text('dated assessments entered')).to_be_visible()
-                page.get_by_role('button',name='Model evidence').click()
+                page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Model evidence',exact=True).click()
                 expect(page.get_by_role('heading',name='Understand the model evidence')).to_be_visible()
                 print(f'PASS [{name}] Doctor Portal navigation, validity, and temporary visit behavior')
 

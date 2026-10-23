@@ -25,3 +25,4 @@ done
 [[ "$READY" -eq 1 ]] || { echo 'ERROR: Next.js server did not start'; tail -n 25 "$LOG"; exit 1; }
 printf '=== Browser QA against isolated production build on loopback ===\n'
 FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_qa_v34.py
+FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_doctor_v35.py
