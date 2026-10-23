@@ -1,0 +1,143 @@
+{
+  "schema": "FRAILTYSCOPE_ARTIFACT_ACCEPTANCE_V43",
+  "scope": "PUBLIC_SOURCE_ONLY_SYNTHETIC_ARTIFACT_METADATA",
+  "candidate_id": "fictional_multioutcome_bundle_v38",
+  "model_registry_sha256": "ecebd90def33b4a229f290af2e04f8b3d1742584def39c02a6ea6060199913a3",
+  "validation_receipt_sha256": "4c6a90b5f22880ce900556486ef0855d369f479836fd682d6e128d98200428ec",
+  "synthetic_registry_models": 3,
+  "synthetic_input_features": [
+    "age_signal",
+    "bmi_signal",
+    "phq_signal",
+    "movement_signal",
+    "history_signal",
+    "smoking_signal"
+  ],
+  "synthetic_fit_records": 960,
+  "synthetic_holdback_records": 240,
+  "artifact_binary_loaded": false,
+  "patient_data_used": false,
+  "clinical_inference": false,
+  "registered_clinical_models": 0,
+  "clinical_promotion_decision": "DENIED",
+  "synthetic_metadata_verdict": "STRUCTURALLY_CONSISTENT_FOR_SOFTWARE_TESTS_ONLY",
+  "checks": [
+    {
+      "id": "model_inventory",
+      "status": "MATCHED_FICTIONAL_REGISTRY",
+      "description": "Three invented outcomes and six synthetic features agree with v0.38"
+    },
+    {
+      "id": "artifact_fingerprint",
+      "status": "MATCHED_SOURCE_JSON",
+      "description": "Public synthetic registry SHA256 matched; no model binary opened"
+    },
+    {
+      "id": "preprocessor_identity",
+      "status": "MATCHED_SYNTHETIC_ONLY",
+      "description": "Version and ordered synthetic signals match; no clinical transform"
+    },
+    {
+      "id": "provenance",
+      "status": "SYNTHETIC_ONLY",
+      "description": "Invented training records; no participant data"
+    },
+    {
+      "id": "validation_linkage",
+      "status": "MATCHED_FICTIONAL_ONLY",
+      "description": "v0.41 holdback receipt matches; not independent clinical validation"
+    },
+    {
+      "id": "dictionary_translation",
+      "status": "NOT_APPROVED",
+      "description": "3 partial mappings, 11 unresolved, 0 prediction-time approvals"
+    },
+    {
+      "id": "independent_clinical_evaluation",
+      "status": "MISSING",
+      "description": "Untouched representative external evaluation unavailable"
+    },
+    {
+      "id": "signed_approval",
+      "status": "MISSING",
+      "description": "No signed clinical authorization or controlled environment attestation"
+    },
+    {
+      "id": "restricted_artifact_loader",
+      "status": "NOT_IMPLEMENTED",
+      "description": "No approved clinical binary/preprocessor bundle in registry"
+    },
+    {
+      "id": "governed_serving",
+      "status": "DENIED",
+      "description": "Historical model clinical-use and real-data analysis remain blocked"
+    }
+  ],
+  "clinical_outcomes": [
+    {
+      "id": "five_year_all_cause_mortality",
+      "name": "Approximately five-year all-cause mortality",
+      "decision": "DENIED",
+      "missing": [
+        "approved target and prediction index",
+        "complete source mapping and exact preprocessor",
+        "signed and hash-verified restricted model artifact",
+        "untouched clinical validation and calibration",
+        "governance, clinician oversight and secure patient workflow"
+      ]
+    },
+    {
+      "id": "incident_diabetes",
+      "name": "Future new diabetes diagnosis",
+      "decision": "DENIED",
+      "missing": [
+        "approved target and prediction index",
+        "complete source mapping and exact preprocessor",
+        "signed and hash-verified restricted model artifact",
+        "untouched clinical validation and calibration",
+        "governance, clinician oversight and secure patient workflow"
+      ]
+    },
+    {
+      "id": "incident_stroke",
+      "name": "Future stroke",
+      "decision": "DENIED",
+      "missing": [
+        "approved target and prediction index",
+        "complete source mapping and exact preprocessor",
+        "signed and hash-verified restricted model artifact",
+        "untouched clinical validation and calibration",
+        "governance, clinician oversight and secure patient workflow"
+      ]
+    },
+    {
+      "id": "incident_heart_failure",
+      "name": "Future heart failure",
+      "decision": "DENIED",
+      "missing": [
+        "approved target and prediction index",
+        "complete source mapping and exact preprocessor",
+        "signed and hash-verified restricted model artifact",
+        "untouched clinical validation and calibration",
+        "governance, clinician oversight and secure patient workflow"
+      ]
+    }
+  ],
+  "future_secure_environment_requirements": [
+    "Independent approval of clinical intent, data controller, ethics and jurisdictional device obligations",
+    "Authenticated encrypted artifact store with cryptographic signatures and non-executable safe-load format",
+    "Immutable provenance linking data version, outcome index, feature order and fitted preprocessing graph",
+    "External holdout discrimination, calibration, uncertainty, subgroup analysis and clinical benefit review",
+    "Confidential patient access, consent, event auditing, incident response, rollback and monitoring",
+    "Signed promotion review separated from model developer, with environment-specific authorization"
+  ],
+  "public_evidence_sources": [
+    "research/cases/synthetic_artifact_candidate_v43.json",
+    "web/app/data/fictional-model-registry-v38.json",
+    "web/app/data/validation-readiness-v41.json",
+    "web/app/data/inference-readiness-v39.json",
+    "web/app/data/model-translation-v42.json",
+    "research/cases/nhanes_workflow_v29.json"
+  ],
+  "disclaimer": "This is a synthetic metadata consistency drill. It verifies no real fitted model, no clinical performance, no signed clinical approval and no patient prediction."
+}

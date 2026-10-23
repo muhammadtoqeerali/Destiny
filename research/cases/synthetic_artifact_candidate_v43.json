@@ -1,0 +1,43 @@
+{
+  "schema": "FRAILTYSCOPE_SYNTHETIC_ARTIFACT_CANDIDATE_V43",
+  "candidate_id": "fictional_multioutcome_bundle_v38",
+  "purpose": "SOFTWARE_ACCEPTANCE_REHEARSAL_ONLY",
+  "provenance": "GENERATED_FICTIONAL_EXAMPLES_ONLY",
+  "source_registry": "web/app/data/fictional-model-registry-v38.json",
+  "registry_sha256": "ecebd90def33b4a229f290af2e04f8b3d1742584def39c02a6ea6060199913a3",
+  "source_validation": "web/app/data/validation-readiness-v41.json",
+  "validation_sha256": "4c6a90b5f22880ce900556486ef0855d369f479836fd682d6e128d98200428ec",
+  "model_ids": [
+    "fictional_pathway_a",
+    "fictional_pathway_b",
+    "fictional_pathway_c"
+  ],
+  "input_features": [
+    "age_signal",
+    "bmi_signal",
+    "phq_signal",
+    "movement_signal",
+    "history_signal",
+    "smoking_signal"
+  ],
+  "preprocessor": {
+    "identity": "fixed_synthetic_v38_signals",
+    "version": "synthetic-v38.0",
+    "feature_order_sha256": "324c324877e8e7456b96e13b339083e756832523df0c56d114f6ce6903a8bd85",
+    "logic": "descriptive fictional transforms; not approved clinical preprocessing"
+  },
+  "training": {
+    "kind": "deterministic_fictional_only",
+    "seed": 38062026,
+    "fit_records": 960,
+    "holdback_records": 240
+  },
+  "artifact_kind": "PUBLIC_JSON_COEFFICIENTS_ONLY_NO_BINARY",
+  "artifact_binary_loaded": false,
+  "patient_data_used": false,
+  "clinical_use_permitted": false,
+  "real_data_execution_permitted": false,
+  "clinical_artifact_registered": false,
+  "signed_clinical_authorizations": [],
+  "promotion_requested": false
+}

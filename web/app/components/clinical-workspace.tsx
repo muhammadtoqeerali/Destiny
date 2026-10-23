@@ -15,6 +15,7 @@ import {ReadinessEvidenceV39} from './inference-evidence-v39';
 import {SyntheticServerV40} from './synthetic-server-v40';
 import {ValidationGateV41} from './validation-gate-v41';
 import {ModelTranslationV42} from './model-translation-v42';
+import {ArtifactAcceptanceV43} from './artifact-acceptance-v43';
 
 type Page = 'Population overview' | 'Health profiles' | 'Patient assessment' | 'Visit history' | 'Model evidence';
 type CaseValues = Record<string,string>;
@@ -131,6 +132,7 @@ export function ClinicalWorkspace(){
      <SyntheticServerV40/>
      <ValidationGateV41/>
      <ModelTranslationV42/>
+     <ArtifactAcceptanceV43/>
   </>}
   </div>
   <footer className="v7-portal-foot">FrailtyScope · CDC/NCHS NHANES linked mortality · Population research · Not a clinical prediction service</footer>
