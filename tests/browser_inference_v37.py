@@ -51,7 +51,12 @@ def run():
                 expect(lab.get_by_text('not death, disease, frailty',exact=False)).to_be_visible()
                 lab.get_by_role('button',name='Reset fictional example').click()
                 assert abs(float(meter.get_attribute('aria-valuenow'))-initial)<.01
-                assert not any(path.endswith('/api/predict') or '/api/inference' in path for _,path in requests)
+                # v0.40 legacy contract: GET-only fictional fixture allowed.
+                # Keep the v0.37 api/predict denial while allowing precisely one fixed synthetic GET.
+                assert not any(url.endswith('/api/predict') for _,url in requests),(label,requests)
+                synthetic_reference=BASE+'/api/inference/synthetic?fixture=fictional_reference'
+                assert all(method=='GET' and url==synthetic_reference
+                           for method,url in requests if '/api/inference' in url),(label,requests)
                 assert not any(method=='POST' for method,_ in requests),(label,requests)
                 if label=='mobile':
                     assert page.evaluate('document.documentElement.scrollWidth<=window.innerWidth+2'), 'Horizontal overflow'
