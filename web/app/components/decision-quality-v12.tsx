@@ -1,7 +1,8 @@
 'use client';
 import {useMemo,useState} from 'react';
-import {CartesianGrid,Legend,Line,LineChart,ResponsiveContainer,Tooltip,XAxis,YAxis,Bar,BarChart} from 'recharts';
+import {CartesianGrid,Legend,ResponsiveContainer,Tooltip,XAxis,YAxis,Bar,BarChart} from 'recharts';
 import research from '../../public/data/nhanes-decision-quality-v12.json';
+import { ThresholdSensitivityChart } from './threshold-sensitivity-chart';
 
 type Quality=typeof research;
 const report=research as Quality;
@@ -52,17 +53,9 @@ export function DecisionQualityV12(){
        </select>
       </label>
     </div>
-    <div className="v11-chart"><ResponsiveContainer width="100%" height="100%"><LineChart data={report.thresholds}>
-      <CartesianGrid strokeDasharray="3 3"/><XAxis dataKey="threshold" tick={{fontSize:11}}/><YAxis tick={{fontSize:11}}/><Tooltip/><Legend/>
-      {mode==='tradeoff'?<>
-         <Line type="monotone" dataKey="recall" name="Event sensitivity" stroke="#278e82" strokeWidth={2} dot={false}/>
-         <Line type="monotone" dataKey="false_positive_rate" name="False-positive rate" stroke="#ba734e" strokeWidth={2} dot={false}/>
-       </>:<>
-         <Line type="monotone" dataKey="net_benefit" name="Model net benefit" stroke="#278e82" strokeWidth={2} dot={false}/>
-         <Line type="monotone" dataKey="treat_all_net_benefit" name="Treat all" stroke="#ba734e" strokeWidth={2} dot={false}/>
-         <Line type="monotone" dataKey="treat_none_net_benefit" name="Treat none" stroke="#8295a1" strokeDasharray="4 3" dot={false}/>
-       </>}
-      </LineChart></ResponsiveContainer></div>
+    <div className="v11-chart" style={{height:'auto',minHeight:280}}>
+      <ThresholdSensitivityChart data={report.thresholds} selected={threshold.threshold} mode={mode}/>
+    </div>
     <div className="v12-statrow">
       <div><span>Sensitivity</span><strong>{pct(threshold.recall)}</strong></div>
       <div><span>False-positive rate</span><strong>{pct(threshold.false_positive_rate)}</strong></div>

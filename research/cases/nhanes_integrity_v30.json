@@ -1,0 +1,26 @@
+{
+  "schema": "FRAILTYSCOPE_WORKFLOW_INTEGRITY_V30",
+  "case_id": "nhanes_mortality_v10",
+  "scope": "synthetic_only_integrity",
+  "route": "BLOCKED_FOR_NEW_ANALYSIS",
+  "validation_role": "synthetic_development_oof_only",
+  "related_v29_protocol": "research/cases/nhanes_workflow_v29.json",
+  "source_contract_paths": [
+    "research/cases/nhanes_governance_v22.json",
+    "research/cases/nhanes_dictionary_timing_v23.json",
+    "research/cases/nhanes_harmonization_v24.json",
+    "research/cases/nhanes_foldsafe_v25.json",
+    "research/cases/nhanes_task_models_v26.json",
+    "research/cases/nhanes_temporal_v27.json",
+    "research/cases/nhanes_reliability_v28.json",
+    "research/cases/nhanes_workflow_v29.json"
+  ],
+  "holdout_history": "previously_inspected",
+  "prediction_index_status": "provisional",
+  "candidate_selection": "not_performed",
+  "study_protocol_clearance": false,
+  "real_data_execution_permitted": false,
+  "public_export_permitted": false,
+  "models_saved": false,
+  "independent_validation": false
+}
