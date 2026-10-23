@@ -6,6 +6,7 @@ import { Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContai
 import study from '../../public/data/nhanes-aggregate.json';
 import enhanced from '../../public/data/nhanes-refinement.json';
 import profiles from '../../public/data/nhanes-cohort-profile.json';
+import { ResearchBoundaryNotice } from './research-boundary-notice';
 
 type Page = 'Population overview' | 'Health profiles' | 'Patient assessment' | 'Visit history' | 'Model evidence';
 type CaseValues = Record<string,string>;
@@ -20,6 +21,13 @@ const LABELS:Record<string,string> = {
 const CHRONIC=['heart_failure','coronary_disease','stroke','cancer','diabetes','hypertension','ever_smoked'];
 const MOBILITY=['walking_difficulty','stairs_difficulty','stooping_difficulty'];
 const clinicalPct=(x:number)=>(x*100).toFixed(1)+'%';
+const isValidAssessment=(key:string, raw:string)=>{
+  if(raw==='')return false;
+  if(key==='age'){const n=Number(raw);return Number.isInteger(n)&&n>=65&&n<=110;}
+  if(key==='bmi'){const n=Number(raw);return Number.isFinite(n)&&n>=10&&n<=70;}
+  if(key==='phq9_score'){const n=Number(raw);return Number.isInteger(n)&&n>=0&&n<=27;}
+  return true;
+};
 function Header({eyebrow,title,description}:{eyebrow:string;title:string;description:string}){
  return <div className="v7-heading"><span className="nh-kicker">{eyebrow}</span><h2>{title}</h2><p>{description}</p></div>;
 }
@@ -37,9 +45,10 @@ export function ClinicalWorkspace(){
  const [visitBmi,setVisitBmi]=useState('');
  const [visitPhq,setVisitPhq]=useState('');
  const setField=(key:string,value:string)=>setProfile(p=>({...p,[key]:value}));
- const recorded=Object.values(profile).filter(v=>v!==''&&v!==undefined).length;
+ const recorded=Object.entries(profile).filter(([key,value])=>isValidAssessment(key,value)).length;
+ const invalidEntries=Object.entries(profile).filter(([key,value])=>value!==''&&!isValidAssessment(key,value));
  const present=CHRONIC.filter(k=>profile[k]==='Yes');
- const mobility=MOBILITY.filter(k=>profile[k]&&profile[k]!=='No difficulty').map(k=>LABELS[k]);
+ const mobility=MOBILITY.filter(k=>['Some difficulty','Much difficulty','Unable to do'].includes(profile[k])).map(k=>LABELS[k]);
  const total=Object.keys(LABELS).length;
  const trend=useMemo(()=>visits.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(x=>({...x,period:x.date})),[visits]);
  const addVisit=()=>{
@@ -53,12 +62,13 @@ export function ClinicalWorkspace(){
  return <div className="v7-portal">
   <header className="v7-lead"><div><span className="nh-kicker"><Stethoscope size={17}/> CLINICAL INTELLIGENCE</span><h1>Clinical overview</h1><p>Population evidence, structured health assessments and visit-by-visit measurements.</p></div><span className="v7-lead-symbol"><HeartPulse size={44}/></span></header>
   <nav className="v7-topnav" aria-label="Doctor workspace">{PAGES.map(t=><button key={t} aria-current={page===t?'page':undefined} className={page===t?'active':''} onClick={()=>setPage(t)}>{t}</button>)}</nav>
+  <ResearchBoundaryNotice/>
   {page==='Population overview'&&<>
    <div className="v7-stats"><div><span>Study participants</span><strong>{study.counts.total.toLocaleString()}</strong><small>NHANES 2011–2014 · 65+</small></div><div><span>Later-cycle participants</span><strong>{study.counts.test.toLocaleString()}</strong><small>2013–2014 evaluation cohort</small></div><div><span>Recorded mortality events</span><strong>{study.counts.test_events}</strong><small>Approximate five-year horizon</small></div><div><span>Observed event fraction</span><strong>{clinicalPct(study.counts.test_events/study.counts.test)}</strong><small>Unweighted study subset</small></div></div>
    <div className="v7-two"><Box title="Participant age distribution" desc="Counts across the combined eligible analysis sample"><div className="v7-chart"><ResponsiveContainer width="100%" height="100%"><BarChart data={enhanced.ageDistribution}><CartesianGrid stroke="#eef3f1" strokeDasharray="4 4"/><XAxis dataKey="group" tick={{fontSize:11}}/><YAxis allowDecimals={false} tick={{fontSize:11}}/><Tooltip/><Bar dataKey="count" fill="#2b8980" name="Participants" radius={[6,6,0,0]}/></BarChart></ResponsiveContainer></div><p className="v7-fine">Public NHANES ages of 80 and above are grouped together.</p></Box>
    <Box title="Health domains in the study" desc="Baseline information available to the research models"><div className="v7-domain-list">{[['Mobility','Walking, stairs and stooping difficulty'],['Physical health','BMI, diabetes, stroke, cardiovascular disease and cancer'],['Mental health','PHQ-9 depressive-symptom score'],['Demographics','Age, sex and smoking history']].map(([a,b])=><div key={a}><span className="v7-dot"/><strong>{a}</strong><p>{b}</p></div>)}</div></Box></div>
    <div className="v7-two"><Box title="Data availability" desc="Observed values before missing-data preprocessing"><div className="v7-coverage">{enhanced.featureCoverage.slice().sort((a,b)=>a.observed-b.observed).map(f=><div className="v7-cover-row" key={f.name}><span>{f.name}</span><div className="v7-cover-track"><i style={{width:f.observed+'%'}}/></div><b>{f.observed.toFixed(1)}%</b></div>)}</div></Box>
-   <Box title="Clinical study endpoint" desc="All-cause mortality follow-up from public linked records"><div className="v7-summary-line"><span>Outcome</span><strong>All-cause mortality</strong></div><div className="v7-summary-line"><span>Observation horizon</span><strong>Approximately five years</strong></div><div className="v7-summary-line"><span>Model</span><strong>{enhanced.selectedModel}</strong></div><div className="v7-summary-line"><span>Held-out ROC-AUC</span><strong>{enhanced.test.roc_auc.toFixed(3)}</strong></div><div className="v7-info"><Info size={18}/> Cohort statistics describe research participants and do not establish individual prognosis.</div></Box></div>
+   <Box title="Clinical study endpoint" desc="All-cause mortality follow-up from public linked records"><div className="v7-summary-line"><span>Outcome</span><strong>All-cause mortality</strong></div><div className="v7-summary-line"><span>Observation horizon</span><strong>Approximately five years</strong></div><div className="v7-summary-line"><span>Model</span><strong>{enhanced.selectedModel}</strong></div><div className="v7-summary-line"><span>Historical later-cycle ROC-AUC</span><strong>{enhanced.test.roc_auc.toFixed(3)}</strong></div><div className="v7-info"><Info size={18}/> Cohort statistics describe research participants and do not establish individual prognosis.</div></Box></div>
   </>}
   {page==='Health profiles'&&<>
    <Header eyebrow="COHORT HEALTH CHARACTERISTICS" title="Health profiles" description="Observed health indicators across NHANES participant groups, using published aggregate statistics rather than individual records."/>
@@ -84,11 +94,11 @@ export function ClinicalWorkspace(){
        <label>BMI (kg/m²) <input type="number" step="0.1" min="10" max="70" placeholder="e.g. 26.5" value={profile.bmi||''} onChange={e=>setField('bmi',e.target.value)} /></label>
        <label>PHQ-9 score <input type="number" step="1" min="0" max="27" placeholder="0–27" value={profile.phq9_score||''} onChange={e=>setField('phq9_score',e.target.value)} /></label>
        </div></Box>
-     <Box title="Physical function"><div className="v7-form-grid">{MOBILITY.map(k=><label key={k}>{LABELS[k]}<select value={profile[k]||''} onChange={e=>setField(k,e.target.value)}><option value="">Not recorded</option><option>No difficulty</option><option>Some difficulty</option><option>Much difficulty</option><option>Unable to do</option></select></label>)}</div></Box>
+     <Box title="Physical function"><div className="v7-form-grid">{MOBILITY.map(k=><label key={k}>{LABELS[k]}<select value={profile[k]||''} onChange={e=>setField(k,e.target.value)}><option value="">Not recorded</option><option>No difficulty</option><option>Some difficulty</option><option>Much difficulty</option><option>Unable to do</option><option>Does not do activity</option><option>Not asked (structural skip)</option><option>Refused</option><option>Don't know</option></select></label>)}</div><p className="v7-fine">Activity nonparticipation, structural skip and refusal are distinct missingness/status categories, not ordered difficulty severities.</p></Box>
      <Box title="Health history" desc="A missing response is not treated as a negative response"><div className="v7-form-grid">{CHRONIC.map(k=><label key={k}>{LABELS[k]}<select value={profile[k]||''} onChange={e=>setField(k,e.target.value)}><option value="">Not recorded</option><option>Yes</option><option>No</option></select></label>)}</div></Box>
      <button className="v7-clear" onClick={()=>setProfile({})}><Trash2 size={16}/> Clear assessment</button>
-    </div><div className="v7-profile-sidebar"><Box title="Assessment summary"><div className="v7-completion"><strong>{recorded} / {total}</strong><span>fields recorded</span></div><div className="v7-completion-track"><i style={{width:100*recorded/total+'%'}}/></div><div className="v7-summary-line"><span>Health history entries marked Yes</span><strong>{present.length}</strong></div><div className="v7-summary-line"><span>Mobility items reporting difficulty</span><strong>{mobility.length}</strong></div><div className="v7-summary-line"><span>Fields unrecorded</span><strong>{total-recorded}</strong></div><p className="v7-fine">This is a descriptive summary of entered measurements, not a disease count or predictive score.</p></Box>
-       <Box title="Recorded observations">{recorded===0?<p className="v7-empty">No measurements entered. Select a field to begin a new assessment.</p>:<div className="v7-values">{Object.entries(LABELS).filter(([k])=>profile[k]).map(([k,label])=><div key={k}><span>{label}</span><strong>{profile[k]}</strong></div>)}</div>}</Box>
+    </div><div className="v7-profile-sidebar"><Box title="Assessment summary"><div className="v7-completion"><strong>{recorded} / {total}</strong><span>valid fields recorded</span></div>{invalidEntries.length>0&&<p role="alert" className="v7-fine">{invalidEntries.length} numeric field(s) are outside the permitted range or not integers. Correct them before counting this assessment as complete.</p>}<div className="v7-completion-track"><i style={{width:100*recorded/total+'%'}}/></div><div className="v7-summary-line"><span>Health history entries marked Yes</span><strong>{present.length}</strong></div><div className="v7-summary-line"><span>Mobility items reporting difficulty</span><strong>{mobility.length}</strong></div><div className="v7-summary-line"><span>Fields unrecorded</span><strong>{total-recorded}</strong></div><p className="v7-fine">This is a descriptive summary of entered measurements, not a disease count or predictive score.</p></Box>
+       <Box title="Recorded observations">{recorded===0?<p className="v7-empty">No measurements entered. Select a field to begin a new assessment.</p>:<div className="v7-values">{Object.entries(LABELS).filter(([k])=>isValidAssessment(k,profile[k]||'')).map(([k,label])=><div key={k}><span>{label}</span><strong>{profile[k]}</strong></div>)}</div>}</Box>
        <Box title="Research model status"><div className="v7-research-status"><Info size={20}/><div><strong>Population-level evidence available</strong><p>The current NHANES benchmark evaluates all-cause mortality across survey participants. This profile does not calculate an individual risk estimate.</p></div></div></Box>
     </div></div>
   </>}

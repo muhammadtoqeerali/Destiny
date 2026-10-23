@@ -52,7 +52,7 @@ export function EvidenceWorkbenchV11(){
    brier:c.validation.brier,auc:c.validation.roc_auc??0,cv:c.cv_score}));
  return <div className="v11-lab">
    <div className="v7-heading"><span className="nh-kicker">DATA SCIENCE WORKBENCH</span>
-    <h2>Dataset to model outcome</h2><p>Reproducible cohort analysis, fitted transformation evidence, model comparison, and independent evaluation.</p></div>
+    <h2>Dataset to model outcome</h2><p>Historical cohort analysis, fitted transformation evidence, model comparison, and previously inspected later-cycle evaluation; not fresh independent validation.</p></div>
    <nav className="v11-nav" aria-label="Analysis stages">{STAGES.map((s,i)=><button key={s} onClick={()=>setStage(s)} className={stage===s?'active':''}><small>{String(i+1).padStart(2,'0')}</small>{s}</button>)}</nav>
    {stage==='Dataset intelligence'&&<>
     <div className="v11-metrics"><Metric label="Study observations" value={workbench.counts.all.toLocaleString()} context="CDC public-use NHANES"/>

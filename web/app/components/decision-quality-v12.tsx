@@ -17,7 +17,7 @@ function DataTable({cols,rows}:{cols:string[];rows:(string|number)[][]}){
  return <div className="v7-table-wrap"><table className="v7-table"><thead><tr>{cols.map((c,i)=><th key={i}>{c}</th>)}</tr></thead><tbody>{rows.map((r,i)=><tr key={i}>{r.map((x,j)=><td key={j}>{x}</td>)}</tr>)}</tbody></table></div>;
 }
 export function DecisionQualityV12(){
- const [selectedThreshold,setSelectedThreshold]=useState(String(locked));
+ const [selectedThreshold,setSelectedThreshold]=useState(String(closest.threshold));
  const [dimension,setDimension]=useState<'Age'|'Sex'>('Age');
  const [mode,setMode]=useState<'tradeoff'|'benefit'>('tradeoff');
  const threshold=report.thresholds.find(x=>String(x.threshold)===selectedThreshold)||closest;
@@ -30,14 +30,14 @@ export function DecisionQualityV12(){
  return <div className="v11-lab v12-lab">
    <div className="v7-heading"><span className="nh-kicker">MODEL EVALUATION & DECISION QUALITY</span>
     <h2>Robustness, error trade-offs and calibration</h2>
-    <p>Development-locked model and threshold; later-cycle observations are used for evaluation only. All results are NHANES aggregates.</p></div>
+    <p>Historical development-selected model and threshold; 2013–2014 observations were previously inspected in earlier releases. These are published NHANES aggregates, not fresh independent validation.</p></div>
    <div className="v11-metrics">
     <div className="v11-metric"><small>Later-cycle sample</small><strong>{report.counts.evaluation.toLocaleString()}</strong><span>{report.counts.events} observed events</span></div>
     <div className="v11-metric"><small>Discrimination</small><strong>{fmt(report.evaluation.roc_auc,3)}</strong><span>ROC-AUC · unchanged fitted model</span></div>
     <div className="v11-metric"><small>Probability accuracy</small><strong>{fmt(report.evaluation.brier,3)}</strong><span>Brier score · lower is better</span></div>
     <div className="v11-metric"><small>Locked decision threshold</small><strong>{fmt(locked,2)}</strong><span>Chosen during development, not from evaluation</span></div>
    </div>
-   <Panel title="Uncertainty around the final evaluation" sub="95% exploratory participant-IID bootstrap percentile intervals. These are not NHANES survey-design-adjusted confidence intervals.">
+   <Panel title="Exploratory uncertainty around historical evaluation" sub="95% exploratory participant-IID bootstrap percentile intervals. These are not NHANES survey-design-adjusted confidence intervals.">
     <DataTable cols={['Statistic','Point estimate','Lower 95%','Upper 95%']} rows={report.uncertainty.intervals.map(x=>[
       x.metric.replaceAll('_',' '),fmt(x.estimate,4),fmt(x.lower,4),fmt(x.upper,4)])}/>
     <p className="v11-fine">{report.uncertainty.replicates} bootstrap resamples · no model retraining · no claim of external clinical validation.</p>
@@ -90,7 +90,7 @@ export function DecisionQualityV12(){
     </>:<p className="v11-fine">No risk bands meet the predeclared minimum denominators and outcome counts for publication.</p>}
     <p className="v11-fine">Some bands are suppressed when they contain fewer than 50 records or fewer than 10 events or non-events. No individual records are displayed.</p>
    </Panel>
-   {report.experiments&&<Panel title="Independent experiment records: descriptive comparison" sub="All results use a later-cycle cohort of 1,257 with 246 outcomes. Model-building protocols differ; this is not a paired significance test.">
+   {report.experiments&&<Panel title="Distinct historical experiments: descriptive comparison" sub="All results use a later-cycle cohort of 1,257 with 246 outcomes. Model-building protocols differ; this is not a paired significance test.">
       <DataTable cols={['Experiment','ROC-AUC','Brier','Recall','Precision','False positives','Threshold']} rows={report.experiments.rows.map(x=>[
         x.experiment,fmt(x.roc_auc,4),fmt(x.brier,4),pct(x.recall),pct(x.precision),x.false_positives,x.threshold===null?'—':fmt(x.threshold,3)])}/>
       <p className="v11-fine">{report.experiments.limitation}</p>
