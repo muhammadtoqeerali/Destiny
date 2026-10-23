@@ -7,7 +7,7 @@ import refined from '../../public/data/nhanes-refinement.json';
 import { EvidenceWorkbenchV11 } from './evidence-workbench-v11';
 import { DecisionQualityV12 } from './decision-quality-v12';
 import { ResearchBoundaryNotice } from './research-boundary-notice';
-import { EngineStudioV32 } from './engine-studio-v32';
+import { EngineStudioV33 } from './engine-studio-v33';
 
 type Section = 'Engine studio' | 'Dataset' | 'Preprocessing' | 'Model training' | 'Performance' | 'Interpretability' | 'Benchmark' | 'Deep analysis' | 'Decision quality';
 const steps:Section[]=['Engine studio','Dataset','Preprocessing','Model training','Performance','Interpretability','Benchmark','Deep analysis','Decision quality'];
@@ -20,7 +20,7 @@ export function AdminResearchHub(){
  return <div className="v7-portal v7-admin"><header className="v7-lead"><div><span className="nh-kicker"><Database size={17}/> RESEARCH OPERATIONS</span><h1>Data & model intelligence</h1><p>NHANES linked-mortality analysis · preprocessing · training · performance · interpretability.</p></div><span className="v7-lead-symbol"><BrainCircuit size={42}/></span></header>
    <nav aria-label="Model development stages" className="v7-topnav">{steps.map((t,i)=><button key={t} className={tab===t?'active':''} onClick={()=>setTab(t)}><span className="v7-stage-n">{String(i+1).padStart(2,'0')}</span> {t}</button>)}</nav>
    <ResearchBoundaryNotice/>
-   {tab==='Engine studio'&&<EngineStudioV32/>}
+   {tab==='Engine studio'&&<EngineStudioV33/>}
     {tab==='Dataset'&&<>
     <Lead code="DATASET EXPLORATION" title="Cohort characteristics" subtitle="Linked baseline questionnaires, examination data and public-use mortality follow-up across two NHANES cycles."/>
     <div className="v7-stats"><div><span>Eligible participants</span><strong>{refined.counts.total.toLocaleString()}</strong><small>Age 65+ · 2011–2014</small></div><div><span>Development cohort</span><strong>{refined.counts.development.toLocaleString()}</strong><small>2011–2012</small></div><div><span>Later-cycle sample</span><strong>{refined.counts.test.toLocaleString()}</strong><small>2013–2014</small></div><div><span>Events in later cycle</span><strong>{refined.counts.test_events}</strong><small>Approximate 5-year mortality</small></div></div>

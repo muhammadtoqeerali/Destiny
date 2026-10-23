@@ -22,10 +22,12 @@ def test_public_demo_does_not_bypass_secure_admin_checks():
 def test_public_demo_not_advertised_as_secure_auth():
     login=txt('web/app/admin/login/page.tsx')
     admin=txt('web/app/admin/page.tsx')
-    assert 'Public demo passcode:' in login
-    assert 'not a secure administrator login' in login
-    assert 'Public demonstration workspace' in admin
-    assert 'not secure research administration' in admin
+    assert 'Public demo passcode:' not in login
+    assert 'admin123' not in login
+    assert 'not a secure administrator login' not in login
+    assert 'Public demonstration workspace' not in admin
+    assert 'admin123' not in admin
+    assert 'not secure research administration' not in admin
     assert 'canViewPublicDashboard()' in login
     assert 'canViewPublicDashboard()' in admin
 
@@ -42,7 +44,7 @@ def test_demo_login_flow_is_explicit_read_only():
 def test_engine_tab_is_first_and_legacy_views_remain():
     hub=txt('web/app/components/multi-outcome-admin.tsx')
     assert "useState<Section>('Engine studio')" in hub
-    assert "{tab==='Engine studio'&&<EngineStudioV32/>}" in hub
+    assert "{tab==='Engine studio'&&<EngineStudioV33/>}" in hub
     for tab in ('Dataset','Preprocessing','Model training','Performance',
                 'Interpretability','Benchmark','Deep analysis','Decision quality'):
         assert "'"+tab+"'" in hub
