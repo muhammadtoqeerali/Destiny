@@ -1,0 +1,349 @@
+{
+  "schema": "FRAILTYSCOPE_SOURCE_TO_FORM_PROMOTION_V42",
+  "scope": "PUBLIC_SOURCE_DOCUMENTS_ONLY_NO_PATIENT_OR_MODEL_DATA",
+  "case_id": "nhanes_mortality_v10",
+  "clinical_inference": false,
+  "registered_clinical_models": 0,
+  "dictionary_candidate_coverage": 14,
+  "verified_harmonization_source_mappings": 3,
+  "unmapped_harmonization_features": 11,
+  "prediction_time_approvals": 0,
+  "source_dictionary_is_not_approved_runtime_mapping": true,
+  "clinical_promotion_decision": "DENIED",
+  "sources": [
+    "research/cases/nhanes_mortality_v10.json",
+    "research/cases/nhanes_dictionary_timing_v23.json",
+    "research/cases/nhanes_harmonization_v24.json",
+    "web/app/data/validation-readiness-v41.json"
+  ],
+  "features": [
+    {
+      "id": "age",
+      "form_label": "Age (years)",
+      "current_form_input": "number, 65–110",
+      "candidate_source_file": "DEMO_G.XPT",
+      "candidate_source_variables": [
+        "RIDAGEYR"
+      ],
+      "dictionary_kind": "numeric",
+      "dictionary_units": "years, public-use top-coded at 80",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "NHANES public-use ages 80+ are top-coded; Doctor form permits 81–110. Never infer unobserved ages from RIDAGEYR.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "bmi",
+      "form_label": "Body mass index (kg/m²)",
+      "current_form_input": "number, 10–70",
+      "candidate_source_file": "BMX_G.XPT",
+      "candidate_source_variables": [
+        "BMXBMI"
+      ],
+      "dictionary_kind": "numeric",
+      "dictionary_units": "kg/m2",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Existing research source logic documents 12–70, while Doctor input currently permits 10–70.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "walking_difficulty",
+      "form_label": "Walking difficulty",
+      "current_form_input": "descriptive response or missing status",
+      "candidate_source_file": "PFQ_G.XPT",
+      "candidate_source_variables": [
+        "PFQ061B"
+      ],
+      "dictionary_kind": "ordinal",
+      "dictionary_units": "coded response 1-4",
+      "source_mapping_status": "PARTIAL_SOURCE_VERIFIED_2011_2012",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "NHANES PFQ uses coded 1–4 difficulty, 5 nonperformance and item-specific PFQ054 structural skips; free form status text is not an approved source transform.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "stairs_difficulty",
+      "form_label": "Stair difficulty",
+      "current_form_input": "descriptive response or missing status",
+      "candidate_source_file": "PFQ_G.XPT",
+      "candidate_source_variables": [
+        "PFQ061C"
+      ],
+      "dictionary_kind": "ordinal",
+      "dictionary_units": "coded response 1-4",
+      "source_mapping_status": "PARTIAL_SOURCE_VERIFIED_2011_2012",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "NHANES PFQ uses coded 1–4 difficulty, 5 nonperformance and item-specific PFQ054 structural skips; free form status text is not an approved source transform.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "stooping_difficulty",
+      "form_label": "Stooping difficulty",
+      "current_form_input": "descriptive response or missing status",
+      "candidate_source_file": "PFQ_G.XPT",
+      "candidate_source_variables": [
+        "PFQ061D"
+      ],
+      "dictionary_kind": "ordinal",
+      "dictionary_units": "coded response 1-4",
+      "source_mapping_status": "PARTIAL_SOURCE_VERIFIED_2011_2012",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Code 5 nonperformance must be preserved; the PFQ054 structural skip for walking/stairs does not apply to stooping.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "heart_failure",
+      "form_label": "Heart failure",
+      "current_form_input": "Yes / No / not recorded",
+      "candidate_source_file": "MCQ_G.XPT",
+      "candidate_source_variables": [
+        "MCQ160B"
+      ],
+      "dictionary_kind": "binary",
+      "dictionary_units": "binary indicator",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "coronary_disease",
+      "form_label": "Coronary disease",
+      "current_form_input": "Yes / No / not recorded",
+      "candidate_source_file": "MCQ_G.XPT",
+      "candidate_source_variables": [
+        "MCQ160C"
+      ],
+      "dictionary_kind": "binary",
+      "dictionary_units": "binary indicator",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "stroke",
+      "form_label": "Stroke",
+      "current_form_input": "Yes / No / not recorded",
+      "candidate_source_file": "MCQ_G.XPT",
+      "candidate_source_variables": [
+        "MCQ160F"
+      ],
+      "dictionary_kind": "binary",
+      "dictionary_units": "binary indicator",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "cancer",
+      "form_label": "Cancer",
+      "current_form_input": "Yes / No / not recorded",
+      "candidate_source_file": "MCQ_G.XPT",
+      "candidate_source_variables": [
+        "MCQ220"
+      ],
+      "dictionary_kind": "binary",
+      "dictionary_units": "binary indicator",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "diabetes",
+      "form_label": "Diabetes",
+      "current_form_input": "Yes / No / not recorded",
+      "candidate_source_file": "DIQ_G.XPT",
+      "candidate_source_variables": [
+        "DIQ010"
+      ],
+      "dictionary_kind": "binary",
+      "dictionary_units": "binary indicator",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "hypertension",
+      "form_label": "Hypertension",
+      "current_form_input": "Yes / No / not recorded",
+      "candidate_source_file": "BPQ_G.XPT",
+      "candidate_source_variables": [
+        "BPQ020"
+      ],
+      "dictionary_kind": "binary",
+      "dictionary_units": "binary indicator",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "ever_smoked",
+      "form_label": "Smoking history",
+      "current_form_input": "Yes / No / not recorded",
+      "candidate_source_file": "SMQ_G.XPT",
+      "candidate_source_variables": [
+        "SMQ020"
+      ],
+      "dictionary_kind": "binary",
+      "dictionary_units": "binary indicator",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "phq9_score",
+      "form_label": "PHQ-9 total (0–27)",
+      "current_form_input": "integer, 0–27",
+      "candidate_source_file": "DPQ_G.XPT",
+      "candidate_source_variables": [
+        "DPQ010",
+        "DPQ020",
+        "DPQ030",
+        "DPQ040",
+        "DPQ050",
+        "DPQ060",
+        "DPQ070",
+        "DPQ080",
+        "DPQ090"
+      ],
+      "dictionary_kind": "derived_numeric",
+      "dictionary_units": "PHQ-9 total, 0-27",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Nine DPQ item responses must be validated at the source before a total is derived; a manually entered total is not equivalent source evidence.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    },
+    {
+      "id": "sex",
+      "form_label": "Sex",
+      "current_form_input": "Female / Male / not recorded",
+      "candidate_source_file": "DEMO_G.XPT",
+      "candidate_source_variables": [
+        "RIAGENDR"
+      ],
+      "dictionary_kind": "categorical",
+      "dictionary_units": "not applicable",
+      "source_mapping_status": "UNMAPPED_IN_V24",
+      "prediction_time_approved": false,
+      "runtime_transform_approved": false,
+      "form_equivalence_verified": false,
+      "review_gaps": [
+        "Survey raw codes and human-readable form choices require a reviewed, exact categorical transform.",
+        "Prediction-time availability and raw-code-to-form equivalence require independent review."
+      ]
+    }
+  ],
+  "outcome_promotion": [
+    {
+      "id": "five_year_all_cause_mortality",
+      "name": "Approximately five-year all-cause mortality",
+      "current_status": "BLOCKED_HISTORICAL_CASE",
+      "artifact_approved": false,
+      "preprocessor_approved": false,
+      "outcome_and_index_approved": false,
+      "independent_validation_approved": false,
+      "calibration_and_subgroups_approved": false,
+      "data_governance_and_security_approved": false,
+      "clinical_prediction_available": false
+    },
+    {
+      "id": "incident_diabetes",
+      "name": "Future new diabetes diagnosis",
+      "current_status": "NOT_TRAINED_OR_VALIDATED",
+      "artifact_approved": false,
+      "preprocessor_approved": false,
+      "outcome_and_index_approved": false,
+      "independent_validation_approved": false,
+      "calibration_and_subgroups_approved": false,
+      "data_governance_and_security_approved": false,
+      "clinical_prediction_available": false
+    },
+    {
+      "id": "incident_stroke",
+      "name": "Future stroke",
+      "current_status": "NOT_TRAINED_OR_VALIDATED",
+      "artifact_approved": false,
+      "preprocessor_approved": false,
+      "outcome_and_index_approved": false,
+      "independent_validation_approved": false,
+      "calibration_and_subgroups_approved": false,
+      "data_governance_and_security_approved": false,
+      "clinical_prediction_available": false
+    },
+    {
+      "id": "incident_heart_failure",
+      "name": "Future heart failure",
+      "current_status": "NOT_TRAINED_OR_VALIDATED",
+      "artifact_approved": false,
+      "preprocessor_approved": false,
+      "outcome_and_index_approved": false,
+      "independent_validation_approved": false,
+      "calibration_and_subgroups_approved": false,
+      "data_governance_and_security_approved": false,
+      "clinical_prediction_available": false
+    }
+  ],
+  "scientific_next_actions": [
+    "Obtain ethics, controller, clinical intent and permissible source-access approvals.",
+    "Freeze index, predictor lookback, missingness and target/censoring definitions for every outcome.",
+    "Source-verify and independently review all 14 feature transforms for each target population and wave.",
+    "Resolve age top-coding, BMI range, PHQ-9 provenance and PFQ skip/nonperformance mismatches.",
+    "Register and hash-check an authorized model and its exact preprocessor in a restricted environment.",
+    "Complete representative untouched external evaluation, calibration, uncertainty and subgroup analyses.",
+    "Require secure consent, authentication, audit, clinician oversight, medical-device review and rollback.",
+    "Validate feature attributions against the exact approved fitted model and preprocessing version."
+  ],
+  "disclaimer": "Candidate source variables are documentary references only. This receipt neither scores patients nor attests a deployable model."
+}
