@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Isolated local-production-server browser QA. Never targets real private data.
 set -euo pipefail
-ROOT="${FRAILTYSCOPE_ROOT:-/mnt/hdd16T/ToqeerHomeBackup/toqeer/NTNU}"
+ROOT="${FRAILTYSCOPE_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 cd "$ROOT"
 PY="${FRAILTYSCOPE_QA_PYTHON:-.venv/bin/python}"
 "$PY" -c 'import playwright.sync_api' || { echo 'ERROR: Install Playwright in the QA Python environment: python -m pip install playwright==1.56.0'; exit 1; }
@@ -29,3 +29,4 @@ FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_doctor_v35.py
 FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_doctor_v36.py
 FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_inference_v37.py
 FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_platform_v38.py
+FRAILTYSCOPE_QA_BASE="http://127.0.0.1:$PORT" "$PY" tests/browser_readiness_v39.py

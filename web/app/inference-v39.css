@@ -1,0 +1,35 @@
+/* v0.39 public research readiness evidence; scoped, keyboard-accessible, no clinical scoring. */
+.v39-evidence{border:1px solid #ccdde4;background:linear-gradient(155deg,#fff,#f2f8fa);border-radius:20px;padding:clamp(18px,3vw,30px);display:flex;flex-direction:column;gap:18px;color:#163b4b}
+.v39-evidence-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.v39-evidence-head>div{max-width:760px}
+.v39-evidence h3{font-size:clamp(20px,2vw,27px);line-height:1.3;margin:8px 0;font-weight:800;color:#123648}
+.v39-evidence p{font-size:13px;line-height:1.75;margin:6px 0;color:#3d5d69}
+.v39-kicker{font-size:10px;letter-spacing:1.1px;font-weight:800;color:#116271;display:flex;gap:8px;align-items:center}
+.v39-status{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;border:1px solid #e4c9ad;border-radius:8px;background:#fff3e6;color:#864b0a;padding:9px 12px}
+.v39-evidence-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.v39-evidence-metrics>div{display:flex;flex-direction:column;gap:4px;border-radius:12px;background:#fff;border:1px solid #dde9ed;padding:17px}
+.v39-evidence-metrics strong{font-size:clamp(22px,2.6vw,34px);font-weight:850;line-height:1.15;color:#174b5d}
+.v39-evidence-metrics span{font-size:11px;line-height:1.5;color:#476674}
+.v39-outcome-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.v39-outcome-tabs button{font-family:inherit;font-size:12px;line-height:1.5;font-weight:650;text-align:left;border:1px solid #ccdee4;background:#fff;color:#3b6070;border-radius:10px;padding:13px;min-height:66px;cursor:pointer}
+.v39-outcome-tabs button:hover{background:#f1f8f9}
+.v39-outcome-tabs button.active{border-color:#137184;box-shadow:inset 0 0 0 1px #137184;background:#e7f6f6;color:#0e4c5b}
+.v39-outcome-detail{background:#fff;border:1px solid #d9e7e9;border-radius:13px;padding:18px}
+.v39-detail-label{display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:#185268}
+.v39-detail-label strong{font-size:15px}
+.v39-detail-label span{font-size:10px;color:#854b19;background:#fdf1e5;padding:5px 8px;border-radius:5px;font-weight:800}
+.v39-outcome-detail p:last-child{display:flex;align-items:flex-start;gap:7px;color:#7b4b1d;font-size:12px}
+.v39-factors{background:#fff;border:1px solid #d9e7e9;border-radius:10px;padding:0 15px}
+.v39-factors summary{cursor:pointer;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;min-height:50px;color:#194b5b}
+.v39-factors summary svg:last-child{margin-left:auto}
+.v39-factors ol{padding:0 0 12px;margin:0;list-style:none;display:grid;gap:8px}
+.v39-factors li{display:flex;align-items:flex-start;gap:10px;background:#f7fafb;border-radius:7px;padding:10px;font-size:12px;line-height:1.6}
+.v39-factors li strong{min-width:160px;max-width:210px;color:#19495a;text-transform:capitalize}
+.v39-factors li span{color:#516a75}
+.v39-factors li>svg{flex-shrink:0;color:#487c85;margin-top:2px}
+.v39-evidence-foot{font-size:11px;color:#53717c;line-height:1.65;border-top:1px solid #d8e5e8;padding-top:13px}
+.v39-evidence-foot code{font-size:10px;overflow-wrap:anywhere}
+.v39-evidence button:focus-visible,.v39-evidence summary:focus-visible{outline:3px solid #cb831a;outline-offset:3px}
+@media(max-width:800px){.v39-outcome-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.v39-factors li{flex-direction:column;gap:3px}}
+@media(max-width:460px){.v39-evidence-metrics{grid-template-columns:1fr 1fr}.v39-evidence-metrics>div:last-child{grid-column:span 2}.v39-outcome-tabs{grid-template-columns:1fr}.v39-outcome-tabs button{min-height:48px}}
+@media(prefers-reduced-motion:reduce){.v39-evidence *{scroll-behavior:auto!important;transition:none!important}}
