@@ -1,0 +1,220 @@
+{
+  "schema": "FRAILTYSCOPE_INTERVIEW_NHANES_MOBILITY_V49",
+  "case_id": "public_nhanes_mobility_2015_2018_v48",
+  "basis": "USER_SUPPLIED_AGGREGATE_EXCERPT_REQUIRES_LOCAL_REPORT_VERIFICATION",
+  "source": "CDC_PUBLIC_USE_NHANES_2015_2018",
+  "task": "CROSS_SECTIONAL_CURRENT_MOBILITY_LIMITATION_NOT_FUTURE",
+  "population": "Survey respondents aged 65+ with valid current quarter-mile walking responses",
+  "definition": "PFQ061B: code 1 no difficulty versus codes 2\u20134 some/much/unable; PFQ054 routing excluded",
+  "cohorts": {
+    "2015-2016": {
+      "questionnaire_respondents": 985,
+      "target_events": 245,
+      "observed_event_fraction": 0.248731
+    },
+    "2017-2018": {
+      "questionnaire_respondents": 1032,
+      "target_events": 278,
+      "observed_event_fraction": 0.26938
+    }
+  },
+  "predictors": [
+    "age",
+    "bmi",
+    "phq9_score",
+    "arthritis",
+    "heart_failure",
+    "stroke",
+    "diabetes",
+    "sex"
+  ],
+  "phq9_complete": {
+    "2015-2016": 869,
+    "2017-2018": 889
+  },
+  "preprocessing": [
+    "Correct pandas SAS XPORT numeric zero artefact exactly",
+    "Exclude questionnaire routing skips and nonresponse from the outcome",
+    "PHQ-9 summed only with all nine valid item responses",
+    "Train-only imputation, missing indicators, scaling and categorical coding",
+    "Preserve age 80+ top-code and never use target-like PFQ items as predictors"
+  ],
+  "split": {
+    "development_fit_n": 788,
+    "development_selection_n": 197,
+    "later_cycle_test_n": 1032
+  },
+  "selection_metric": "LOWEST_VALIDATION_BRIER",
+  "models": [
+    {
+      "name": "CatBoost",
+      "cv_brier": 0.17675,
+      "validation_auc": 0.78089,
+      "validation_brier": 0.1507,
+      "hyperparameters": {
+        "depth": 4,
+        "learning_rate": 0.035
+      }
+    },
+    {
+      "name": "Logistic regression",
+      "cv_brier": 0.16627,
+      "validation_auc": 0.75717,
+      "validation_brier": 0.15377,
+      "hyperparameters": {
+        "C": 0.1
+      }
+    },
+    {
+      "name": "XGBoost",
+      "cv_brier": 0.17411,
+      "validation_auc": 0.76724,
+      "validation_brier": 0.15508,
+      "hyperparameters": {
+        "learning_rate": 0.035,
+        "max_depth": 2
+      }
+    },
+    {
+      "name": "Histogram gradient boosting",
+      "cv_brier": 0.18626,
+      "validation_auc": 0.7349,
+      "validation_brier": 0.16032,
+      "hyperparameters": {
+        "learning_rate": 0.05,
+        "max_leaf_nodes": 7
+      }
+    },
+    {
+      "name": "Random forest",
+      "cv_brier": 0.17238,
+      "validation_auc": 0.77358,
+      "validation_brier": 0.16154,
+      "hyperparameters": {
+        "max_depth": 4,
+        "min_samples_leaf": 5
+      }
+    },
+    {
+      "name": "Dummy prior",
+      "cv_brier": 0.18687,
+      "validation_auc": 0.5,
+      "validation_brier": 0.18686,
+      "hyperparameters": {}
+    }
+  ],
+  "selected_model": "CatBoost",
+  "evaluation": {
+    "n": 1032,
+    "events": 278,
+    "roc_auc": 0.73201,
+    "average_precision": 0.47535,
+    "brier": 0.17354,
+    "log_loss": 0.51831,
+    "sensitivity_at_0_5": 0.17266,
+    "specificity_at_0_5": 0.93634
+  },
+  "calibration": [
+    {
+      "range": [
+        0.0,
+        0.2
+      ],
+      "n": 469,
+      "mean_predicted": 0.1217,
+      "observed_fraction": 0.1151
+    },
+    {
+      "range": [
+        0.2,
+        0.4
+      ],
+      "n": 383,
+      "mean_predicted": 0.2821,
+      "observed_fraction": 0.3525
+    },
+    {
+      "range": [
+        0.4,
+        0.6
+      ],
+      "n": 137,
+      "mean_predicted": 0.4832,
+      "observed_fraction": 0.4453
+    }
+  ],
+  "unshown_calibration_n": 43,
+  "permutation_importance": [
+    {
+      "feature": "arthritis",
+      "delta_brier": 0.014712,
+      "std": 0.004256
+    },
+    {
+      "feature": "phq9_score",
+      "delta_brier": 0.014183,
+      "std": 0.002942
+    },
+    {
+      "feature": "bmi",
+      "delta_brier": 0.009617,
+      "std": 0.002686
+    },
+    {
+      "feature": "diabetes",
+      "delta_brier": 0.007804,
+      "std": 0.002147
+    },
+    {
+      "feature": "stroke",
+      "delta_brier": 0.00764,
+      "std": 0.001449
+    },
+    {
+      "feature": "heart_failure",
+      "delta_brier": 0.005886,
+      "std": 0.001399
+    },
+    {
+      "feature": "sex",
+      "delta_brier": 0.001693,
+      "std": 0.002237
+    },
+    {
+      "feature": "age",
+      "delta_brier": 0.001255,
+      "std": 0.007144
+    }
+  ],
+  "naive_row_bootstrap_95pct": {
+    "roc_auc": [
+      0.70089,
+      0.76815
+    ],
+    "brier": [
+      0.15915,
+      0.18702
+    ]
+  },
+  "survey_weighted_brier_exploratory": {
+    "n_positive_weights": 966,
+    "brier": 0.15579,
+    "survey_design_variance_not_estimated": true
+  },
+  "boundaries": {
+    "later_cycle_previously_inspected": true,
+    "clinical_prediction": false,
+    "future_frailty_prediction": false,
+    "h_source": false,
+    "individual_records_exported": false,
+    "survey_design_variance_estimated": false
+  },
+  "limitations": [
+    "Cross-sectional current mobility classification, not future frailty prediction",
+    "2017\u20132018 later-cycle results have been inspected repeatedly; not a fresh independent test",
+    "Complex NHANES survey-design variance is not estimated",
+    "Threshold 0.5 yields low sensitivity and was not optimized for clinical screening",
+    "Permutation importance is model dependence, not causality",
+    "No participant records, real predictions or fitted model are hosted"
+  ]
+}

@@ -18,6 +18,7 @@ import './translation-v42.css';
 import './artifact-v43.css';
 import './study-handoff-v44.css';
 import './interview-focus-v47.css';
+import './interview-results-v49.css';
 export const metadata:Metadata={title:'FrailtyScope | Ageing & Health Intelligence',description:'Clinical assessments and NHANES observational research results.',robots:{index:false,follow:false}};
 export default function RootLayout({children}:{children:React.ReactNode}){
  return <html lang="en"><body><SiteHeader/>{children}<footer className="site-footer"><span>© 2026 FrailtyScope · Ageing & Health Intelligence</span><span>NHANES observational research · Aggregate results only</span></footer></body></html>;

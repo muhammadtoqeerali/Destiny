@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {Activity, ArrowRight, BarChart3, BrainCircuit, Database, LockKeyhole, ShieldCheck, Users} from 'lucide-react';
 import demo from '../data/interview-benchmark-v47.json';
 import historical from '../../public/data/nhanes-refinement.json';
+import {RealMobilityDoctorV49,RealMobilityAdminV49} from './real-mobility-v49';
 
 type Example=(typeof demo.fictional_examples)[number];
 const percent=(x:number)=>(100*x).toFixed(1)+'%';
@@ -20,6 +21,7 @@ export function InterviewDoctorV47(){
     <p>Explore a small set of deliberately fictional ageing profiles and see how a reproducible machine-learning model summarizes future functional decline. No data entry or patient registration.</p>
     <div className="if-actions"><Link href="/admin/interview">Explore ML evidence <ArrowRight size={16}/></Link><Link href="/doctor">Open existing research workspace</Link></div>
   </div><aside className="if-banner-note"><b>Important distinction</b><span>All individual profiles and their probabilities on this page are generated. They are not patients or HUNT participants. The historical NHANES results are maintained separately.</span></aside></header>
+  <RealMobilityDoctorV49/>
   <div className="if-mini-stats"><div><span>Generated cohort</span><b>{demo.configuration.generation_n.toLocaleString()}</b><small>Invented older-adult examples</small></div><div><span>Profiles shown</span><b>{demo.fictional_examples.length}</b><small>No identifiable records</small></div><div><span>Illustrated outcome</span><b>ADL decline</b><small>Fictional next-period status</small></div></div>
   <div className="if-doctor-grid"><section className="if-card if-people" aria-label="Fictional profile selection"><div className="if-section-head"><div><span className="if-caption">PROFILE EXPLORER</span><h2>Older-adult examples</h2><p>Choose an invented profile. Each example is separate from real survey records.</p></div></div>
     <div className="if-people-scroll">{demo.fictional_examples.map((person,i)=><button key={person.id} onClick={()=>setChosen(i)} type="button" aria-pressed={chosen===i} className={'if-person'+(chosen===i?' is-selected':'')}>
@@ -42,10 +44,10 @@ export function InterviewDoctorV47(){
  </main>;
 }
 
-type Cohort='synthetic'|'nhanes'|'nhats'|'share'|'hunt';
-const datasets:[Cohort,string,string][]=[['synthetic','Artificial ageing cohort','Generated demo'],['nhanes','NHANES 2011–2014','Historical research'],['nhats','NHATS','Not downloaded'],['share','SHARE','Registration needed'],['hunt','HUNT4 70+','Restricted access']];
+type Cohort='mobility'|'synthetic'|'nhanes'|'nhats'|'share'|'hunt';
+const datasets:[Cohort,string,string][]=[['mobility','NHANES 2015–2018 mobility','Real public data'],['synthetic','Artificial ageing cohort','Generated demo'],['nhanes','NHANES 2011–2014','Historical research'],['nhats','NHATS','Not downloaded'],['share','SHARE','Registration needed'],['hunt','HUNT4 70+','Restricted access']];
 export function InterviewAdminV47(){
- const [dataset,setDataset]=useState<Cohort>('synthetic');
+ const [dataset,setDataset]=useState<Cohort>('mobility');
  const selected=datasets.find(d=>d[0]===dataset)!;
  return <main className="if-page" aria-label="Interview-focused research admin overview">
   <div className="if-breadcrumb">FRAILTYSCOPE / ML RESEARCH / DATASET-SPECIFIC EXPERIMENTS</div>
@@ -57,6 +59,7 @@ export function InterviewAdminV47(){
     <div className="if-dataset-tabs" role="group" aria-label="Select dataset">{datasets.map(d=><button key={d[0]} type="button" aria-pressed={dataset===d[0]} className={dataset===d[0]?'is-selected':''} onClick={()=>setDataset(d[0])}><b>{d[1]}</b><small>{d[2]}</small></button>)}</div>
     <p className="if-muted">Selected: <strong>{selected[1]}</strong> · {selected[2]}. Source-specific results only.</p>
   </section>
+  {dataset==='mobility'&&<RealMobilityAdminV49/>}
   {dataset==='synthetic'&&<><section className="if-card"><div className="if-section-head"><div><span className="if-caption">02 · DATA / TARGET / PREPROCESSING</span><h2>Generated functional-decline benchmark</h2><p>All 1,800 records and future labels are invented; this measures pipeline correctness, not HUNT performance.</p></div><span className="if-tag">Synthetic-only</span></div>
       <div className="if-mini-stats if-inner-stats"><div><span>Train</span><b>{demo.configuration.train_n}</b><small>Distinct fictional people</small></div><div><span>Validation</span><b>{demo.configuration.validation_n}</b><small>Model selection</small></div><div><span>Final test</span><b>{demo.configuration.test_n}</b><small>Used once</small></div></div>
       <div className="if-method"><div><b>Inputs</b><span>{demo.configuration.features.join(', ')}</span></div><div><b>Preprocessing</b><span>Training-fold-only median/mode imputation, missing indicators, numeric scaling, categorical one-hot encoding</span></div><div><b>Target</b><span>{demo.target}. No real follow-up observations.</span></div><div><b>Selection</b><span>{demo.configuration.selection}</span></div></div>
