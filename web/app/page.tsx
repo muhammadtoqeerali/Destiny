@@ -1,2 +1,2 @@
 import { redirect } from 'next/navigation';
-export default function IndexPage() { redirect('/doctor'); }
+export default function IndexPage() { redirect('/interview'); }

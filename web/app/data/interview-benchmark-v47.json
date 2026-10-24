@@ -1,0 +1,374 @@
+{
+  "schema": "FRAILTYSCOPE_INTERVIEW_BENCHMARK_V47",
+  "source": "GENERATED_FICTIONAL_AGEING_COHORT_NOT_HUNT_NHATS_OR_NHANES",
+  "target": "Artificial next-period activities-of-daily-living decline label",
+  "time_horizon": "Invented two-year follow-up, not observed",
+  "training_claim": "Demonstrates machine-learning software only; no real-data generalization",
+  "person_level_real_data_used": false,
+  "clinical_prediction": false,
+  "generated_with": {
+    "scikit_learn": "1.8.0",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  },
+  "configuration": {
+    "seed": 472026,
+    "generation_n": 1800,
+    "features": [
+      "age",
+      "bmi",
+      "grip_strength_kg",
+      "gait_speed_mps",
+      "chronic_conditions",
+      "adl_limitations",
+      "falls_last_year",
+      "low_mood_score",
+      "sex",
+      "activity_level"
+    ],
+    "train_n": 1080,
+    "validation_n": 360,
+    "test_n": 360,
+    "split": "fictional_id-disjoint 60/20/20; validation model selection; synthetic test once",
+    "missingness": "training-only median/mode imputation with numeric missing indicators",
+    "selection": "minimum validation Brier, deterministic listed-order tiebreak"
+  },
+  "models": [
+    {
+      "name": "Dummy prior",
+      "validation": {
+        "roc_auc": 0.5,
+        "average_precision": 0.2139,
+        "brier": 0.1685
+      }
+    },
+    {
+      "name": "Logistic regression",
+      "validation": {
+        "roc_auc": 0.6775,
+        "average_precision": 0.3464,
+        "brier": 0.1588
+      }
+    },
+    {
+      "name": "Random forest",
+      "validation": {
+        "roc_auc": 0.6635,
+        "average_precision": 0.3311,
+        "brier": 0.1594
+      }
+    },
+    {
+      "name": "Histogram boosting",
+      "validation": {
+        "roc_auc": 0.6227,
+        "average_precision": 0.3054,
+        "brier": 0.1696
+      }
+    }
+  ],
+  "selected_model": "Logistic regression",
+  "selected_validation": {
+    "roc_auc": 0.6775,
+    "average_precision": 0.3464,
+    "brier": 0.1588
+  },
+  "synthetic_test": {
+    "roc_auc": 0.6929,
+    "average_precision": 0.3363,
+    "brier": 0.1267
+  },
+  "calibration": [
+    {
+      "band": "0–20%",
+      "count": 237,
+      "mean_probability": 0.1113,
+      "observed_fraction": 0.1224
+    },
+    {
+      "band": "20–40%",
+      "count": 104,
+      "mean_probability": 0.2756,
+      "observed_fraction": 0.2212
+    },
+    {
+      "band": "40–60%",
+      "count": 16,
+      "mean_probability": 0.4493,
+      "observed_fraction": 0.3125
+    },
+    {
+      "band": "60–80%",
+      "count": 3,
+      "mean_probability": 0.7051,
+      "observed_fraction": 0.6667
+    }
+  ],
+  "fictional_examples": [
+    {
+      "id": "FICTIONAL-00004",
+      "age": 76,
+      "illustrative_factors": [
+        {
+          "feature": "age",
+          "log_odds_contribution": -0.4142
+        },
+        {
+          "feature": "falls_last_year",
+          "log_odds_contribution": 0.239
+        },
+        {
+          "feature": "adl_limitations",
+          "log_odds_contribution": -0.1913
+        },
+        {
+          "feature": "chronic_conditions",
+          "log_odds_contribution": 0.1421
+        }
+      ],
+      "sex": "Female",
+      "chronic_conditions": 2,
+      "adl_limitations": 0,
+      "current_conditions": [
+        "Hypertension",
+        "Arthritis"
+      ],
+      "gait_speed_mps": 0.96,
+      "grip_strength_kg": 17.6,
+      "observed_demo_outcome": 0,
+      "fictional_model_probability": 0.135
+    },
+    {
+      "id": "FICTIONAL-00006",
+      "age": 88,
+      "illustrative_factors": [
+        {
+          "feature": "chronic_conditions",
+          "log_odds_contribution": -0.438
+        },
+        {
+          "feature": "age",
+          "log_odds_contribution": 0.3622
+        },
+        {
+          "feature": "falls_last_year",
+          "log_odds_contribution": 0.239
+        },
+        {
+          "feature": "adl_limitations",
+          "log_odds_contribution": 0.2115
+        }
+      ],
+      "sex": "Female",
+      "chronic_conditions": 0,
+      "adl_limitations": 1,
+      "current_conditions": [],
+      "gait_speed_mps": 1.14,
+      "grip_strength_kg": 13.4,
+      "observed_demo_outcome": 1,
+      "fictional_model_probability": 0.2603
+    },
+    {
+      "id": "FICTIONAL-00012",
+      "age": 93,
+      "illustrative_factors": [
+        {
+          "feature": "age",
+          "log_odds_contribution": 0.6857
+        },
+        {
+          "feature": "chronic_conditions",
+          "log_odds_contribution": 0.4321
+        },
+        {
+          "feature": "missing: low_mood_score",
+          "log_odds_contribution": 0.2852
+        },
+        {
+          "feature": "adl_limitations",
+          "log_odds_contribution": -0.1913
+        }
+      ],
+      "sex": "Male",
+      "chronic_conditions": 3,
+      "adl_limitations": 0,
+      "current_conditions": [
+        "Hypertension",
+        "Diabetes",
+        "Arthritis"
+      ],
+      "gait_speed_mps": 1.21,
+      "grip_strength_kg": 10.5,
+      "observed_demo_outcome": 1,
+      "fictional_model_probability": 0.3496
+    },
+    {
+      "id": "FICTIONAL-00013",
+      "age": 73,
+      "illustrative_factors": [
+        {
+          "feature": "age",
+          "log_odds_contribution": -0.6083
+        },
+        {
+          "feature": "adl_limitations",
+          "log_odds_contribution": -0.1913
+        },
+        {
+          "feature": "falls_last_year",
+          "log_odds_contribution": -0.1701
+        },
+        {
+          "feature": "chronic_conditions",
+          "log_odds_contribution": -0.148
+        }
+      ],
+      "sex": "Female",
+      "chronic_conditions": 1,
+      "adl_limitations": 0,
+      "current_conditions": [
+        "Hypertension"
+      ],
+      "gait_speed_mps": 1.31,
+      "grip_strength_kg": 23.6,
+      "observed_demo_outcome": 1,
+      "fictional_model_probability": 0.0668
+    },
+    {
+      "id": "FICTIONAL-00021",
+      "age": 93,
+      "illustrative_factors": [
+        {
+          "feature": "age",
+          "log_odds_contribution": 0.6857
+        },
+        {
+          "feature": "adl_limitations",
+          "log_odds_contribution": 0.6143
+        },
+        {
+          "feature": "falls_last_year",
+          "log_odds_contribution": 0.239
+        },
+        {
+          "feature": "activity_level_Moderate",
+          "log_odds_contribution": -0.1738
+        }
+      ],
+      "sex": "Female",
+      "chronic_conditions": 1,
+      "adl_limitations": 2,
+      "current_conditions": [
+        "Hypertension"
+      ],
+      "gait_speed_mps": 0.93,
+      "grip_strength_kg": null,
+      "observed_demo_outcome": 0,
+      "fictional_model_probability": 0.4007
+    },
+    {
+      "id": "FICTIONAL-00031",
+      "age": 80,
+      "illustrative_factors": [
+        {
+          "feature": "adl_limitations",
+          "log_odds_contribution": 0.2115
+        },
+        {
+          "feature": "activity_level_Moderate",
+          "log_odds_contribution": -0.1738
+        },
+        {
+          "feature": "falls_last_year",
+          "log_odds_contribution": -0.1701
+        },
+        {
+          "feature": "age",
+          "log_odds_contribution": -0.1554
+        }
+      ],
+      "sex": "Female",
+      "chronic_conditions": 2,
+      "adl_limitations": 1,
+      "current_conditions": [
+        "Diabetes",
+        "Heart disease"
+      ],
+      "gait_speed_mps": 1.26,
+      "grip_strength_kg": 12.5,
+      "observed_demo_outcome": 0,
+      "fictional_model_probability": 0.1733
+    },
+    {
+      "id": "FICTIONAL-00052",
+      "age": 75,
+      "illustrative_factors": [
+        {
+          "feature": "age",
+          "log_odds_contribution": -0.4789
+        },
+        {
+          "feature": "adl_limitations",
+          "log_odds_contribution": -0.1913
+        },
+        {
+          "feature": "activity_level_Moderate",
+          "log_odds_contribution": -0.1738
+        },
+        {
+          "feature": "falls_last_year",
+          "log_odds_contribution": -0.1701
+        }
+      ],
+      "sex": "Male",
+      "chronic_conditions": 1,
+      "adl_limitations": 0,
+      "current_conditions": [
+        "Arthritis"
+      ],
+      "gait_speed_mps": 1.12,
+      "grip_strength_kg": 25.9,
+      "observed_demo_outcome": 0,
+      "fictional_model_probability": 0.0485
+    },
+    {
+      "id": "FICTIONAL-00053",
+      "age": 91,
+      "illustrative_factors": [
+        {
+          "feature": "age",
+          "log_odds_contribution": 0.5563
+        },
+        {
+          "feature": "adl_limitations",
+          "log_odds_contribution": -0.1913
+        },
+        {
+          "feature": "falls_last_year",
+          "log_odds_contribution": -0.1701
+        },
+        {
+          "feature": "chronic_conditions",
+          "log_odds_contribution": -0.148
+        }
+      ],
+      "sex": "Female",
+      "chronic_conditions": 1,
+      "adl_limitations": 0,
+      "current_conditions": [
+        "Diabetes"
+      ],
+      "gait_speed_mps": 1.25,
+      "grip_strength_kg": null,
+      "observed_demo_outcome": 1,
+      "fictional_model_probability": 0.1914
+    }
+  ],
+  "interpretability": "If selected model is logistic, exact transformed-feature log-odds terms describe the fictional model prediction; not SHAP, causality, or medical guidance",
+  "limits": [
+    "Invented labels and measurements; metrics are not HUNT results",
+    "No cross-dataset ranking because tasks/endpoints differ",
+    "No new NHANES real-data analysis or clinical inference",
+    "No individual real records exported to web hosting"
+  ]
+}
