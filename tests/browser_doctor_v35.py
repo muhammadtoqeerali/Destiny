@@ -16,7 +16,7 @@ def run():
                 page=context.new_page()
                 errors=[]
                 page.on('pageerror',lambda err:errors.append(str(err)))
-                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/archive/doctor',wait_until='domcontentloaded')
                 hero=page.locator('header.v35-hero[aria-label="Doctor Portal introduction"]')
                 expect(hero).to_be_visible()
                 expect(page.get_by_role('heading',name='Clinical overview')).to_be_visible()

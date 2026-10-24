@@ -87,10 +87,8 @@ def test_legacy_chains_and_ci():
     assert 'python -m ml.public_mobility_v48 --contract' in ci
     assert 'tests/test_interview_focus_v47.py' in ci
     assert 'tests/test_study_activation_v46.py' in ci
-    from scripts.patch_interview_focus_v47 import PATCHES
-    for rel,pairs in PATCHES.items():
-        body=(ROOT/rel).read_text()
-        for old,new in pairs: assert new in body,(rel,new)
+    # The v0.47 Interview-presentation source patches were intentionally retired with that UI
+    # (see tests/test_frailtyscope_redesign.py for the replacement boundaries).
 
 
 def test_optional_boosting_adapters_respect_classifier_tags():

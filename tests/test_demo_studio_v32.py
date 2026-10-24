@@ -90,8 +90,8 @@ def test_studio_receipt_matches_v30_published_synthetic_smoke():
 
 def test_css_is_scoped_for_demo_and_in_layout():
     css=txt('web/app/engine-studio-v32.css')
-    layout=txt('web/app/layout.tsx')
-    assert "import './engine-studio-v32.css';" in layout
+    layout=txt('web/app/archive/layout.tsx')
+    assert "import '../engine-studio-v32.css';" in layout
     for token in ('.v32-studio','.v32-hero','.v32-stage-tabs',
                   '.v32-demo-banner','prefers-reduced-motion','focus-visible'):
         assert token in css

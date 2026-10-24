@@ -9,9 +9,9 @@ def source(path): return (R/path).read_text(encoding='utf-8')
 def test_dedicated_design_scoped_to_doctor_portal():
     ui=source('web/app/components/clinical-workspace.tsx')
     css=source('web/app/doctor-v35.css')
-    layout=source('web/app/layout.tsx')
+    layout=source('web/app/archive/layout.tsx')
     assert 'v7-portal v35-doctor' in ui
-    assert "import './doctor-v35.css';" in layout
+    assert "import '../doctor-v35.css';" in layout
     assert '.v35-doctor' in css and '.v35-hero' in css
     assert '@media(max-width:480px)' in css
     assert 'focus-visible' in css and 'prefers-reduced-motion' in css

@@ -45,7 +45,7 @@ def test_source_integration_and_browser_contracts():
     assert '<FictionalScoringLabV37/>' in page
     assert page.count('<PredictionStoryV36 profile={profile}/>')==1
     assert 'Use assessment measurements' in page
-    assert "import './inference-v37.css';" in src('web/app/layout.tsx')
+    assert "import '../inference-v37.css';" in src('web/app/archive/layout.tsx')
     browser=src('tests/browser_inference_v37.py')
     for mark in ('desktop','mobile','Fictional age','Reset fictional example',
                  'Clinical inference blocked','api/predict', '127\\.0\\.0\\.1'):

@@ -74,8 +74,8 @@ def test_historical_inputs_and_receipts_are_unchanged():
 def test_responsive_css_and_accessible_controls():
     css=content('web/app/engine-studio-v33.css')
     jsx=content('web/app/components/engine-studio-v33.tsx')
-    layout=content('web/app/layout.tsx')
-    assert "import './engine-studio-v33.css';" in layout
+    layout=content('web/app/archive/layout.tsx')
+    assert "import '../engine-studio-v33.css';" in layout
     for marker in ('.v33-hero','.v33-nav','.v33-workspace','.v33-model-layout',
                    '.v33-assurance-grid','@media(max-width:860px)','@media(max-width:560px)',
                    'prefers-reduced-motion','focus-visible'):

@@ -14,7 +14,7 @@ def run():
                 ctx=browser.new_context(viewport=viewport,reduced_motion='reduce')
                 page=ctx.new_page();errors=[]
                 page.on('pageerror',lambda exc:errors.append(str(exc)))
-                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/archive/doctor',wait_until='domcontentloaded')
                 nav=page.get_by_role('navigation',name='Doctor workspace')
                 nav.get_by_role('button',name='Patient assessment',exact=True).click()
                 view=page.get_by_role('region',name='Patient assessment')

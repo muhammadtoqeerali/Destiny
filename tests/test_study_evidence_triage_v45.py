@@ -154,6 +154,8 @@ def test_no_clinical_endpoint_and_no_public_response_exports():
     # Maintain all earlier source patch contracts (adjacency of historical CI steps).
     from scripts.patch_handoff_v44 import PATCHES
     for path,pairs in PATCHES.items():
-        contents=(ROOT/path).read_text()
+        legacy=path=='web/app/layout.tsx'  # legacy CSS now lives in web/app/archive/layout.tsx
+        contents=(ROOT/('web/app/archive/layout.tsx' if legacy else path)).read_text()
         for _,new in pairs:
+            new=new.replace("import './","import '../") if legacy else new
             assert new in contents, path

@@ -134,6 +134,6 @@ export function EngineStudioV32(){
      <button type="button" className="v32-details-button" aria-expanded={showProvenance} onClick={()=>setShowProvenance(!showProvenance)}>{showProvenance?'Hide':'Show'} source fingerprints</button>
      {showProvenance&&<dl className="v32-fingerprints"><dt>Source-contract SHA-256</dt><dd>{chain}</dd><dt>Repeated synthetic aggregate SHA-256</dt><dd>{receipt}</dd><dt>Reproducibility seed</dt><dd>1701</dd><dt>Validation scope</dt><dd>Invented in-memory development rows only; no external/clinical evaluation</dd></dl>}
    </section>
-   <div className="v32-footer"><ShieldCheck size={18}/><span>Interview demo only · no real-data reanalysis · no trained model downloaded · no individual risk score · no claim of Norwegian clinical validation.</span></div>
+   <div className="v32-footer"><ShieldCheck size={18}/><span>Demonstration only · no real-data reanalysis · no trained model downloaded · no individual risk score · no claim of Norwegian clinical validation.</span></div>
  </section>;
 }
