@@ -1,0 +1,424 @@
+{
+  "schema": "FRAILTYSCOPE_RESEARCH_ACTIVATION_PLAN_V46",
+  "basis": "PUBLIC_BLANK_TEMPLATE_ONLY",
+  "requests_total": 25,
+  "categories": {
+    "predictor": 14,
+    "outcome": 4,
+    "governance": 7
+  },
+  "status_counts": {
+    "NOT_RECEIVED": 25,
+    "IN_REVIEW": 0,
+    "EVIDENCE_RECEIVED": 0,
+    "CHANGES_REQUESTED": 0,
+    "REJECTED": 0,
+    "APPROVED": 0
+  },
+  "workstreams": [
+    {
+      "stage": 0,
+      "name": "Authorization",
+      "requests": 1
+    },
+    {
+      "stage": 1,
+      "name": "Definition",
+      "requests": 6
+    },
+    {
+      "stage": 2,
+      "name": "Harmonization",
+      "requests": 15
+    },
+    {
+      "stage": 3,
+      "name": "Model evidence",
+      "requests": 1
+    },
+    {
+      "stage": 4,
+      "name": "Independent validation",
+      "requests": 1
+    },
+    {
+      "stage": 5,
+      "name": "Deployment governance",
+      "requests": 1
+    }
+  ],
+  "actions": [
+    {
+      "request_id": "ethics_and_controller",
+      "category": "governance",
+      "reviewer_role": "Institutional data controller / ethics board",
+      "stage": 0,
+      "workstream": "Authorization",
+      "depends_on_request_ids": [],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "five_year_all_cause_mortality",
+      "category": "outcome",
+      "reviewer_role": "Clinical investigator / epidemiologist",
+      "stage": 1,
+      "workstream": "Definition",
+      "depends_on_request_ids": [
+        "prediction_index"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "incident_diabetes",
+      "category": "outcome",
+      "reviewer_role": "Clinical investigator / epidemiologist",
+      "stage": 1,
+      "workstream": "Definition",
+      "depends_on_request_ids": [
+        "incident_outcomes"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "incident_stroke",
+      "category": "outcome",
+      "reviewer_role": "Clinical investigator / epidemiologist",
+      "stage": 1,
+      "workstream": "Definition",
+      "depends_on_request_ids": [
+        "incident_outcomes"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "incident_heart_failure",
+      "category": "outcome",
+      "reviewer_role": "Clinical investigator / epidemiologist",
+      "stage": 1,
+      "workstream": "Definition",
+      "depends_on_request_ids": [
+        "incident_outcomes"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "prediction_index",
+      "category": "governance",
+      "reviewer_role": "Principal investigator / study-team lead",
+      "stage": 1,
+      "workstream": "Definition",
+      "depends_on_request_ids": [
+        "ethics_and_controller"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "incident_outcomes",
+      "category": "governance",
+      "reviewer_role": "Clinical outcomes and linkage team",
+      "stage": 1,
+      "workstream": "Definition",
+      "depends_on_request_ids": [
+        "ethics_and_controller"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "age",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "bmi",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "walking_difficulty",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "stairs_difficulty",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "stooping_difficulty",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "heart_failure",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "coronary_disease",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "stroke",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "cancer",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "diabetes",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "hypertension",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "ever_smoked",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "phq9_score",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "sex",
+      "category": "predictor",
+      "reviewer_role": "Study-team data dictionary / measurement expert",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index",
+        "source_mapping"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "source_mapping",
+      "category": "governance",
+      "reviewer_role": "NHANES questionnaire and harmonization team",
+      "stage": 2,
+      "workstream": "Harmonization",
+      "depends_on_request_ids": [
+        "prediction_index"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "model_provenance",
+      "category": "governance",
+      "reviewer_role": "Research ML lead / independent reviewer",
+      "stage": 3,
+      "workstream": "Model evidence",
+      "depends_on_request_ids": [
+        "source_mapping",
+        "prediction_index"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "external_validation",
+      "category": "governance",
+      "reviewer_role": "Independent validation group",
+      "stage": 4,
+      "workstream": "Independent validation",
+      "depends_on_request_ids": [
+        "model_provenance"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    },
+    {
+      "request_id": "clinical_security",
+      "category": "governance",
+      "reviewer_role": "Privacy, security and clinical governance",
+      "stage": 5,
+      "workstream": "Deployment governance",
+      "depends_on_request_ids": [
+        "ethics_and_controller",
+        "external_validation"
+      ],
+      "reported_status": "NOT_RECEIVED",
+      "next_action": "REQUEST_MISSING_EVIDENCE",
+      "unverified_signoff_claim": false,
+      "separate_independent_review_required": true
+    }
+  ],
+  "approval_documents_authenticated": 0,
+  "signatures_verified": false,
+  "supporting_evidence_opened": false,
+  "patient_records_accessed": false,
+  "clinical_inference": false,
+  "real_data_execution_permitted": false,
+  "clinical_promotion_decision": "DENIED",
+  "notice": "Review statuses are claims only; required institutional, scientific and independent evidence must be separately authenticated. Never commit completed response sheets."
+}
