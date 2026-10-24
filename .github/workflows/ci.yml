@@ -22,6 +22,10 @@ jobs:
         run: PYTHONPATH=. python -m ml.study_activation_v46 --check-public-plan
       - name: Validate v0.46 private-only planning contracts
         run: python -m pytest -q tests/test_study_activation_v46.py
+      - name: Verify Phase 2 public mobility benchmark contract (no real downloads)
+        run: PYTHONPATH=. python -m ml.public_mobility_v48 --contract
+      - name: Test Phase 2 source recodes, leakage control and synthetic fixtures
+        run: python -m pytest -q tests/test_public_mobility_v48.py
       - name: Check v0.47 generated interview benchmark
         run: PYTHONPATH=. python -m ml.interview_benchmark_v47 --check
       - name: Validate v0.47 interview research focus
