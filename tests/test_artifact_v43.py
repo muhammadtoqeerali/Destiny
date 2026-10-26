@@ -101,7 +101,7 @@ def test_ui_is_independent_from_patient_assessment():
     for forbidden in ('fetch(', 'XMLHttpRequest','localStorage','sessionStorage',
                       'profile={profile}', 'JSON.stringify(profile)', 'model.joblib', 'request.json('):
         assert forbidden not in view
-    assert "import '../artifact-v43.css';" in src('web/app/archive/layout.tsx')
+    assert "import './artifact-v43.css';" in src('web/app/layout.tsx')
 
 def test_browser_and_hosted_ci_are_mandatory():
     ci=src('.github/workflows/ci.yml')
@@ -122,10 +122,8 @@ def test_previous_publisher_contracts_untouched():
     ci=src('.github/workflows/ci.yml')
     assert 'tests/test_serving_v40.py tests/test_validation_v41.py\n' in ci
     for path,replacements in PATCHES.items():
-        legacy=path=='web/app/layout.tsx'  # legacy CSS now lives in web/app/archive/layout.tsx
         for _,expected in replacements:
-            expected=expected.replace("import './","import '../") if legacy else expected
-            assert expected in src('web/app/archive/layout.tsx' if legacy else path),(path,expected)
+            assert expected in src(path),(path,expected)
     assert '      - name: Verify v0.41 public research and invented holdback receipt\n        run: PYTHONPATH=. python -m ml.research_validation_v41 --check\n      - name: Public payload validation\n' in ci
     assert 'run: python -m pytest -q tests/test_translation_v42.py' in ci
 

@@ -23,7 +23,7 @@ def run():
                 assert contract['clinical_inference'] is False
                 assert contract['registered_clinical_models']==0
                 assert reply.headers.get('cache-control','').startswith('no-store')
-                page.goto(BASE+'/archive/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
                 nav=page.get_by_role('navigation',name='Doctor workspace')
                 nav.get_by_role('button',name='Patient assessment',exact=True).click()
                 readiness=page.get_by_label('Clinical outcome availability')

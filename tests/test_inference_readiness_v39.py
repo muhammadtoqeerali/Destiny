@@ -64,7 +64,7 @@ def test_browser_and_research_ui_contracts():
     assert 'FictionalMultiOutcomeLabV38' in ui
     css=source('web/app/inference-v39.css')
     assert 'focus-visible' in css and 'prefers-reduced-motion' in css
-    assert "import '../inference-v39.css';" in source('web/app/archive/layout.tsx')
+    assert "import './inference-v39.css';" in source('web/app/layout.tsx')
     runner=source('scripts/run_browser_qa_v34.sh')
     assert 'tests/browser_readiness_v39.py' in runner
     assert 'dirname "${BASH_SOURCE[0]}"' in runner

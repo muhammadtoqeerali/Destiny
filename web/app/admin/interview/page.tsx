@@ -1,4 +1,8 @@
 import {redirect} from 'next/navigation';
-// Old bookmark: forwards to the canonical Research view, which performs its own sign-in check.
-export const dynamic = 'force-dynamic';
-export default function LegacyResearchPath() { redirect('/admin'); }
+import {canViewPublicDashboard} from '../../lib/auth';
+import {InterviewAdminV47} from '../../components/interview-focus-v47';
+export const dynamic='force-dynamic';
+export default async function InterviewAdminPage(){
+  if(!(await canViewPublicDashboard())) redirect('/admin/login');
+  return <InterviewAdminV47/>;
+}

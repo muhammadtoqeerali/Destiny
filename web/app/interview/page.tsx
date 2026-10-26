@@ -1,3 +1,2 @@
-import {redirect} from 'next/navigation';
-// Old bookmark: forwards to the canonical Doctor view. Not linked from anywhere.
-export default function LegacyDoctorPath() { redirect('/doctor'); }
+import {InterviewDoctorV47} from '../components/interview-focus-v47';
+export default function InterviewPage(){return <InterviewDoctorV47/>}
