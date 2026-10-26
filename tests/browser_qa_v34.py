@@ -41,7 +41,7 @@ def run():
                 assert git is None or re.fullmatch('[a-f0-9]{40}',git)
                 print(f'PASS [{name}] release receipt; git identity {git[:10] if git else "unavailable"}')
 
-                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/doctor/workspace',wait_until='domcontentloaded')
                 expect(page.get_by_role('heading',name='Clinical overview')).to_be_visible()
                 page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Health profiles',exact=True).click()
                 expect(page.get_by_role('heading',name='Health profiles')).to_be_visible()

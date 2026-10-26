@@ -68,9 +68,9 @@ def test_web_views_are_simple_separate_and_protected():
 
 def test_published_source_connectivity_preserves_legacy():
     header=src('web/app/components/site-header.tsx')
-    assert 'href="/interview"' in header
+    assert 'href="/doctor"' in header and 'Interview focus' not in header
     assert 'href="/doctor"' in header and 'href="/admin"' in header
-    assert "redirect('/interview')" in src('web/app/page.tsx')
+    assert "redirect('/doctor')" in src('web/app/page.tsx')
     assert "import './interview-focus-v47.css';" in src('web/app/layout.tsx')
     assert 'tests/browser_interview_focus_v47.py' in src('scripts/run_browser_qa_v34.sh')
     ci=src('.github/workflows/ci.yml')

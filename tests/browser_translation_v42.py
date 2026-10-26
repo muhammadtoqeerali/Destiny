@@ -27,7 +27,7 @@ def run():
                 refused=page.request.post(BASE+'/api/inference/translation',data={'fictional':'only'})
                 assert refused.status==405
                 assert page.request.post(BASE+'/api/inference',data={'fictional':'only'}).status==403
-                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/doctor/workspace',wait_until='domcontentloaded')
                 nav=page.get_by_role('navigation',name='Doctor workspace')
                 nav.get_by_role('button',name='Model evidence',exact=True).click()
                 cross=page.get_by_role('region',name='Public source-to-form crosswalk')

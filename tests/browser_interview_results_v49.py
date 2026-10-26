@@ -1,4 +1,4 @@
-"""Desktop/mobile browser QA of public real aggregate + explicitly fictional individual examples."""
+"""Desktop/mobile QA of public real NHANES aggregate + separate fictional profile examples."""
 import os,re
 from playwright.sync_api import sync_playwright,expect
 BASE=os.environ.get('FRAILTYSCOPE_QA_BASE','')
@@ -15,17 +15,14 @@ def run():
                 page.on('pageerror',lambda e:errors.append(str(e)))
                 page.on('request',lambda r:requests.append((r.method,r.url)) if '/api/inference' in r.url else None)
                 page.goto(BASE+'/interview',wait_until='domcontentloaded')
-                expect(page.get_by_role('region',name='Fictional profile selection')).to_be_visible()
-                real=page.get_by_role('region',name='Real NHANES population research snapshot')
+                expect(page).to_have_url(re.compile(r'/doctor/?$'))
+                real=page.get_by_role('region',name='Real NHANES population research')
                 expect(real).to_be_visible()
                 expect(real).to_contain_text('current difficulty walking a quarter mile')
                 expect(real).to_contain_text('1,032')
                 expect(real).to_contain_text('0.732')
-                assert page.locator('.if-person').count()==8
-                # v0.47 fictional-card selectors remain stable after adding
-                # the independent real NHANES population evidence section.
-                cards=page.locator('.if-card').all_inner_texts()
-                assert len(cards)>=3 and 'Generated' in cards[1],(label,cards[:3])
+                assert page.locator('.d51-patient').count()==8
+                expect(page.get_by_label('Selected fictional example details')).to_contain_text('SIMULATED')
                 assert not requests,requests
                 # The protected public-aggregate demo uses its existing, public-only passcode.
                 page.goto(BASE+'/admin/interview',wait_until='domcontentloaded')
@@ -47,7 +44,7 @@ def run():
                 assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth + 2'), 'Mobile horizontal overflow'
                 assert not errors,(label,errors)
                 assert not requests,(label,requests)
-                print(f'PASS [{label}] v0.49 real NHANES aggregates, fictional profiles isolated, model comparison and auth')
+                print(f'PASS [{label}] real NHANES aggregate / synthetic separation, original protected model evidence and auth')
                 ctx.close()
         finally:browser.close()
 if __name__=='__main__':run()

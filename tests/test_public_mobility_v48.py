@@ -90,6 +90,18 @@ def test_legacy_chains_and_ci():
     from scripts.patch_interview_focus_v47 import PATCHES
     for rel,pairs in PATCHES.items():
         body=(ROOT/rel).read_text()
+        # v0.51 deliberately replaces only the old interview-focused entrypoints.
+        # Keep exact historical source-contract checks for every other path.
+        if rel=='web/app/page.tsx':
+            assert "redirect('/doctor')" in body
+            assert "redirect('/interview')" not in body
+            assert "redirect('/doctor')" in (ROOT/'web/app/interview/page.tsx').read_text()
+            continue
+        if rel=='web/app/components/site-header.tsx':
+            assert 'href="/doctor"' in body and 'href="/admin"' in body
+            assert 'href="/interview"' not in body and 'Interview focus' not in body
+            assert 'usePathname' in body
+            continue
         for old,new in pairs: assert new in body,(rel,new)
 
 

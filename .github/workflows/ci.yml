@@ -100,6 +100,8 @@ jobs:
         working-directory: web
       - run: npm audit --omit=dev --audit-level=high
         working-directory: web
+      - name: Validate concise doctor overview and separation
+        run: python -m pytest -q tests/test_doctor_overview_v51.py
       # Actual Chromium browser checks against a freshly built local Next.js server.
       # This is independent of the synthetic/privacy Python regression suite.
       - run: python -m pip install 'playwright==1.56.0'

@@ -20,7 +20,7 @@ def run():
                 # Capture requests and ensure nothing submits patient data.
                 requests=[]
                 page.on('request',lambda req:requests.append((req.method,req.url)))
-                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/doctor/workspace',wait_until='domcontentloaded')
                 nav=page.get_by_role('navigation',name='Doctor workspace')
                 nav.get_by_role('button',name='Patient assessment',exact=True).click()
                 gate=page.get_by_role('region',name='Live model availability')
