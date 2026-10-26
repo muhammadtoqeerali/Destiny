@@ -87,6 +87,8 @@ jobs:
                   assert obj['counts']['total']>=2000
           print('PASS: Only validated real NHANES aggregate exports')
           PY
+      - name: Validate redesigned Doctor and Research frontend source contracts
+        run: python -m pytest -q tests/test_frailtyscope_redesign.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

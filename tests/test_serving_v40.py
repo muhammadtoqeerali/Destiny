@@ -62,7 +62,7 @@ def test_synthetic_demo_independent_of_patient_form():
         assert forbidden not in ui
     css=src('web/app/inference-serving-v40.css')
     assert 'focus-visible' in css and '@media(prefers-reduced-motion:reduce)' in css
-    assert "import './inference-serving-v40.css';" in src('web/app/layout.tsx')
+    assert "import '../inference-serving-v40.css';" in src('web/app/archive/layout.tsx')
 
 
 def test_release_includes_browser_checks_and_requires_hosted_ci():

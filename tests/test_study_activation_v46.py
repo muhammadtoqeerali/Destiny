@@ -140,8 +140,11 @@ def test_ci_and_release_contracts_preserve_v45_and_original_clinical_block():
     assert V45_INSERT in ci
     from scripts.patch_handoff_v44 import PATCHES as V44_PATCHES
     for rel,pairs in V44_PATCHES.items():
-        data=(ROOT/rel).read_text()
-        for _,new in pairs: assert new in data,rel
+        legacy=rel=='web/app/layout.tsx'  # legacy CSS now lives in web/app/archive/layout.tsx
+        data=(ROOT/('web/app/archive/layout.tsx' if legacy else rel)).read_text()
+        for _,new in pairs:
+            new=new.replace("import './","import '../") if legacy else new
+            assert new in data,rel
     assert 'status:403' in (ROOT/'web/app/api/inference/route.ts').read_text()
     mod=(ROOT/'ml/study_activation_v46.py').read_text()
     for forbidden in ('joblib.load(', 'pickle.load(', 'requests.get(',

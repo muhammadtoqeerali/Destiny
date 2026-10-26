@@ -26,7 +26,7 @@ def run():
                 r2=page.request.post(BASE+'/api/inference/readiness',data={'fictional':'only'})
                 assert r2.status==405
                 assert r2.json()['error']=='READINESS_ENDPOINT_IS_READ_ONLY'
-                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/archive/doctor',wait_until='domcontentloaded')
                 page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Patient assessment',exact=True).click()
                 section=page.get_by_label('Verified model readiness evidence')
                 expect(section).to_be_visible()

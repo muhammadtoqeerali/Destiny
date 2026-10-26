@@ -71,6 +71,6 @@ def test_all_existing_doctor_sections_preserved():
        'Model evidence','Use assessment measurements','<InferenceReadinessV37',
        '<FictionalScoringLabV37','<DoctorJourneyV36','Data are cleared when the page reloads.'):
         assert term in page
-    assert "import './inference-v38.css';" in src('web/app/layout.tsx')
+    assert "import '../inference-v38.css';" in src('web/app/archive/layout.tsx')
     css=src('web/app/inference-v38.css')
     assert 'prefers-reduced-motion' in css and 'focus-visible' in css

@@ -48,7 +48,7 @@ def test_browser_contracts_and_accessibility_controls():
         assert x in browser
     css=src('web/app/doctor-journey-v36.css')
     assert '@media(prefers-reduced-motion:reduce)' in css and 'focus-visible' in css
-    assert "import './doctor-journey-v36.css';" in src('web/app/layout.tsx')
+    assert "import '../doctor-journey-v36.css';" in src('web/app/archive/layout.tsx')
     assert 'tests/test_doctor_journey_v36.py' in src('.github/workflows/ci.yml')
 
 def test_original_case_has_no_approval_for_new_inference():

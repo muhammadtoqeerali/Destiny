@@ -85,32 +85,16 @@ def test_private_aggregate_inside_repo_is_rejected():
     with pytest.raises(Refused,match='outside'):
         verify_local(ROOT,ROOT/SUMMARY)
 
-def test_published_baseline_patch_anchors():
-    original=(ROOT/'web/app/components/interview-focus-v47.tsx').read_text()
-    for expected in ('<RealMobilityDoctorV49/>',"dataset==='mobility'&&<RealMobilityAdminV49/>",
-                     "dataset==='synthetic'", "dataset==='nhanes'", "dataset==='nhats'",
-                     "dataset==='share'", "dataset==='hunt'", 'No data entry or patient registration'):
-        assert expected in original
-    for source,pairs in PATCHES.items():
-        content=(ROOT/source).read_text()
-        for _,new in pairs: assert new in content,source
-    ui=(ROOT/'web/app/components/real-mobility-v49.tsx').read_text()
-    for word in ('RealMobilityDoctorV49','RealMobilityAdminV49','2017–2018','not an untouched independent test',
-                 'Permutation importance','current walking difficulty'):
-        assert word.lower() in ui.lower(),word
-    assert 'clinical_prediction' in (ROOT/SUMMARY).read_text()
-    for word in ('fetch(','localStorage','sessionStorage','patient_id','SEQN','POST', 'predict_proba('):
-        assert word not in ui
-    # The new real-data snapshot must not change the index of the existing
-    # two fictional profile cards expected by the unmodified v0.47 browser QA.
-    assert 'className="v49-doctor-evidence"' in ui
-    assert 'className="if-card v49-doctor-evidence"' not in ui
-    styles=(ROOT/'web/app/interview-results-v49.css').read_text()
-    assert '.v49-doctor-evidence{border:1px' in styles
-    assert "import './interview-results-v49.css';" in (ROOT/'web/app/layout.tsx').read_text()
-    assert 'tests/browser_interview_results_v49.py' in (ROOT/'scripts/run_browser_qa_v34.sh').read_text()
-    assert 'tests/test_public_mobility_v48.py' in (ROOT/'.github/workflows/ci.yml').read_text()
+def test_public_summary_wiring_and_gates_survive_the_redesign():
+    public=ROOT/'web/app/data/real-mobility-summary-v49.json'
+    assert public.is_file()
+    src=(ROOT/'web/app/components/research-focus-v50.tsx').read_text()
+    assert 'real-mobility-summary-v49.json' in src
+    assert 'permutation_importance' in src and 'validation_brier' in src
+    for token in ('fetch(','localStorage','sessionStorage','patient_id','SEQN','predict_proba('):
+        assert token not in src
     assert 'tests/test_interview_results_v49.py' in (ROOT/'.github/workflows/ci.yml').read_text()
+    assert 'tests/test_public_mobility_v48.py' in (ROOT/'.github/workflows/ci.yml').read_text()
     assert 'status:403' in (ROOT/'web/app/api/inference/route.ts').read_text()
 
 
@@ -122,12 +106,9 @@ def test_installer_preflight_uses_explicit_bundled_source_before_installation():
 
 
 def test_browser_login_server_action_finishes_before_admin_navigation():
-    qa=(ROOT/'tests/browser_interview_results_v49.py').read_text()
-    submit="page.get_by_role('button',name=re.compile('Open research workspace')).click()"
+    qa=(ROOT/'tests/browser_frailtyscope_redesign.py').read_text()
+    submit="get_by_role('button',name=re.compile('Open research workspace')).click()"
     redirect="expect(page).to_have_url(re.compile(r'/admin/?(?:\\?.*)?$'),timeout=15000)"
-    destination="page.goto(BASE+'/admin/interview',wait_until='domcontentloaded')"
-    assert qa.count(submit)==1 and qa.count(redirect)==1 and qa.count(destination)==2
-    # The login action redirects first to /admin; an early goto loses the session.
-    assert qa.index(submit)<qa.index(redirect)<qa.rindex(destination)
-    assert "expect(page).to_have_url(re.compile(r'/admin/interview/?$'))" in qa
-    assert "name='Real NHANES mobility experiment results'" in qa
+    assert submit in qa
+    assert qa.index(submit)<qa.index(redirect)
+    assert 'Research stages' in qa

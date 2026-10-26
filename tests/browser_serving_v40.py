@@ -32,7 +32,7 @@ def run():
                     assert bad.status==400,(name,suffix,bad.status)
                 assert page.request.post(route,data={'age':75,'patient_id':'fictional'}).status==405
                 assert page.request.post(BASE+'/api/inference',data={'x':1}).status==403
-                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/archive/doctor',wait_until='domcontentloaded')
                 nav=page.get_by_role('navigation',name='Doctor workspace')
                 nav.get_by_role('button',name='Patient assessment',exact=True).click()
                 page.get_by_label('Age',exact=True).fill('79')

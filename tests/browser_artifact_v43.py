@@ -27,7 +27,7 @@ def run():
                 assert response.headers['cache-control'].startswith('no-store')
                 assert page.request.post(BASE+'/api/inference/artifacts',data={'fictional':True}).status==405
                 assert page.request.post(BASE+'/api/inference',data={'fictional':True}).status==403
-                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/archive/doctor',wait_until='domcontentloaded')
                 page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Model evidence',exact=True).click()
                 section=page.get_by_role('region',name='Synthetic artifact acceptance dossier')
                 expect(section).to_be_visible()
