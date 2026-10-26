@@ -85,7 +85,7 @@ def test_input_ui_and_documentation_preserve_safety_boundary():
                       'request.json(', 'predict_proba(', 'model.joblib','process.env.', 'SEQN'):
         assert forbidden not in ui
     assert '3 partial' in ui and '11 unresolved' in ui
-    assert "import '../translation-v42.css';" in src('web/app/archive/layout.tsx')
+    assert "import './translation-v42.css';" in src('web/app/layout.tsx')
 
 
 def test_public_api_never_accepts_patient_fields_or_enables_inference():
@@ -125,10 +125,8 @@ def test_v41_source_contract_remains_intact_and_v42_runs_in_ci():
     # v0.41 checks each exact patch insertion stays present, even in future releases.
     from scripts.patch_validation_v41 import PATCHES
     for relative, replacements in PATCHES.items():
-        legacy=relative=='web/app/layout.tsx'  # legacy CSS now lives in web/app/archive/layout.tsx
-        current=src('web/app/archive/layout.tsx' if legacy else relative)
+        current=src(relative)
         for _, expected in replacements:
-            expected=expected.replace("import './","import '../") if legacy else expected
             assert expected in current,(relative,expected)
     ci=src('.github/workflows/ci.yml')
     assert 'tests/test_serving_v40.py tests/test_validation_v41.py\n' in ci

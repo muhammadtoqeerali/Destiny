@@ -99,7 +99,7 @@ def test_doctor_ui_source_maintains_strict_patient_isolation():
         assert forbidden not in ui
     css=src('web/app/validation-v41.css')
     assert ':focus-visible' in css and 'prefers-reduced-motion' in css
-    assert "import '../validation-v41.css';" in src('web/app/archive/layout.tsx')
+    assert "import './validation-v41.css';" in src('web/app/layout.tsx')
 
 def test_ci_desktop_mobile_and_source_only_release_contract():
     assert 'tests/browser_validation_v41.py' in src('scripts/run_browser_qa_v34.sh')
@@ -116,14 +116,11 @@ def test_ci_desktop_mobile_and_source_only_release_contract():
         assert path in script
 
 
-LEGACY_LAYOUT='web/app/archive/layout.tsx'  # legacy CSS moved under /archive in the redesign
-
 def test_patcher_refuses_second_application_and_unknown_targets():
     from scripts.patch_validation_v41 import PATCHES, transform
     for rel, pairs in PATCHES.items():
-        patched=src(LEGACY_LAYOUT if rel=='web/app/layout.tsx' else rel)
+        patched=src(rel)
         for _, new in pairs:
-            new=new.replace("import './","import '../") if rel=='web/app/layout.tsx' else new
             assert new in patched,(rel,new)
         with pytest.raises(ValueError):
             transform(rel, patched)

@@ -1,10 +1,13 @@
-import {redirect} from 'next/navigation';
-import {canViewPublicDashboard} from '../lib/auth';
-import {signOut} from './actions';
-import {LogOut} from 'lucide-react';
-import {ResearchFocusV50} from '../components/research-focus-v50';
-export const dynamic='force-dynamic';
+import { redirect } from 'next/navigation';
+import { AdminResearchHub } from '../components/multi-outcome-admin';
+import { canViewPublicDashboard } from '../lib/auth';
+import { signOut } from './actions';
+import { LogOut, ShieldCheck } from 'lucide-react';
+export const dynamic = 'force-dynamic';
 export default async function AdminPage(){
- if(!(await canViewPublicDashboard())) redirect('/admin/login');
- return <><ResearchFocusV50/><div className="focus-session-footer"><form action={signOut}><button type="submit"><LogOut size={15}/> Sign out</button></form></div></>;
+  if (!(await canViewPublicDashboard())) redirect('/admin/login');
+  return <div className="page-wrap admin-page">
+    <div className="portal-strip"><div><span className="portal-label"><ShieldCheck size={16}/> Research studio</span><p>Dataset assessment and model analytics</p></div><form action={signOut}><button className="text-button" type="submit"><LogOut size={16}/> Sign out</button></form></div>
+    <AdminResearchHub/>
+  </div>;
 }

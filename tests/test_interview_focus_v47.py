@@ -47,8 +47,45 @@ def test_selects_only_on_validation_not_test():
     assert d['synthetic_test']!=d['selected_validation']
     assert sum(b['count'] for b in d['calibration'])==d['configuration']['test_n']
 
-# The former web-source assertions for the Interview presentation were retired with that UI.
-# Equivalent (and stricter) checks live in tests/test_frailtyscope_redesign.py.
+def test_web_views_are_simple_separate_and_protected():
+    ui=src('web/app/components/interview-focus-v47.tsx')
+    assert 'InterviewDoctorV47' in ui and 'InterviewAdminV47' in ui
+    assert "dataset==='nhanes'" in ui and "dataset==='synthetic'" in ui
+    assert "dataset==='nhats'" in ui and "dataset==='share'" in ui
+    assert "dataset==='hunt'" in ui
+    assert 'future ADL' in ui or 'ADL decline' in ui
+    assert 'Fictional' in ui or 'fictional' in ui
+    assert "from '../data/interview-benchmark-v47.json'" in ui
+    assert 'No data entry or patient registration' in ui
+    assert 'SHAP or causal claims' not in ui
+    for forbidden in ('localStorage','sessionStorage',"method:'POST'",'request.json(',
+                      'patient_id','SEQN','fetch('):assert forbidden not in ui
+    page=src('web/app/admin/interview/page.tsx')
+    assert 'canViewPublicDashboard' in page and "redirect('/admin/login')" in page
+    assert 'status:403' in src('web/app/api/inference/route.ts')
+    css=src('web/app/interview-focus-v47.css')
+    assert 'prefers-reduced-motion' in css and 'focus-visible' in css
+
+def test_published_source_connectivity_preserves_legacy():
+    header=src('web/app/components/site-header.tsx')
+    assert 'href="/interview"' in header
+    assert 'href="/doctor"' in header and 'href="/admin"' in header
+    assert "redirect('/interview')" in src('web/app/page.tsx')
+    assert "import './interview-focus-v47.css';" in src('web/app/layout.tsx')
+    assert 'tests/browser_interview_focus_v47.py' in src('scripts/run_browser_qa_v34.sh')
+    ci=src('.github/workflows/ci.yml')
+    assert 'tests/test_interview_focus_v47.py' in ci
+    assert 'python -m ml.interview_benchmark_v47 --check' in ci
+    assert 'tests/test_study_activation_v46.py' in ci
+    # Protect published old v0.37-v0.46 source contracts.
+    from scripts.patch_handoff_v44 import PATCHES
+    for path,pairs in PATCHES.items():
+        original=src(path)
+        for _,insert in pairs:assert insert in original
+    from scripts.patch_validation_v41 import PATCHES as V41
+    for path,pairs in V41.items():
+        original=src(path)
+        for _,insert in pairs:assert insert in original
 
 def test_no_real_person_records_or_data_files_in_package():
     body=src(OUTPUT)

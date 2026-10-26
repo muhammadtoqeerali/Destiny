@@ -30,7 +30,7 @@ def run():
                 assert page.request.get(url+'?patient_id=fictional').status==400
                 assert page.request.post(url,data={'fictional':'only'}).status==405
                 assert page.request.post(BASE+'/api/inference',data={'fictional':True}).status==403
-                page.goto(BASE+'/archive/doctor',wait_until='domcontentloaded')
+                page.goto(BASE+'/doctor',wait_until='domcontentloaded')
                 page.get_by_role('navigation',name='Doctor workspace').get_by_role('button',name='Model evidence',exact=True).click()
                 section=page.get_by_role('region',name='Study team evidence handoff')
                 expect(section).to_be_visible()

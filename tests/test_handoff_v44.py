@@ -140,7 +140,7 @@ def test_doctor_ui_and_ci_preserve_prior_contracts():
     for forbidden in ('fetch(', 'localStorage', 'sessionStorage','JSON.stringify(profile)',
        'method:\'POST\'', '/api/predict'):
         assert forbidden not in ui
-    assert "import '../study-handoff-v44.css';" in src('web/app/archive/layout.tsx')
+    assert "import './study-handoff-v44.css';" in src('web/app/layout.tsx')
     css=src('web/app/study-handoff-v44.css')
     assert 'focus-visible' in css and 'prefers-reduced-motion' in css
     runner=src('scripts/run_browser_qa_v34.sh')
@@ -151,11 +151,8 @@ def test_doctor_ui_and_ci_preserve_prior_contracts():
     assert 'python -m ml.study_handoff_v44 --check' in ci
     from scripts.patch_artifact_v43 import PATCHES
     for rel,pairs in PATCHES.items():
-        legacy=rel=='web/app/layout.tsx'  # legacy CSS now lives in web/app/archive/layout.tsx
-        content=src('web/app/archive/layout.tsx' if legacy else rel)
-        for _,new in pairs:
-            new=new.replace("import './","import '../") if legacy else new
-            assert new in content,(rel,new)
+        content=src(rel)
+        for _,new in pairs:assert new in content,(rel,new)
     assert 'tests/test_serving_v40.py tests/test_validation_v41.py' in ci
     assert 'FRAILTYSCOPE_QA_CHROMIUM: /usr/bin/google-chrome' in ci
 
