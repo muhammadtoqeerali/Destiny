@@ -23,6 +23,20 @@ def run():
                 expect(detail).to_contain_text('Example 05')
                 expect(detail).to_contain_text('40.1%')
                 expect(detail).to_contain_text('No earlier visits')
+                # The visual overview must derive its counts from the eight fictional records.
+                expect(page.get_by_label('Functional status distribution of fictional examples')).to_be_visible()
+                expect(page.locator('.d51-ring')).to_have_attribute('aria-label',re.compile('5 examples with zero ADL limitations, 2 with one and 1 with two or more'))
+                filters=page.get_by_label('Filter fictional examples')
+                filters.locator('button').nth(1).click()
+                assert page.locator('button.d51-patient').count()==5
+                expect(detail).to_contain_text('Example 01')
+                filters.locator('button').nth(2).click()
+                assert page.locator('button.d51-patient').count()==3
+                expect(detail).to_contain_text('Example 02')
+                filters.locator('button').nth(0).click()
+                assert page.locator('button.d51-patient').count()==8
+                expect(page.get_by_role('heading',name='Illustrative scores')).to_be_visible()
+                expect(page.get_by_text('Range',exact=False).first).to_be_visible()
                 page.get_by_text('Research interpretation and limitations').click()
                 expect(page.get_by_text('previously inspected',exact=False).first).to_be_visible()
                 chart=page.get_by_role('region',name='Real NHANES population research')

@@ -18,11 +18,11 @@ def run():
                 expect(page).to_have_url(re.compile(r'/doctor/?$'))
                 real=page.get_by_role('region',name='Real NHANES population research')
                 expect(real).to_be_visible()
-                expect(real).to_contain_text('current difficulty walking a quarter mile')
+                expect(real).to_contain_text(re.compile(r'current self-reported difficulty walking a quarter mile', re.I))
                 expect(real).to_contain_text('1,032')
                 expect(real).to_contain_text('0.732')
                 assert page.locator('.d51-patient').count()==8
-                expect(page.get_by_label('Selected fictional example details')).to_contain_text('SIMULATED')
+                expect(page.get_by_label('Selected fictional example details')).to_contain_text('Synthetic record')
                 assert not requests,requests
                 # The protected public-aggregate demo uses its existing, public-only passcode.
                 page.goto(BASE+'/admin/interview',wait_until='domcontentloaded')

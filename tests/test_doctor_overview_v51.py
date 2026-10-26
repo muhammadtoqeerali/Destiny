@@ -37,3 +37,23 @@ def test_doctor_main_prioritizes_generated_examples_and_real_aggregate_boundary(
     assert 'doctor-overview-v51.css' in source('web/app/layout.tsx')
     css=source('web/app/doctor-overview-v51.css')
     assert 'prefers-reduced-motion' in css and 'focus-visible' in css
+
+
+def test_polished_doctor_view_uses_only_existing_examples_and_neutral_indicators():
+    ui=source('web/app/components/doctor-overview-v51.tsx')
+    header=source('web/app/components/site-header.tsx')
+    css=source('web/app/doctor-overview-v51.css')
+    for term in ('nWithOneADL','nWithoutADL','d51-ring','d51-score-dial',
+                 'd51-filter-bar',"filter==='none'",'No earlier visits',
+                 'Research interpretation and limitations','PUBLIC AGGREGATES'):
+        assert term in ui,term
+    for unwanted in ('Explore more, without clutter.',
+                     'The original technical Doctor workspace remains',
+                     'you asked', 'as requested', 'ChatGPT', 'Claude'):
+        assert unwanted.lower() not in ui.lower(),unwanted
+    assert 'RESEARCH DEMO' not in header
+    assert 'Interview focus' not in header
+    assert 'prefers-reduced-motion' in css and 'focus-visible' in css
+    assert 'ClinicalWorkspace' in source('web/app/doctor/workspace/page.tsx')
+    assert 'AdminResearchHub' in source('web/app/admin/page.tsx')
+    assert 'No HUNT' in ui and 'unweighted' in ui
