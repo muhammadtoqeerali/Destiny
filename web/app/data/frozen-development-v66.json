@@ -1,0 +1,34 @@
+{
+  "schema": "FRAILTYSCOPE_PUBLIC_DEV_SNAPSHOT_V66",
+  "data_provenance": "REAL_NHANES_2015_2016_REPEATED_DEVELOPMENT_ONLY_AGGREGATES",
+  "study": "Current self-reported quarter-mile walking difficulty among eligible adults aged 65+",
+  "cohort_n": 985,
+  "difficulty_n": 245,
+  "no_difficulty_n": 740,
+  "positive_fraction": 0.248731,
+  "primary_model": "Regularized logistic regression",
+  "source_experiment": "FrailtyScope v0.64 repeated development, 5 outer folds; user-provided workstation log 2026-10-27",
+  "roc_auc": 0.72116,
+  "pr_auc": 0.44685,
+  "brier": 0.166662,
+  "dummy_brier": 0.18686,
+  "review_budget_fraction": 0.2,
+  "review_sensitivity": 0.396,
+  "feature_importance": [
+    {"feature":"BMI","delta_brier":0.006600},
+    {"feature":"Age","delta_brier":0.006122},
+    {"feature":"PHQ-9","delta_brier":0.005764},
+    {"feature":"Arthritis","delta_brier":0.003826},
+    {"feature":"Heart failure","delta_brier":0.003657},
+    {"feature":"Stroke","delta_brier":0.003469},
+    {"feature":"Diabetes","delta_brier":0.001709},
+    {"feature":"Sex","delta_brier":0.000040}
+  ],
+  "limits": [
+    "Not future frailty, falls or hospitalization prediction",
+    "Repeated development on one NHANES survey cycle, not external validation",
+    "No real participant records or fitted models hosted",
+    "Permutation importance reflects model dependence, not clinical causality",
+    "No survey-design-based population inference"
+  ]
+}
